@@ -35,6 +35,7 @@
 body {
   font-family: @sansFontFamily;
   color: @color-text;
+  background-color: @color-inactive-light;
 
   a {
     color: @color-primary;
@@ -172,6 +173,10 @@ p.small {
   margin: 0;
 }
 
+.mt50 {
+  margin-top: 50px;
+}
+
 .mt100 {
   margin-top: 100px;
 }
@@ -202,8 +207,9 @@ p.small {
 
 .bg-mbair {
   height: 600px;
-  background: url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yc/r/xFmW1tcxsyL.png) no-repeat right 50%;
-  background-position: 0px 50%;
+  background: url(https://9to5mac.files.wordpress.com/2012/11/mba.png?w=704) no-repeat 0 bottom;
+  background-size: contain;
+  // background-position: 0px 50%;
 }
 
 .color-accent-200 {
@@ -348,7 +354,7 @@ ul.list-nav-left {
 }
 
 .sectionHeader h3.uiHeaderTitle, .sectionHeader .uiHeaderActions {
-  background-color: #fff;
+  background-color: @color-inactive-light;
 }
 
 .sectionHeader h3.uiHeaderTitle, .sectionHeader .uiHeaderActions a {

@@ -9,5 +9,7 @@
     "angular-ui-router": "~0.2",
     "roboto-fontface": "~0.1.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "angular-facebook": "~0.2.3"
+  }
 }
