@@ -1,0 +1,326 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true"
+          ng-click="menuCollapsed = ! menuCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" collapse="menuCollapsed">
+        <ul class="nav navbar-nav">
+          <li ui-sref-active="active">
+            <a href ui-sref="home">
+              <!-- <i class="fa fa-refresh fa-spin"></i> -->
+              <i class="fa fa-bars"></i>
+            </a>
+          </li>
+          <li class="active">
+            <a href ui-sref="home">
+              My Feed
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href ui-sref="explore">
+              Explore
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li>
+            <a href="https://facebook.com">Back to Facebook</a>
+          </li>
+          <!-- <li>
+            <a href=""><i class="material-icons">notifications</i></a>
+          </li> -->
+          <li>
+            <div class="icon-nav-avatar">
+              <a href="">
+                <img class="img-circle" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.0.160.160/p160x160/11245492_10153275900904293_1724707332891240666_n.jpg?oh=9e885e024634e1a60a590fd071f1c7c6&oe=55ED964A&__gda__=1441895226_af397f973d45f63603c4ea2e844984fa" height="30"/>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid container-fixed-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-2 sidebar-left pull-left">
+        <ul class="list-unstyled list-nav-left">
+          <!-- <li class="active">
+            <div class="clearfix">
+              <a href=""><h4><div class="pull-left pull-avatar"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" height="20"/></div><div class="pull-left pull-text">Pretty Green</div></h4></a>
+            </div>
+          </li> -->
+          <li class="active">
+            <div class="clearfix">
+              <a href=""><h4><div class="pull-left pull-icon"><i class="material-icons">local_mall</i></div><div class="pull-left pull-text">All</div></h4></a>
+            </div>
+          </li>
+          <li>
+            <div class="clearfix">
+              <a href=""><h4><div class="pull-left pull-icon"><i class="material-icons">thumb_up</i></div><div class="pull-left pull-text">Likes</div></h4></a>
+            </div>
+          </li>
+          <li>
+            <div class="clearfix">
+              <a href=""><h4><div class="pull-left pull-icon"><i class="material-icons">card_giftcard</i></div><div class="pull-left pull-text">Discounts</div></h4></a>
+            </div>
+          </li>
+          <li>
+            <div class="clearfix">
+              <a href=""><h4><div class="pull-left pull-icon"><i class="material-icons">store</i></div><div class="pull-left pull-text">Following</div></h4></a>
+            </div>
+          </li>
+          <!-- <li> THIS ONE WILL BE IN SETTINGS
+            <div class="clearfix">
+              <a href=""><h4><div class="pull-left pull-icon"><i class="material-icons">bookmark</i></div><div class="pull-left pull-text">Subscriptions</div></h4></a>
+            </div>
+          </li> -->
+          <li>
+            <div class="clearfix">
+              <a href=""><h4><div class="pull-left pull-icon"><i class="material-icons">contacts</i></div><div class="pull-left pull-text">Invite Friends</div></h4></a>
+            </div>
+          </li>
+        </ul>
+        <!-- <ul class="list-unstyled list-nav-left">
+          <li>
+            <div class="clearfix">
+              <h4 class="small"><i class="fa fa-plus-square"></i> <a href="" class="color-accent-200">Own a store? Have a page on Facebook? <u>Find out more</u> | <u>Join us for FREE!</u></a></h4>
+            </div>
+          </li>
+        </ul> -->
+      </div>
+      <!-- <div class="col-xs-10 page-content">
+        <div class="md-card bg-primary">
+          <div class="md-card-content mt16">
+            Welcome on Blink4Sale! We are analizing data from your Facebook profile. Please wait for the results. Give us a sec, and in the mean time check our Explore secion below. Cheers.
+          </div>
+        </div>
+      </div> -->
+      <div class="col-xs-6 page-content">
+        <!-- <div class="md-card">
+          <div class="md-card-content m0 p0" style="margin:0;padding:0;">
+            <input type="text" placeholder="Search your feed..." class="form-control search"/>
+          </div>
+        </div> -->
+
+        <div class="md-card bg-primary">
+          <div class="md-card-content mt16">
+            Welcome on Blink4Sale! We are analizing data from your Facebook profile. Please wait for the results. Give us a sec, and in the mean time check our Explore secion below. Cheers.
+          </div>
+        </div>
+
+
+        <div class="sectionHeader">
+          <div class="uiHeader">
+            <div class="clearfix uiHeaderTop">
+              <div><h3 class="uiHeaderTitle">Explore</h3></div>
+            </div>
+          </div>
+          <div class="_5vg"></div>
+        </div>
+
+        <div class="md-card">
+          <div class="md-card-content md-card-fb-page">
+            <div class="fb-page" data-href="https://www.facebook.com/coteetciel?fref=ts" data-width="500" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
+          </div>
+        </div>
+
+        <card-post></card-post>
+
+        <div class="md-card">
+          <div class="md-card-header">
+            <img align="left" ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" class="md-card-image-avatar-xs" alt=""/>
+            <ul class="list-unstyled list-inline mb0">
+              <li><a href="">Pretty Green</a></li>
+            </ul>
+            <ul class="list-unstyled mb0 clearfix">
+              <li><a class="small color-inactive" href="">12K people like this</a></li>
+            </ul>
+            <button class="btn btn-default btn-inactive pull-right abstr"><i class="fa fa-ellipsis-v"></i></button>
+          </div>
+          <div class="md-card-picture">
+            <div class="md-card-price">$ 210.00</div>
+            <img ng-src="https://scontent-lhr3-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11391239_10152854157922644_4046989969582490979_n.jpg?oh=0554361a7d702c9f7ee3eca161a2d340&oe=560283E1" class="md-card-image" alt="">
+          </div>
+          <div class="md-card-content">
+            Visit a Pretty Green store this weekend - View store finder > <a href="">http://bit.ly/LrESZL</a>
+          </div>
+          <div class="md-card-avatars">
+            <ul class="list-unstyled list-inline mb0">
+              <li><a href=""><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xft1/v/t1.0-1/p50x50/10933722_511892322286040_7839042215415621846_n.jpg?oh=7809027bb895c0c03509e561d3734856&oe=55F68492&__gda__=1441557382_253eeb929047ee688d043546924a7cf1"/></a></li>
+              <li><a href=""><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p50x50/603747_416874875141011_4329697700207091862_n.jpg?oh=904180bcd8882691a6bf15a76c3eac6e&oe=55FD0E9D&__gda__=1443470501_7c3a382bd3b60857956840660f3ef513"/></a></li>
+              <li><a href=""><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xft1/v/t1.0-1/p50x50/10933722_511892322286040_7839042215415621846_n.jpg?oh=7809027bb895c0c03509e561d3734856&oe=55F68492&__gda__=1441557382_253eeb929047ee688d043546924a7cf1"/></a></li>
+              <li><a href=""><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p50x50/603747_416874875141011_4329697700207091862_n.jpg?oh=904180bcd8882691a6bf15a76c3eac6e&oe=55FD0E9D&__gda__=1443470501_7c3a382bd3b60857956840660f3ef513"/></a></li>
+              <li><a href=""><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xft1/v/t1.0-1/p50x50/10933722_511892322286040_7839042215415621846_n.jpg?oh=7809027bb895c0c03509e561d3734856&oe=55F68492&__gda__=1441557382_253eeb929047ee688d043546924a7cf1"/></a></li>
+              <li><a href=""><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p50x50/603747_416874875141011_4329697700207091862_n.jpg?oh=904180bcd8882691a6bf15a76c3eac6e&oe=55FD0E9D&__gda__=1443470501_7c3a382bd3b60857956840660f3ef513"/></a></li>
+              <li><a href=""><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xft1/v/t1.0-1/p50x50/10933722_511892322286040_7839042215415621846_n.jpg?oh=7809027bb895c0c03509e561d3734856&oe=55F68492&__gda__=1441557382_253eeb929047ee688d043546924a7cf1"/></a></li>
+              <li class="summary"><div><a class="likes" href="">+23 people like this</a></div></li>
+            </ul>
+          </div>
+          <div class="md-actions" layout="row" layout-align="end center">
+            <button class="btn btn-default">Like</button>
+            <button class="btn btn-default">Buy Now</button>
+            <button class="btn btn-default">Get discount</button>
+            <button class="btn btn-default">Share</button>
+          </div>
+        </div>
+
+        <div class="md-card">
+          <div class="md-card-header">
+            <img align="left" ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" class="md-card-image-avatar-xs" alt=""/>
+            <ul class="list-unstyled list-inline mb0">
+              <li><a href="">Pretty Green</a></li>
+            </ul>
+            <ul class="list-unstyled mb0 clearfix">
+              <li><a class="small color-inactive" href="">12K people like this</a></li>
+            </ul>
+            <button class="btn btn-default btn-inactive pull-right abstr"><i class="fa fa-ellipsis-v"></i></button>
+          </div>
+          <div class="md-card-picture">
+            <img ng-src="https://scontent-lhr3-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/1975086_10153403374970329_6992472842410552312_n.jpg?oh=d559964266e1339153ad700d310a1f12&oe=55EF21E3" class="md-card-image" alt="">
+          </div>
+          <div class="md-card-content">
+            Mid Season Sale | <a href="">www.maharishistore.com</a>
+          </div>
+          <div class="md-actions" layout="row" layout-align="end center">
+            <button class="btn btn-default">Like</button>
+            <button class="btn btn-default">Buy Now</button>
+            <button class="btn btn-default" ng-click="getDiscount()">Ask for discount</button>
+            <button class="btn btn-default">Share</button>
+            <button class="btn btn-default pull-right"><i class="fa fa-ellipsis-v"></i></button>
+          </div>
+        </div>
+
+        <div class="md-card">
+          <div class="md-card-header">
+            <img align="left" ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" class="md-card-image-avatar-xs" alt=""/>
+            <ul class="list-unstyled list-inline mb0">
+              <li><a href="">Pretty Green</a></li>
+            </ul>
+            <ul class="list-unstyled mb0 clearfix">
+              <li><a class="small color-inactive" href="">12K people like this</a></li>
+            </ul>
+            <button class="btn btn-default btn-inactive pull-right abstr"><i class="fa fa-ellipsis-v"></i></button>
+          </div>
+          <div class="md-card-content">
+            <div class="clearfix">
+              <img align="left" ng-src="https://scontent-fra3-1.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/11235326_10153357132909216_9058146317956676035_n.jpg?_nc_eui=AWgNj7_e8YYuD5gUQpv-0djaSlIPcyFwJ01aNQ&oh=595e71954a3278e268ad12c628358b49&oe=5604F38A" class="md-card-image-avatar" alt=""/>
+              <ul class="list-unstyled mb0">
+                <li>Discount: 30% | Valid to: 30/06/2015</li>
+                <li>Location: <a href="">2-3 GPS, Great Pulteney Street, London W1F 9LY UK</a></li>
+                <li class="small"><a href=""><i class="fa fa-angle-right"></i> Read terms</a></li>
+              </ul>
+            </div>
+            Mid Season Sale | <a href="">www.maharishistore.com</a>
+            <p class="small mb0 hide"><a href=""><i class="fa fa-angle-down"></i> Read terms</a><!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum. --></p>
+          </div>
+          <div class="md-actions" layout="row" layout-align="end center">
+            <button class="btn btn-default">Share</button>
+            <button class="btn btn-default btn-inactive"><i class="fa fa-check"></i> Saved</button>
+            <!-- <button class="btn btn-default pull-right"><i class="fa fa-ellipsis-v"></i></button> -->
+          </div>
+        </div>
+
+      </div>
+      <div class="col-xs-4">
+        <!-- <div class="md-card md-layout-sidebar" layout="sidebar">
+          <div class="md-card-header">
+            Going for Shopping?
+          </div>
+          <div class="md-card-content">
+            <p class="small">
+            Click this button below, and <u>we will setup discount just for you</u>! You will start receiving discounts & offers right to your mobile.</p>
+            <p><a class="btn btn-defaut btn-accent" href ng-click="getDiscount()">Subscribe for discounts</a></p>
+            <p><button class="btn btn-defaut btn-active" href ng-click="getDiscount()"><i class="fa fa-check"></i> Already requested</button></p>
+          </div>
+        </div> -->
+
+        <div class="md-card md-layout-sidebar" layout="sidebar">
+          <div class="md-card-header">
+            Popular Brands
+          </div>
+          <div class="md-card-content">
+            <ul class="list-unstyled mb0 mt16">
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+                <a href="">Pretty Green</a>
+              </li>
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+                <a href="">Pretty Green</a>
+              </li>
+            </ul>
+          </div>
+          <div class="md-actions" layout="row" layout-align="end center">
+            <a class="btn btn-default btn-sm btn-active" href ui-sref="explore">Explore more...</a>
+          </div>
+        </div>
+
+        <div class="md-card md-layout-sidebar" layout="sidebar">
+          <div class="md-card-header">
+            Recommended
+          </div>
+          <div class="md-card-avatars">
+            <ul class="list-unstyled list-inline list-friends-inline mb0 mt16">
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+              </li>
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+              </li>
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+              </li>
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+              </li>
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+              </li>
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+              </li>
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+              </li>
+              <li>
+                <img ng-src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460" width="50" class="md-card-sidebar-avatar" alt=""/>
+              </li>
+            </ul>
+          </div>
+          <div class="md-actions" layout="row" layout-align="end center">
+            <a class="btn btn-default btn-sm btn-active" href ui-sref="invite">Invite Friends...</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Confirmation</h3>
+  </div>
+  <div class="modal-body">
+    Hey! Your request about discount has been sent. We will notify you just after we will receive discount just for you!
+  </div>
+  <div class="modal-footer">
+    <!--<button class="btn btn-primary" ng-click="ok()">OK</button>-->
+    <button class="btn btn-default" ng-click="cancel()">Close</button>
+  </div>
+</script>

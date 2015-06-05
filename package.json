@@ -12,7 +12,17 @@
     "type": "git",
     "url": "git@github.com:ngbp/ngbp.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.12.4",
+    "ejs": "^2.3.1",
+    "express": "^4.12.3",
+    "facebook-sdk": "^0.3.2",
+    "fbgraph": "^1.0.0",
+    "ilkkah-fb": "^0.7.3",
+    "lodash": "^3.9.1",
+    "mongoose": "^4.0.3",
+    "request": "^2.55.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-bump": "0.0.6",

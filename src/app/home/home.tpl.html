@@ -1,131 +1,113 @@
-<div class="jumbotron">
-  <h1>Non-Trivial AngularJS Made Easy</h1>
-
-  <p class="lead">
-    Everything you need to kickstart AngularJS projects: a best-practice
-    directory structure, an intelligent build system, and the best web design
-    libraries around.
-  </p>
-
-  <ul class="list-inline social-buttons">
-    <li>
-      <iframe 
-        src="http://ghbtns.com/github-btn.html?user=ngbp&amp;repo=ngbp&amp;type=watch&amp;count=true" 
-        allowtransparency="true" 
-        frameborder="0" 
-        scrolling="0" 
-        width="110" 
-        height="20">
-      </iframe>
-    </li>
-    <li>
-      <iframe 
-        src="http://ghbtns.com/github-btn.html?user=ngbp&amp;repo=ngbp&amp;type=fork&amp;count=true" 
-        allowtransparency="true" 
-        frameborder="0" 
-        scrolling="0" 
-        width="95" 
-        height="20">
-      </iframe>
-    </li>
-    <li>
-       <iframe allowtransparency="true" frameborder="0" scrolling="no"
-        src="https://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fbit.ly%2FngBoilerplate&counturl=http%3A%2F%2Fngbp.github.com%2Fngbp&text=Check%20out%20%23ngbp%20-%20an%20awesome%20kickstarter%20for%20web%20projects%20%7C&hashtags=angularjs&via=joshdmiller&related=joshdmiller"
-        style="width:130px; height:20px;"></iframe>
-    </li>
-    <li plus-one></li>
-  </ul> 
-  
-  <div class="btn-group">
-    <a href="https://github.com/ngbp/ngbp#readme" class="btn btn-large btn-default">
-      <i class="fa fa-book"></i>
-      Read the Docs
-    </a>
-    <a href="https://github.com/ngbp/ngbp" class="btn btn-large btn-success">
-      <i class="fa fa-download"></i>
-      Download
-    </a>
-  </div>
-
-</div>
-
-<div class="marketing">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-thumbs-up"></i> Good to Go!</h4>
-      <p>
-        Kickstarts your project quickly, with everything you need, so you can 
-        focus on what matters: your app.
-      </p>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-magic"></i> Complete Build System</h4>
-      <p>
-        A smart, <a href="http://gruntjs.com">Grunt</a>-based build system 
-        designed to save you time and energy.
-      </p>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-retweet"></i> Modularization</h4>
-      <p>
-        Supports a structure that maintains separation of concerns while
-        ensuring maximum code reuse.
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-star"></i> AngularJS</h4>
-      <p>
-        JavaScript framework that augments browser-based, single-page 
-        applications with MVC functionality.
-        <a href="http://angularjs.org">More &raquo;</a>
-      </p>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-resize-small"></i> LESS CSS</h4>
-      <p>
-        The dynamic stylesheet language that extends CSS with efficiency.
-        <a href="http://lesscss.org">More &raquo;</a>
-      </p>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-twitter"></i> Twitter Bootstrap</h4>
-      <p>
-        Sleek, intuitive, and powerful front-end framework for faster and easier
-        web development.
-        <a href="http://getbootstrap.com">More &raquo;</a>
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-circle"></i> Angular UI Bootstrap</h4>
-      <p>
-        Pure AngularJS components for Bootstrap written by the 
-        <a href="https://github.com/angular-ui?tab=members">AngularUI Team</a>.
-        <a href="http://angular-ui.github.com/bootstrap">More &raquo;</a>
-      </p>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-flag"></i> Font Awesome</h4>
-      <p>
-        The iconic font designed for use with Twitter Bootstrap.
-        <a href="http://fortawesome.github.com/Font-Awesome">
-          More &raquo;
-        </a>
-      </p>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <h4><i class="fa fa-asterisk"></i> Placeholders</h4>
-      <p>
-        Client-side image and text placeholder directives written in pure 
-        AngularJS to make designing mock-ups wicked-fast.
-        <a href="http://joshdmiller.github.com/angular-placeholders">
-          More &raquo;
-        </a>
-      </p>
+    <div class="navbar navbar-default">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true"
+          ng-click="menuCollapsed = ! menuCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <div class="navbar-brand">
+          ShopByBlog
+          <small>
+            <a href="http://github.com/ngbp/ngbp/blob/v<%= version %>-release/CHANGELOG.md">
+              v<%= version %>
+            </a>
+          </small>
+        </div> -->
+      </div>
+      <div class="collapse navbar-collapse" collapse="menuCollapsed">
+        <ul class="nav navbar-nav hide">
+          <li ui-sref-active="active">
+            <a href ui-sref="home">
+              My Feed
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href ui-sref="about">
+              Explore
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li ui-sref-active="active">
+            <a href ui-sref="home">
+              Features
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href ui-sref="about">
+              Business
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-5 ac mt100">
+        <!-- <p><img src="https://cdn0.iconfinder.com/data/icons/shopping-set-3/512/13-128.png" width="80"/></p> -->
+        <!-- <p><img src="https://cdn0.iconfinder.com/data/icons/glyphpack/117/shopping-bag-128.png" width="80"/></p> -->
+        <!-- <p><img src="https://cdn4.iconfinder.com/data/icons/ballicons-2-free/100/shopping_bag-128.png" width="80"/></p> -->
+        <p><i class="material-icons md-64">local_mall</i></p>
+        <!-- <h1 class="color-accent-200 m0 fw300">Shop directly from your Facebook feed</h1> -->
+        <h1 class="color-accent-200 m0 fw300">The hottest offers from your Facebook timeline</h1>
+        <h5>
+          <!-- The most innovative contact with your favorite brand ever. -->
+          <!-- <br/> -->
+          Receive the best deals right from favourite brands.
+          <!-- <br/> -->
+          <!-- We don't spam. You will get only discounts and products information. -->
+          <br/>
+          Sign in with Facebook to get started.
+        </h5>
+        <div class="clearfix mt30">
+          <a href ui-sref="feed" class="btn btn-lg btn-primary">Continue with Facebook</a>
+        </div>
+        <div class="clearfix mt30">
+          <small>Get the app on <a href="">iOS</a>, <a href="">Android</a></small>
+        </div>
+        <div class="clearfix mt30 ac">
+          <ul class="list-unstyled list-inline list-avatars-inline-slim mb0 mrla">
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-xfa1/v/t1.0-1/c28.28.345.345/s160x160/550013_10151387007773445_409018869_n.jpg?_nc_eui=AWj9wrpTqViJ8Uqof8eULJrjnszWgPOYAwzvBg&oh=2445efca500cd78feacdca969812e164&oe=55C28F5D" width="50"/></li>
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-xaf1/v/t1.0-1/p160x160/398839_10150820564473888_31237359_n.jpg?_nc_eui=AWhI4rh7GipTrnIyKw8nx0hcfbTPRLcJ5vxxYA&oh=9421168328a021b43e016080ed713ab9&oe=5609EA38" width="50"/></li>
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-ash2/v/t1.0-1/p160x160/482410_10151964962435907_553609070_n.png?_nc_eui=AWhex6GG5n7RksJmCgwfBkSAV11SScPY-a0biQ&oh=376a20261867f30f9409e2bc8e303e6a&oe=560952A2" width="50"/></li>
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-xaf1/v/t1.0-1/p160x160/11068300_10153113833746013_5082007906862024286_n.png?_nc_eui=AWgysYDddKCAnuUGsDDSjF502daTwpx6Pcn_UQ&oh=6e30dc98a0722641dce083c67638a21b&oe=560A0343" width="50"/></li>
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-frc3/v/t1.0-1/c0.0.160.160/p160x160/1229897_557445394310130_1312388512_n.jpg?_nc_eui=AWjGE27UBmPxTun1De8Kfj5ANlLgjT4VHmunbw&oh=afb0926b5003eeeeef8ce843040f5cd1&oe=55F5FF6F" width="50"/></li>
+          </ul>
+          <ul class="list-unstyled list-inline list-avatars-inline-slim mb0 mrla mt0">
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-xfa1/v/t1.0-1/p160x160/10649814_572616149510005_8020871624171185979_n.jpg?_nc_eui=AWjTVEt7w9lMaCEc78h2i4gBYkAjw_OPTrT5Dg&oh=45affa580df452380b087f2d9cb237d6&oe=5607B993" width="50"/></li>
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-xfp1/v/t1.0-1/p160x160/984233_10152474965149327_5496318397131867198_n.jpg?_nc_eui=AWhGHS-OB5ftnYFk387MKDvNk6dZlLgFMIU1gQ&oh=78bf83389775a06a0a6e25fe47863e29&oe=55FB98F1" width="50"/></li>
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-xap1/v/t1.0-1/p160x160/10646713_10154536753595125_42403832557489633_n.png?_nc_eui=AWifQOCRibwyEIlHxg151V6ZwoE-EQ4gyJCYuA&oh=aa59fe30d52c8c4791d6929a2f511325&oe=55FB5664" width="50"/></li>
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-xaf1/v/t1.0-1/p160x160/424156_10150715530776425_430636931_n.jpg?_nc_eui=AWi4b0ZZi9EiEAwhMYKzubRW_EW2rq90b7Ns3A&oh=e21b6974bbfa3c5dd437d8a5d3b12ab8&oe=56080085" width="50"/></li>
+            <li><img class="b1w" src="https://scontent.xx.fbcdn.net/hprofile-xap1/v/t1.0-1/p160x160/735153_10151293561807819_819903992_n.jpg?_nc_eui=AWgA5TeMJUzG2P1rocYiDo-Sbrp0EQYVB4DzJw&oh=070f6c4b89dc18a2837b0e215347b4a8&oe=55F8813C" width="50"/></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-7 bg-mbair">
+        <div class="row">
+          <!-- <div class="col-xs-12">
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460"/>
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/v/t1.0-1/c12.12.155.155/267768_10151379440336607_1266316094_n.jpg?oh=c2384ce5beff02ef98e3523c68b9a4de&oe=560D7629&__gda__=1442511521_f40a310c295528381d43adc69d7b194c"/>
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p160x160/66886_176016489084302_726913_n.jpg?oh=6c527f383024d31ee3264a1a2833a718&oe=55F3E88E&__gda__=1438849410_3aa88b20b5425e2f8bdfdedc15d88238"/>
+          </div>
+          <div class="col-xs-12">
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/p160x160/1911962_10152170594572644_1972626181832717453_n.jpg?oh=3c9bd5fbb6fca98db60a8105a88647a1&oe=55FA88E7&__gda__=1443512235_9821babcd641029769666432e2b6c426"/>
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/p160x160/306551_306347019481199_1882126417_n.jpg?oh=04da047abbc38405d47a7251f4f253cd&oe=560375BD&__gda__=1443471138_94a005c8ea09df33b992c10747d7d3de"/>
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xta1/v/t1.0-1/p160x160/10922459_10155074395310176_1149282174353906299_n.jpg?oh=375c59d8e1bdbe96c6678ef03e44ae92&oe=5602C1BB&__gda__=1443322052_7f788945dcbc4c5b8b1a72791758c623"/>
+          </div>
+          <div class="col-xs-12">
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p160x160/1467275_10151825396148741_1861451753_n.jpg?oh=44e959dc30a41b5971ef4dcd641bf703&oe=55C50B98&__gda__=1443458394_28fdf422758ce9c1cc7cc413b0e16212"/>
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xft1/v/t1.0-1/p160x160/11071590_838711186177519_5497080331647333793_n.jpg?oh=fccf1eeea18db936ba10756b793683b5&oe=55F77450&__gda__=1441850649_1eb504285291922b8918dfc4ad06965a"/>
+            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/p160x160/10484933_10153173658280329_3660941300911894290_n.png?oh=6b7560021dc3a78312b4f21ea67fd181&oe=55C0FF5A&__gda__=1438832577_adbb69eae1bafc93713175ccce8d5998"/>
+          </div> -->
+        </div>
+      </div>
+  </div>
+</div>

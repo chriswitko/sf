@@ -31,15 +31,55 @@ angular.module( 'ngBoilerplate.home', [
         templateUrl: 'home/home.tpl.html'
       }
     },
-    data:{ pageTitle: 'Home' }
+    data:{ pageTitle: 'Welcome' }
   });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
-})
+.controller( 'HomeCtrl', function HomeController( $scope, Facebook ) {
+  var access_token = "CAAUbE6b5y7QBAKOKJZAWlipmW8cqxSxzEFH4V0InJAqQE7GEPMJyLfZAQzkhFnu37k1JbZA4ZBOGOexFxk8hZCHlt9DSjZC8tnI9Wr4f38aUZCQ7FWM6muZC8S5YkyH3w8FEuLBFUj3ODGEYFyN2DnNsbDQi94int5SZClzBVyoVISeuOUeQj2ouHjQQouEoZCptqegj5jHxRKmTYYvq51dURuQxim1ZAKmMEAZD";
+  // signed = "ksYCLUt0_-cWHkoPYFtrNTkyAVdnVgE9sw99mGa-je0.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUNhRno2Mi1SdFVSRHZ1Z1JNek45YU0tNTNaODdyeGNNQ0Jla3B3QmVRQ1loZDlSa1FZOHFoaEVpWHlLV3o0c3d5LWtET09TdW5KU2Vzc3M5N0kxRXNsdU5WaDkxNEhnZjUxa0QxMHltSkh0SW0xT3lreW1VaTZkcE5FTzZLRE1CbmdMeEVQYWVvci1XbFBBN0hDVVVwY3BFTVNOZF9jY0hWNFQxd0E1S0pfV3YwYjZCbU5DNkQwRnYzQlFIZmZBSGpsSlZFUjdsanZHeGZ4a1hjWXk3MDY1M1d4bEMwNFNJSmJjb2dBSjU5Y3VyN3VnbGhRakxJS05Vb0ZObG1ObEo2Uk1HNktfNE9icWh1dUxMYUdjallRSjl0ZXB1ZEU5bWFVTW5pcFJQVzBjdVVhTTI0dWFEcW5SQlowU0J0SFEtVUpxZ09XTXJGcFBjU3pvTW5FbkVfTiIsImlzc3VlZF9hdCI6MTQzMjM4NzU1MSwidXNlcl9pZCI6IjEwMTUzMjkzOTk3NDc0MjkzIn0"
+  // userid = "10153293997474293"
 
-;
+  $scope.hello = function() {
+    console.log('hello chris');
+  };
+
+  $scope.likes = function() {
+
+    Facebook.api('/me/likes?access_token=' + access_token, function(response) {
+      console.log(response);
+    });
+  };
+
+  $scope.me = function() {
+    Facebook.api('/me', function(response) {
+      console.log(response);
+      $scope.user = response;
+    });
+  };
+
+  $scope.login = function() {
+    // From now on you can use the Facebook service just as Facebook api says
+    Facebook.login(function(response) {
+      console.log(response);
+      // Do something with response.
+    }, {scope: 'email,user_likes'});
+  };
+
+  $scope.getLoginStatus = function() {
+    Facebook.getLoginStatus(function(response) {
+      if(response.status === 'connected') {
+        alert('connected');
+        $scope.loggedIn = true;
+      } else {
+        alert('not connected');
+        $scope.loggedIn = false;
+      }
+    });
+  };
+
+});
 
