@@ -12,11 +12,12 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.feed', [
+angular.module( 'ngBoilerplate.explore', [
   'ui.router',
   'plusOne',
-  'ui.bootstrap',
-  'cards.discount'
+  'cards.post',
+  'cards.page',
+  'ui.bootstrap'
 ])
 
 /**
@@ -25,22 +26,22 @@ angular.module( 'ngBoilerplate.feed', [
  * this way makes each module more "self-contained".
  */
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'feed', {
-    url: '/feed',
+  $stateProvider.state( 'explore', {
+    url: '/explore',
     views: {
       "main": {
-        controller: 'FeedCtrl',
-        templateUrl: 'feed/feed.tpl.html'
+        controller: 'ExploreCtrl',
+        templateUrl: 'explore/explore.tpl.html'
       }
     },
-    data:{ pageTitle: 'My Feed' }
+    data:{ pageTitle: 'Explore' }
   });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'FeedCtrl', function FeedController( $scope, $modal, $log, Facebook ) {
+.controller( 'ExploreCtrl', function ExploreController( $scope, $modal, $log, Facebook ) {
   $scope.getDiscount = function(size) {
     var modalInstance = $modal.open({
       animation: true,

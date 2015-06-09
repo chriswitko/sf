@@ -1,0 +1,31 @@
+<div class="md-card">
+  <div class="md-card-header">
+    <a href="{{post.from.link}}"><img align="left" ng-src="{{post.from.picture.data.url}}" class="md-card-image-avatar-xs" alt=""/></a>
+    <ul class="list-unstyled list-inline mb0">
+      <li><a href="{{post.from.link}}">{{post.from.name | nl2br}}</a></li>
+    </ul>
+    <ul class="list-unstyled mb0 clearfix">
+      <li><a class="small color-inactive" href="{{post.link}}">{{post.from.likes | nearestK}} people like this</a></li>
+    </ul>
+    <button class="btn btn-default btn-inactive pull-right abstr"><i class="fa fa-ellipsis-v"></i></button>
+  </div>
+  <div class="md-card-picture">
+    <div class="md-card-price">$ 210.00</div>
+    <a href="{{post.link}}"><img ng-src="{{post.images[3].source}}" class="md-card-image" alt=""></a>
+  </div>
+  <div class="md-card-content">
+    <span ng-bind-html="post.name | linky"></span>
+  </div>
+  <div class="clearfix md-card-avatars" ng-if="post.likes.summary.total_count > 0">
+    <ul class="list-unstyled list-inline mb0">
+      <li ng-repeat="like in post.likes.data | limitTo:7 track by $index"><a href="{{like.link}}"><img ng-src="{{like.picture.data.url}}"/></a></li>
+      <li class="summary" ng-if="post.likes.summary.total_count - 7 > 0"><div><a class="likes" href="{{post.link}}">+{{post.likes.summary.total_count}} people like this</a></div></li>
+    </ul>
+  </div>
+  <div class="clearfix md-actions md-actions-bg" layout="row" layout-align="end center">
+    <!-- <button class="btn btn-default">Like</button> -->
+    <button class="btn btn-primary">Buy Now</button>
+    <button class="btn btn-default">Ask for discount</button>
+    <button class="btn btn-default" ng-click="share()">Save</button>
+  </div>
+</div>

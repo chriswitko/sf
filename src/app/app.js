@@ -3,9 +3,11 @@ angular.module( 'ngBoilerplate', [
   'templates-common',
   'ngBoilerplate.home',
   'ngBoilerplate.feed',
+  'ngBoilerplate.explore',
   'ngBoilerplate.about',
   'ui.router',
-  'facebook'
+  'facebook',
+  'ngSanitize'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, FacebookProvider ) {
@@ -15,13 +17,16 @@ angular.module( 'ngBoilerplate', [
   FacebookProvider.init('1437146103270324');
 })
 
-.run( function run () {
+.run( function run (Facebook) {
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, Facebook ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle + ' | FollowShops' ;
+    }
+    if(Facebook.isReady()) {
+      Facebook.parseXFBML();
     }
   });
 })

@@ -67,7 +67,9 @@ module.exports = {
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
-      'vendor/angular-facebook/lib/angular-facebook.js'
+      'vendor/angular-facebook/lib/angular-facebook.js',
+      'vendor/angular-sanitize/angular-sanitize.min.js',
+      'vendor/angular-nl2br/angular-nl2br.min.js'
     ],
     css: [
     ],

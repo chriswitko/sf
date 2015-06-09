@@ -10,6 +10,8 @@
     "roboto-fontface": "~0.1.2"
   },
   "dependencies": {
-    "angular-facebook": "~0.2.3"
+    "angular-facebook": "~0.2.3",
+    "angular-sanitize": "~1.4.0",
+    "angular-nl2br": "~1.0.3"
   }
 }
