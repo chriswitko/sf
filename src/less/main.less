@@ -46,9 +46,12 @@ body {
   outline: 0!important;
 }
 
+.container-fluid {
+  padding:0;
+}
+
 .container {
-  max-width: 1100px;
-  width: 1100px;
+  width: 100%;
 }
 
 .container-fixed-top {
@@ -58,6 +61,7 @@ body {
 .container-fixed-top-home {
   margin-top: @fixed-top + 10px;
 }
+
 
 .page-content {
   margin-left:183px;
@@ -443,3 +447,10 @@ ul.list-avatars-inline-slim {
 
 @import '../app/home/home.less';
 
+@media (min-width: 768px) {
+  .container-fixed-width {
+    max-width: 1100px;
+    // width: 1100px;
+  }
+
+}
