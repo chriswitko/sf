@@ -8,6 +8,8 @@ var fb = require('ilkkah-fb');
 
 var User = require('./server/models/user');
 
+var userController = require('./server/controllers/users');
+
 // Connect to mongodb
 var connect = function () {
   var options = { server: { socketOptions: { keepAlive: 1 } } };
@@ -49,6 +51,8 @@ app.use(express.static('build'));
 
 app.set('views', './build');
 app.set('view engine', 'ejs');
+
+app.get('/api/user/test', userController.getApi);
 
 app.get('/', function (req, res) {
   res.send('Hello World!');

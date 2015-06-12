@@ -7,7 +7,9 @@ angular.module( 'ngBoilerplate', [
   'ngBoilerplate.about',
   'ui.router',
   'facebook',
-  'ngSanitize'
+  'ngSanitize',
+  'ui.nav',
+  'ui'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, FacebookProvider ) {
