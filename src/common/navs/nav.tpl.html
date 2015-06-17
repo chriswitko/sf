@@ -1,4 +1,51 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-if="theme === 'light'">
+  <div class="row">
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true" ng-click="menuCollapsed = ! menuCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand">
+          ShopNowApp
+          <small>
+            All deals in one place
+          </small>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse" collapse="menuCollapsed">
+        <ul class="nav navbar-nav hide">
+          <li ui-sref-active="active">
+            <a href ui-sref="home">
+              My Feed
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href ui-sref="about">
+              Explore
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          <li ui-sref-active="active">
+            <a href ui-sref="home">
+              Features
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href ui-sref="about">
+              Business
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" ng-if="!theme">
   <div class="row">
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-header">
@@ -17,9 +64,9 @@
               <i class="fa fa-bars"></i>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Settings</a></li>
+              <li><a href="#">Settings...</a></li>
               <li class="divider"></li>
-              <li><a href="/">Log out...</a></li>
+              <li><a href ng-click="logout()">Log out</a></li>
             </ul>
           </li>
           <li ui-sref-active="active">
@@ -50,15 +97,12 @@
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li>
-            <a href="https://facebook.com">Back to Facebook</a>
+            <a href="https://www.facebook.com" target="_blank">Hi, <span ng-bind-html="user.first_name"></span></a>
           </li>
-          <!-- <li>
-            <a href=""><i class="material-icons">notifications</i></a>
-          </li> -->
           <li>
             <div class="icon-nav-avatar">
-              <a href="">
-                <img class="img-circle" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.0.160.160/p160x160/11245492_10153275900904293_1724707332891240666_n.jpg?oh=9e885e024634e1a60a590fd071f1c7c6&oe=55ED964A&__gda__=1441895226_af397f973d45f63603c4ea2e844984fa" height="30"/>
+              <a href="{{user.link}}" target="_blank">
+                <img class="img-circle" ng-src="{{user.picture.data.url}}" height="30"/>
               </a>
             </div>
           </li>

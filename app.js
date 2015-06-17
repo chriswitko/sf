@@ -1,14 +1,25 @@
 var config = require('./server/config/config.js');
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var graph = require('fbgraph');
 var fb = require('ilkkah-fb');
 
+var MC = require('mongomq').MongoConnection;
+var MQ = require('mongomq').MongoMQ;
+
 var User = require('./server/models/user');
 
 var userController = require('./server/controllers/users');
+
+var Children = require('./server/common/child');
+// var talker = Children.startChild('./talker');
+var listener = Children.startChild('./listener');
+
+var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
+var mq = new MQ(mq_options);
 
 // Connect to mongodb
 var connect = function () {
@@ -25,6 +36,11 @@ mongoose.connection.on('disconnected', connect);
 //   if (err) return console.error(err);
 //   console.log(fluffy);
 // });
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
 
 app.use(express.static('build'));
 
@@ -53,6 +69,7 @@ app.set('views', './build');
 app.set('view engine', 'ejs');
 
 app.get('/api/user/test', userController.getApi);
+app.post('/api/user/authenticate', userController.authenticate);
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
@@ -130,6 +147,11 @@ app.get('/api/user/:id/likes', function(req, res) {
 
 //https://github.com/ile/fb-real-time-example/blob/master/routes/index.js
 
+app.get('/api/queue', function(req,res) {
+  mq.emit('test', {name: req.query.task});
+  res.json({status: 'success', data: req.query.task});
+});
+
 app.post('/deauthorize', function(req, res, next) {
   var request = fb.parseSignedRequest(req.body.signed_request, appSecret);
   console.log('post /deauthorize', request);
@@ -148,6 +170,11 @@ app.post('/rtu', function(req, res, next) {
   res.send('');
 });
 
+
+// app.get('*', function(req, res) {
+
+// });
+
 var server = app.listen(3000, function () {
 
   var host = server.address().address;
@@ -156,3 +183,24 @@ var server = app.listen(3000, function () {
   console.log('Example app listening at http://%s:%s', host, port);
 
 });
+
+// // QUEUES SERVER
+
+(function(){
+  var logger = new MC(mq_options);
+  logger.open(function(err, mc){
+    if(err){
+      console.log('ERROR: ', err);
+    }else{
+      mc.collection('log', function(err, loggingCollection){
+        loggingCollection.remove({},  function(){
+          mq.start(function(err){
+            if(err){
+              console.log(err);
+            }
+          });
+        });
+      });
+    }
+  });
+})();

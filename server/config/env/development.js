@@ -24,6 +24,7 @@ if (fs.existsSync(envFile)) {
  */
 
 module.exports = {
+  db_name: 'savedproducts',
   db: 'mongodb://localhost/savedproducts',
   facebook: {
     clientID: process.env.FACEBOOK_CLIENTID,

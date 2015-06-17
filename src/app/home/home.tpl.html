@@ -1,51 +1,4 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true" ng-click="menuCollapsed = ! menuCollapsed">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <!-- <div class="navbar-brand">
-          ShopByBlog
-          <small>
-            <a href="http://github.com/ngbp/ngbp/blob/v<%= version %>-release/CHANGELOG.md">
-              v<%= version %>
-            </a>
-          </small>
-        </div> -->
-      </div>
-      <div class="collapse navbar-collapse" collapse="menuCollapsed">
-        <ul class="nav navbar-nav hide">
-          <li ui-sref-active="active">
-            <a href ui-sref="home">
-              My Feed
-            </a>
-          </li>
-          <li ui-sref-active="active">
-            <a href ui-sref="about">
-              Explore
-            </a>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav pull-right">
-          <li ui-sref-active="active">
-            <a href ui-sref="home">
-              Features
-            </a>
-          </li>
-          <li ui-sref-active="active">
-            <a href ui-sref="about">
-              Business
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<nav theme="light"></nav>
 
 <div class="container-fluid container-fixed-top container-fixed-top-home">
   <div class="container container-fixed-width">
@@ -54,8 +7,8 @@
         <!-- <p><img src="https://cdn0.iconfinder.com/data/icons/shopping-set-3/512/13-128.png" width="80"/></p> -->
         <!-- <p><img src="https://cdn0.iconfinder.com/data/icons/glyphpack/117/shopping-bag-128.png" width="80"/></p> -->
         <!-- <p><img src="https://cdn4.iconfinder.com/data/icons/ballicons-2-free/100/shopping_bag-128.png" width="80"/></p> -->
-        <!-- <p><i class="material-icons md-64">local_mall</i></p> -->
-        <p><img class="img-circle" src="/assets/img/logo_spoon.png" width="100"/></p>
+        <p><i class="material-icons md-64">local_mall</i></p>
+        <!-- <p><img class="img-circle" src="/assets/img/logo_spoon.png" width="100"/></p> -->
         <!-- <h1 class="color-accent-200 m0 fw300">Shop directly from your Facebook feed</h1> -->
         <h1 class="color-accent-200 m0 fw300">The hottest offers from your Facebook timeline</h1>
         <h5>
@@ -68,7 +21,7 @@
           Sign in with Facebook to get started.
         </h5>
         <div class="clearfix mt30">
-          <a href ui-sref="feed" class="btn btn-lg btn-primary">Continue with Facebook</a>
+          <a href ng-click="login()" class="btn btn-lg btn-primary">Continue with Facebook</a>
         </div>
         <div class="clearfix mt30">
           <small>Get the app on <a href="">iOS</a>, <a href="">Android</a></small>
@@ -92,21 +45,6 @@
       </div>
       <div class="col-xs-7 bg-mbair">
         <div class="row">
-          <!-- <div class="col-xs-12">
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c41.41.517.517/s160x160/385276_10151347899764216_203925705_n.png?oh=e6d607298eda6f7e82e0473295fe96eb&oe=55F7642A&__gda__=1443122740_20d2e43acbe2df9c2aaae184a0789460"/>
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/v/t1.0-1/c12.12.155.155/267768_10151379440336607_1266316094_n.jpg?oh=c2384ce5beff02ef98e3523c68b9a4de&oe=560D7629&__gda__=1442511521_f40a310c295528381d43adc69d7b194c"/>
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p160x160/66886_176016489084302_726913_n.jpg?oh=6c527f383024d31ee3264a1a2833a718&oe=55F3E88E&__gda__=1438849410_3aa88b20b5425e2f8bdfdedc15d88238"/>
-          </div>
-          <div class="col-xs-12">
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/p160x160/1911962_10152170594572644_1972626181832717453_n.jpg?oh=3c9bd5fbb6fca98db60a8105a88647a1&oe=55FA88E7&__gda__=1443512235_9821babcd641029769666432e2b6c426"/>
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/p160x160/306551_306347019481199_1882126417_n.jpg?oh=04da047abbc38405d47a7251f4f253cd&oe=560375BD&__gda__=1443471138_94a005c8ea09df33b992c10747d7d3de"/>
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xta1/v/t1.0-1/p160x160/10922459_10155074395310176_1149282174353906299_n.jpg?oh=375c59d8e1bdbe96c6678ef03e44ae92&oe=5602C1BB&__gda__=1443322052_7f788945dcbc4c5b8b1a72791758c623"/>
-          </div>
-          <div class="col-xs-12">
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p160x160/1467275_10151825396148741_1861451753_n.jpg?oh=44e959dc30a41b5971ef4dcd641bf703&oe=55C50B98&__gda__=1443458394_28fdf422758ce9c1cc7cc413b0e16212"/>
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xft1/v/t1.0-1/p160x160/11071590_838711186177519_5497080331647333793_n.jpg?oh=fccf1eeea18db936ba10756b793683b5&oe=55F77450&__gda__=1441850649_1eb504285291922b8918dfc4ad06965a"/>
-            <img class="img-responsive2 thumbnail2" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/p160x160/10484933_10153173658280329_3660941300911894290_n.png?oh=6b7560021dc3a78312b4f21ea67fd181&oe=55C0FF5A&__gda__=1438832577_adbb69eae1bafc93713175ccce8d5998"/>
-          </div> -->
         </div>
       </div>
   </div>

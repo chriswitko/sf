@@ -16,7 +16,8 @@ angular.module( 'ngBoilerplate.feed', [
   'ui.router',
   'plusOne',
   'ui.bootstrap',
-  'cards.discount'
+  'cards.discount',
+  'security'
 ])
 
 /**
@@ -24,7 +25,26 @@ angular.module( 'ngBoilerplate.feed', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
+.config(function config( $stateProvider, $urlRouterProvider ) {
+
+  var authenticated = ['$q', 'Facebook', function ($q, Facebook) {
+    var deferred = $q.defer();
+
+    Facebook.getLoginStatus(function(response) {
+      if(response.status === 'connected') {
+        console.log('connected');
+        // $scope.loggedIn = true;
+        deferred.resolve();
+      } else {
+        console.log('not connected');
+        // $scope.loggedIn = false;
+        deferred.reject('Not logged in');
+      }
+    });
+
+    return deferred.promise;
+  }];
+
   $stateProvider.state( 'feed', {
     url: '/feed',
     views: {
@@ -33,14 +53,17 @@ angular.module( 'ngBoilerplate.feed', [
         templateUrl: 'feed/feed.tpl.html'
       }
     },
-    data:{ pageTitle: 'My Feed' }
+    data:{ pageTitle: 'My Feed' },
+    resolve: {
+      authenticated: authenticated
+    }
   });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'FeedCtrl', function FeedController( $scope, $modal, $log, Facebook ) {
+.controller( 'FeedCtrl', function FeedController( $scope, $modal, $log, Facebook, myAuth ) {
   $scope.getDiscount = function(size) {
     var modalInstance = $modal.open({
       animation: true,
