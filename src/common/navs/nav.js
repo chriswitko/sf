@@ -1,6 +1,6 @@
-angular.module( 'ui.nav', ['nl2br', 'filters'] )
+angular.module( 'ui.nav', ['nl2br', 'filters', 'ngCookies'] )
 
-.directive( 'nav', function($http, Facebook, $state) {
+.directive( 'nav', function($http, Facebook, $state, $cookieStore) {
   return {
     restrict: 'EA',
     scope: {
@@ -11,6 +11,7 @@ angular.module( 'ui.nav', ['nl2br', 'filters'] )
       scope.user = {};
 
       scope.init = function() {
+        console.log('facebook', Facebook);
         Facebook.api('/me?fields=link,name,first_name,picture', function(response) {
           scope.user = response;
         });
@@ -18,6 +19,8 @@ angular.module( 'ui.nav', ['nl2br', 'filters'] )
 
       scope.logout = function() {
         Facebook.logout();
+        $cookieStore.remove('userID');
+        $cookieStore.remove('accessToken');
         $state.go('home');
       };
 

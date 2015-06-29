@@ -10,7 +10,8 @@ angular.module( 'ngBoilerplate', [
   'ngSanitize',
   'ui.nav',
   'ui',
-  'security'
+  'security',
+  'ngCookies'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, FacebookProvider ) {
@@ -21,7 +22,7 @@ angular.module( 'ngBoilerplate', [
   // $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
   FacebookProvider.setSdkVersion('v2.3');
-  FacebookProvider.init('1437146103270324');
+  FacebookProvider.init('503652836467629');
 
 
 })
@@ -37,7 +38,7 @@ angular.module( 'ngBoilerplate', [
 
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
-      $scope.pageTitle = toState.data.pageTitle + ' | ShopNowApp' ;
+      $scope.pageTitle = toState.data.pageTitle + ' | ShopNow' ;
     }
     if(Facebook.isReady()) {
       Facebook.parseXFBML();

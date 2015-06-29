@@ -1,44 +1,50 @@
 "use strict";
 
 var config = require('../config/config.js');
+
 var env = process.env.NODE_ENV || 'development';
 var graph = require('fbgraph');
 
-// var secrets = require('../config/secrets')[env];
-var User = require('../models/user');
-// var querystring = require('querystring');
-// var validator = require('validator');
+var Page = require('../models/page');
 var async = require('async');
-// var cheerio = require('cheerio');
-// var request = require('request');
-// var graph = require('fbgraph');
 var _ = require('lodash');
 
-var MC = require('mongomq').MongoConnection;
 var MQ = require('mongomq').MongoMQ;
 var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
 var mq = new MQ(mq_options);
 
-// var Children = require('../common/child');
-// var listener = Children.startChild('./listener');
-
 graph.setVersion('2.3');
 
-// var errors = [];
+var log;
 
-exports.importLikes = function(req, res) {
+exports.importAllLikesPerUser = function(err, data, next) {
   var likes = [];
+  if(!err) {
+    graph.setAccessToken(data.accessToken);
 
-  // graph.setAccessToken(req.query.accessToken);
-
-  // graph.get('/' + req.query.userID + '/likes?limit=100&fields=id,category,name,updated_time,picture,bio,cateogry_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes' + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
-  //   console.log('err', err);
-  //   console.log('output', output);
-  //   likes = output.data;
-  //   res.json({status: 'success', data: likes, total: likes.length, next: (output.paging ? output.paging.cursors.after : '')});
-  // });
-  mq.emit('importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
-  res.json({status: 'success'});
+    graph.get('/' + data.userID + '/likes?limit=100&fields=id,category,name,updated_time,picture,bio,cateogry_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes' + (data.after ? '&after=' + data.after : ''), function(err, output) {
+      console.log('err', err);
+      console.log('output', output);
+      likes = output.data;
+      console.log('likes', likes);
+      next();
+      // async.each(likes, function(item, cb) {
+      //   page = new Page();
+      //   page.fbId = item.id;
+      //   page.name = item.name
+      //   page.save(function() {
+      //     cb();
+      //   })
+      // }, function() {
+      //   next();
+      // })
+      // if(output.paging)
+      // res.json({status: 'success', data: likes, total: likes.length, next: (output.paging ? output.paging.cursors.after : '')});
+    });
+  } else {
+    console.log('err: ', err, 'wait: ', w);
+    next();
+  }
 }
 
 exports.authenticate = function(req, res) {
@@ -88,7 +94,7 @@ exports.authenticate = function(req, res) {
       done();
     },
     getLongLifeAccessToken: function(done) {
-      graph.get('/oauth/access_token?redirect_uri=http://localhost:3000&grant_type=fb_exchange_token&client_id=' + config.facebook.clientID + '&client_secret=' + config.facebook.clientSecret + '&fb_exchange_token=' + req.body.accessToken, function(err, token) {
+      graph.get('/oauth/access_token?redirect_uri=http://localhost:3000&grant_type=fb_exchange_token&client_id=1437146103270324&client_secret=90bb44bc8a3394099b075e5c0db73898&fb_exchange_token=' + req.body.accessToken, function(err, token) {
         if(token.access_token) user.accessToken = token.access_token;
         done();
       });
@@ -108,21 +114,3 @@ exports.getApi = function(req, res) {
   res.json({status: 'success'});
 };
 
-(function(){
-  var logger = new MC(mq_options);
-  logger.open(function(err, mc){
-    if(err){
-      console.log('ERROR: ', err);
-    }else{
-      mc.collection('log', function(err, loggingCollection){
-        loggingCollection.remove({},  function(){
-          mq.start(function(err){
-            if(err){
-              console.log(err);
-            }
-          });
-        });
-      });
-    }
-  });
-})();

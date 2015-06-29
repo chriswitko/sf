@@ -70,6 +70,7 @@ app.set('view engine', 'ejs');
 
 app.get('/api/user/test', userController.getApi);
 app.post('/api/user/authenticate', userController.authenticate);
+app.get('/api/user/importLikes', userController.importLikes);
 
 app.get('/', function (req, res) {
   res.send('Hello World!');

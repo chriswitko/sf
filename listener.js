@@ -1,6 +1,7 @@
 var config = require('./server/config/config.js');
 var MC = require('mongomq').MongoConnection;
 var MQ = require('mongomq').MongoMQ;
+var queues = require('./server/controllers/queues');
 
 var options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
 //var options = {servers: ['ndcsrvcdep601', 'ndcsrvcdep602'], databaseName: 'tests', queueCollection: 'capped_collection', autoStart: false};
@@ -33,6 +34,7 @@ var handleRecord = function(err, data, next){
 };
 
 mq.on('test', handleRecord);
+mq.on('importAllLikesPerUser', queues.importAllLikesPerUser);
 
 (function(){
   var logger = new MC(options);

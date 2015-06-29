@@ -1,6 +1,6 @@
-angular.module( 'cards.discount', ['nl2br', 'filters'] )
+angular.module( 'cards.discount', ['nl2br', 'filters', 'ngCookies'] )
 
-.directive( 'cardDiscount', function($http, Facebook) {
+.directive( 'cardDiscount', function($http, Facebook, $cookieStore) {
   return {
     restrict: 'EA',
     scope: {
@@ -12,7 +12,7 @@ angular.module( 'cards.discount', ['nl2br', 'filters'] )
 
       console.log('post-id', scope.postId);
 
-      $http.get('http://graph.facebook.com/' + scope.postId + '?fields=name,created_time,id,link,images,source,from.picture,from.category,from.id,from.name,from.likes,from.link,likes.id,likes.name,likes.link,likes.picture,likes.summary(1)').
+      $http.get('https://graph.facebook.com/' + scope.postId + '?fields=' + 'name,created_time,id,link,images,source,from.fields(picture,category,id,name,likes,link),likes.fields(id,name,link,picture,summary)' + '&access_token=' + $cookieStore.get('accessToken')).
         success(function(data, status, headers, config) {
           scope.post = data;
           console.log('data', data);
