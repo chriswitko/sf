@@ -7,7 +7,7 @@ var pageSchema = mongoose.Schema({
     updated_time: Date,
     name: String,
     picture: [],
-    cateogry_list: [],
+    category_list: [],
     contact_address: String,
     cover: [],
     link: String,

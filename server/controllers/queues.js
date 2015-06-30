@@ -50,25 +50,29 @@ var Q_addPage = function(err, data, next) {
       }
       console.log('inside', data.id);
       page.fbId = data.id;
-      page.name = data.name
+      page.name = data.name;
 
       // console.log('before save', item.id);
-      page.category = data.category,
-      page.created_time = data.created_time,
-      page.updated_time = data.updated_time,
-      page.picture = data.picture,
-      page.cateogry_list = data.cateogry_list,
-      page.contact_address = data.contact_address,
-      page.cover = data.cover,
-      page.link = data.link,
-      page.current_location = data.current_location,
-      page.description = data.description,
-      page.general_info = data.general_info,
-      page.phone = data.phone,
-      page.username = data.username,
-      page.website = data.website,
-      page.likes = data.likes,
-      //
+      page.category = data.category;
+      page.created_time = data.created_time;
+      page.updated_time = data.updated_time;
+      page.picture = data.picture;
+
+      var category_list = _.pluck(_.flatten(data.category_list, true), 'name');
+
+      page.category_list = category_list;
+
+      page.contact_address = data.contact_address;
+      page.cover = data.cover;
+      page.link = data.link;
+      page.current_location = data.current_location;
+      page.description = data.description;
+      page.general_info = data.general_info;
+      page.phone = data.phone;
+      page.username = data.username;
+      page.website = data.website;
+      page.likes = data.likes;
+
       page.save(function(err) {
         console.log('save page err', err);
         next();
@@ -87,7 +91,7 @@ var Q_importAllLikesPerUser = function(err, data, next) {
   if(!err) {
     graph.setAccessToken(data.accessToken);
 
-    graph.get('/' + data.userID + '/likes?limit=100&fields=id,category,name,updated_time,created_time,picture,bio,cateogry_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes' + (data.after ? '&after=' + data.after : ''), function(err, output) {
+    graph.get('/' + data.userID + '/likes?limit=100&fields=id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes' + (data.after ? '&after=' + data.after : ''), function(err, output) {
       console.log('err', err);
       console.log('-------------------');
       // console.log('output', output);
