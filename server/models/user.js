@@ -13,7 +13,9 @@ var userSchema = mongoose.Schema({
     accessToken: String,
     signedRequest: String,
     picture: String,
-    location: String
+    location: String,
+    isEnabled: {type: Boolean, default: true},
+    isFeedReady: {type: Boolean, default: false} 
 });
 
 var User = mongoose.model('User', userSchema);

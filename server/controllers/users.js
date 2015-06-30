@@ -37,7 +37,7 @@ exports.importLikes = function(req, res) {
   //   likes = output.data;
   //   res.json({status: 'success', data: likes, total: likes.length, next: (output.paging ? output.paging.cursors.after : '')});
   // });
-  mq.emit('importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
+  mq.emit('Q_importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
   res.json({status: 'success'});
 }
 

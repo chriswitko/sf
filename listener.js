@@ -34,7 +34,9 @@ var handleRecord = function(err, data, next){
 };
 
 mq.on('test', handleRecord);
-mq.on('importAllLikesPerUser', queues.importAllLikesPerUser);
+mq.on('Q_importAllLikesPerUser', queues.Q_importAllLikesPerUser);
+mq.on('Q_addPage', queues.Q_addPage);
+mq.on('Q_activateUserFeed', queues.Q_activateUserFeed);
 
 (function(){
   var logger = new MC(options);
