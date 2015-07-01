@@ -72,7 +72,7 @@ var Q_importAllPostsPerPage = function(err, data, next) {
   if(!err) {
     graph.setAccessToken(data.accessToken);
 
-    graph.get('/' + data.pageID + '/feed?limit=100' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
+    graph.get('/' + data.pageID + '/posts?limit=100' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
       console.log('err', err);
       console.log('-------------------');
       // console.log('output', output);
@@ -104,57 +104,92 @@ var Q_importAllPostsPerPage = function(err, data, next) {
   }
 }
 
+var findUrls = function ( text ) {
+  var source = (text || '').toString();
+  var urlArray = [];
+  var url;
+  var matchArray;
+
+  // Regular expression to find FTP, HTTP(S) and email URLs.
+  var regexToken = /(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)|((mailto:)?[_.\w-]+@([\w][\w\-]+\.)+[a-zA-Z]{2,3})/g;
+
+  // Iterate through any URLs in the text.
+  while( (matchArray = regexToken.exec( source )) !== null )
+  {
+      var token = matchArray[0];
+      urlArray.push( token );
+  }
+
+  return urlArray;
+}
+
 var Q_addPost = function(err, data, next) {
   var opengraph = {};
   if(!err) {
-    async.series({
-      verifyLink: function(done) {
-        if(!data.post.link || !data.post.from.website) {
+    // async.series({
+      // verifyLink: function(done) {
+        var urls = findUrls(data.post.message);
+        if(!urls) {
           return done();
         }
-        console.log('>>> LINK', data.post.link);
-        request( { method: "HEAD", url: data.post.link, followAllRedirects: true }, function (error, response) {
-          data.post.link = response.request.href;
+        console.log('>>> LINK', urls[0]);
+        if(!urls || (urls.length && (urls[0].indexOf('@') > -1 || urls[0].indexOf('http') < 0))) {
+          return next ? next() : true;
+        }
+        console.log('PARSING', urls[0]);
+        data.post.action = {link: urls[0]};
+        // done();
+        // request( { method: "HEAD", url: urls[0], followAllRedirects: true }, function (error, response) {
+          // if(!response || error) {
+          //   return next ? next() : true;
+          // }
+          // data.post.link = response.request.href;
           // data.isProduct =
           console.log('website', data.post.from.website);
           console.log('data.post.link', data.post.link);
-          data.post.isVerified = data.post.link.indexOf(data.post.from.website) > -1 ? true : false;
-          done();
-        });
-      },
-      getOpenGraph: function(done) {
-        if(!data.post.link || !data.isVerified) {
-          return done();
-        }
-        console.log('link', data.post.link);
-        request(data.post.link, function (error, response, body) {
-          data.post.og = extractor(body);
-          console.log('opengraph (' + data.post.id + ')', opengraph);
-          done();
-        })
-      },
-      updatePost: function(done) {
+          // data.post.isVerified = data.post.link.indexOf(data.post.from.website) > -1 ? true : false;
+          // done();
+      // },
+      // getOpenGraph: function(done) {
+      //   if(!data.isVerified) {
+      //     return done();
+      //   }
+      //   console.log('link', data.post.link);
+      //   request(data.post.link, function (error, response, body) {
+      //     data.post.og = extractor(body);
+      //     console.log('opengraph (' + data.post.id + ')', opengraph);
+      //     done();
+      //   })
+      // },
+      // updatePost: function(done) {
         data.post.fbId = data.post.id;
 
         delete data.post.id;
         data.post.page = data.post.from.id;
 
-        Post.findOne({fbId: data.post.id}, function(err, post) {
+        Post.findOne({fbId: data.post.fbId}, function(err, post) {
           if(!post) {
             post = new Post(data.post);
           }
 
+          _.assign(post, data.post);
+
           post.save(function(err) {
             console.log('save page err', err);
-            done();
+            // done();
+            if(next) {
+              next();
+            }
           });
         });
-      }
-    }, function() {
-      if(next) {
-        next();
-      }
-    })
+      // }
+    // }, function() {
+      // if(next) {
+      //   next();
+      // }
+              // });
+
+    // })
   } else {
     console.log('QUEUES_ERR: ', err);
     if(next) {
