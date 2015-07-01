@@ -14,8 +14,9 @@ var userSchema = mongoose.Schema({
     signedRequest: String,
     picture: String,
     location: String,
+    platform: String, // iOS, Android
     isEnabled: {type: Boolean, default: true},
-    isFeedReady: {type: Boolean, default: false} 
+    isFeedReady: {type: Boolean, default: false}
 });
 
 var User = mongoose.model('User', userSchema);

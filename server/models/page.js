@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var pageSchema = mongoose.Schema({
     fbId: String,
+    internal_category: String,
     category: String,
     created_time: Date,
     updated_time: Date,
@@ -22,6 +23,7 @@ var pageSchema = mongoose.Schema({
     likes: Number,
     admins: [],
     plan: {type: String, default: 'FREE'},
+    isVerified: {type: Boolean, default: false}, // means, that this is store by category or by business
     isEnabled: {type: Boolean, default: true},
     isRTU: {type: Boolean, default: false}
 });

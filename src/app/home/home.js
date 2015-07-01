@@ -95,7 +95,7 @@ angular.module( 'ngBoilerplate.home', [
         });
 
       // Do something with response.
-    }, {scope: 'email,user_likes,user_location'});
+    }, {scope: 'email,user_likes,user_location,user_friends'});
   };
 
   $scope.getLoginStatus = function() {
@@ -111,4 +111,3 @@ angular.module( 'ngBoilerplate.home', [
   };
 
 });
-

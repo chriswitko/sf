@@ -6,6 +6,8 @@ var graph = require('fbgraph');
 
 // var secrets = require('../config/secrets')[env];
 var User = require('../models/user');
+var UserPage = require('../models/userpage');
+var Page = require('../models/page');
 // var querystring = require('querystring');
 // var validator = require('validator');
 var async = require('async');
@@ -19,28 +21,60 @@ var MQ = require('mongomq').MongoMQ;
 var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
 var mq = new MQ(mq_options);
 
-// var Children = require('../common/child');
-// var listener = Children.startChild('./listener');
-
 graph.setVersion('2.3');
 
-// var errors = [];
+exports.importPosts = function(req, res) {
+  mq.emit('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: req.query.accessToken, after: ''});
+  res.json({status: 'success'});
+}
+
+exports.pages = function(req, res) {
+  var pageIds = [];
+  var output = [];
+
+  async.series({
+    getAllPageIds: function(done) {
+      UserPage.find({user: req.query.userID}, function(err, pages) {
+        pageIds = _.map(pages, function(page) {return page.page});
+        done();
+      });
+    },
+    getPagesDetails: function(done) {
+      Page.find({fbId: {$in: pageIds}, isVerified: true, isEnabled: true}, {id: 1, fbId: 1, name: 1, picture: 1, plan: 1, internal_category: true}, function(err, pages) {
+        output = pages;
+        done();
+      });
+    }
+  }, function() {
+    res.json({status: 'success', data: output});
+  })
+}
+
+exports.friends = function(req, res) {
+  var friends = [];
+  var fields = 'id,name,picture,link';
+
+  graph.setAccessToken(req.query.accessToken);
+
+  graph.get('/' + req.query.userID + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
+    console.log('err', err);
+    console.log('output', output);
+    friends = output.data;
+    res.json({status: 'success', data: friends, total: friends.length});
+  });
+}
+
+exports.importFriends = function(req, res) {
+  mq.emit('Q_importAllFriendsPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
+  res.json({status: 'success'});
+}
 
 exports.importLikes = function(req, res) {
-  var likes = [];
-
-  // graph.setAccessToken(req.query.accessToken);
-
-  // graph.get('/' + req.query.userID + '/likes?limit=100&fields=id,category,name,updated_time,picture,bio,cateogry_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes' + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
-  //   console.log('err', err);
-  //   console.log('output', output);
-  //   likes = output.data;
-  //   res.json({status: 'success', data: likes, total: likes.length, next: (output.paging ? output.paging.cursors.after : '')});
-  // });
   mq.emit('Q_importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
   res.json({status: 'success'});
 }
 
+// TODO: After authorize (isNew = true) send notifications to all my existing friends
 exports.authenticate = function(req, res) {
   var user = null;
 

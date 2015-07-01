@@ -5,29 +5,223 @@ var config = require('../config/config.js');
 var env = process.env.NODE_ENV || 'development';
 var graph = require('fbgraph');
 
+var extractor = require('unfluff');
+var request = require('request');
+
 var Page = require('../models/page');
 var User = require('../models/user');
+var UserPage = require('../models/userpage');
+var UserFriend = require('../models/userfriend');
+var Post = require('../models/post');
 
 var async = require('async');
 var _ = require('lodash');
 
-var mongoose = require('mongoose');
 
-var connect = function () {
-  var options = { server: { socketOptions: { keepAlive: 1 } } };
-  mongoose.connect(config.db, options);
-};
-connect();
+// var mongoose = require('mongoose');
+//
+// var connect = function () {
+//   var options = { server: { socketOptions: { keepAlive: 1 } } };
+//   mongoose.connect(config.db, options);
+// };
+// connect();
 
 // mongoose.connection.on('error', console.log);
 // mongoose.connection.on('disconnected', connect);
 
-var MC = require('mongomq').MongoConnection;
-var MQ = require('mongomq').MongoMQ;
-var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
-var mq = new MQ(mq_options);
+// var MC = require('mongomq').MongoConnection;
+// var MQ = require('mongomq').MongoMQ;
+// var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
+// var mq = new MQ(mq_options);
+
+var approved_categories = ['Shopping & Retail', 'Clothing', 'Clothing Store', 'Bags/luggage', 'Home decor', 'Outdoor gear/sporting goods', 'Retail and consumer merchandise', 'Furniture', 'Shopping/retail', 'Bags/Luggage', 'Book Store', 'Health/Beauty', 'Home Decor', 'Home/Garden Website', 'Household Supplies', 'Jewelry/Watches', 'Local Business', 'Outdoor Gear/Sporting Goods', 'Retail and Consumer Merchandise', 'Shopping/Retail', 'Spas/Beauty/Personal Care'];
+var approved_subcategories = ['Toy Store', 'Company', 'Shopping/Retail', "Men's Clothing Store", "Women's Clothing Store", 'Computers & Electronics', 'Bike Shop', 'Sporting Goods Store', 'Manufacturing', 'Clothing Store', 'Shoe Store'];
 
 graph.setVersion('2.3');
+
+// 30*24*60*60 = 2592000
+
+var Q_importAllPostsPerPage = function(err, data, next) {
+  var likes = [];
+  var fields = 'id,from.fields(id,website),message,picture,full_picture,link,type,created_time,likes.fields(id,name,picture,link)';
+  var since = Date.parse('-30 days');
+
+  if(!err) {
+    graph.setAccessToken(data.accessToken);
+
+    graph.get('/' + data.pageID + '/feed?limit=100' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
+      console.log('err', err);
+      console.log('-------------------');
+      // console.log('output', output);
+      likes = output.data;
+      async.forEach(likes, function(item, cb) {
+        if(item.type === 'link' || item.type === 'photo') {
+          Q_addPost(null, {post: item}, function() {
+            cb();
+          });
+        } else {
+          cb();
+        }
+      }, function() {
+        console.log('finito');
+        // if(output.paging && output.paging.cursors.after) {
+        //   console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
+        //   Q_importAllFriendsPerUser(null, {userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
+        // }
+        if(next) {
+          next();
+        }
+      })
+    });
+  } else {
+    console.log('QUEUES_ERR: ', err);
+    if(next) {
+      next();
+    }
+  }
+}
+
+var Q_addPost = function(err, data, next) {
+  var opengraph = {};
+  if(!err) {
+    async.series({
+      verifyLink: function(done) {
+        if(!data.post.link || !data.post.from.website) {
+          return done();
+        }
+        console.log('>>> LINK', data.post.link);
+        request( { method: "HEAD", url: data.post.link, followAllRedirects: true }, function (error, response) {
+          data.post.link = response.request.href;
+          // data.isProduct =
+          console.log('website', data.post.from.website);
+          console.log('data.post.link', data.post.link);
+          data.post.isVerified = data.post.link.indexOf(data.post.from.website) > -1 ? true : false;
+          done();
+        });
+      },
+      getOpenGraph: function(done) {
+        if(!data.post.link || !data.isVerified) {
+          return done();
+        }
+        console.log('link', data.post.link);
+        request(data.post.link, function (error, response, body) {
+          data.post.og = extractor(body);
+          console.log('opengraph', opengraph);
+          done();
+        })
+      },
+      updatePost: function(done) {
+        data.post.fbId = data.post.id;
+
+        delete data.post.id;
+        data.post.page = data.post.from.id;
+
+        Post.findOne({fbId: data.post.id}, function(err, post) {
+          if(!post) {
+            post = new Post(data.post);
+          }
+
+          post.save(function(err) {
+            console.log('save page err', err);
+            done();
+          });
+        });
+      }
+    }, function() {
+      if(next) {
+        next();
+      }
+    })
+  } else {
+    console.log('QUEUES_ERR: ', err);
+    if(next) {
+      next();
+    }
+  }
+}
+
+var Q_importAllFriendsPerUser = function(err, data, next) {
+  var likes = [];
+  var fields = 'id,name,picture,link';
+
+  if(!err) {
+    graph.setAccessToken(data.accessToken);
+
+    graph.get('/' + data.userID + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
+      console.log('err', err);
+      console.log('-------------------');
+      // console.log('output', output);
+      likes = output.data;
+      async.forEach(likes, function(item, cb) {
+        Q_addFriend(null, {friendID: item.id, userID: data.userID}, function() {
+          cb();
+        });
+      }, function() {
+        console.log('finito');
+        // if(output.paging && output.paging.cursors.after) {
+        //   console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
+        //   Q_importAllFriendsPerUser(null, {userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
+        // }
+        if(next) {
+          next();
+        }
+      })
+    });
+  } else {
+    console.log('QUEUES_ERR: ', err);
+    if(next) {
+      next();
+    }
+  }
+}
+
+var Q_addFriend = function(err, data, next) {
+  var likes = [];
+  if(!err) {
+    UserFriend.findOne({friend: data.friendID, user: data.userID}, function(err, userfriend) {
+      if(!userfriend) {
+        userfriend = new UserFriend();
+      }
+      console.log('inside', data.id);
+      userfriend.friend = data.friendID;
+      userfriend.user = data.userID;
+
+      userfriend.save(function(err) {
+        console.log('save page err', err);
+        next();
+      });
+    });
+  } else {
+    console.log('QUEUES_ERR: ', err);
+    if(next) {
+      next();
+    }
+  }
+}
+
+var Q_followPage = function(err, data, next) {
+  var likes = [];
+  if(!err) {
+    UserPage.findOne({page: data.pageID, user: data.userID}, function(err, userpage) {
+      if(!userpage) {
+        userpage = new UserPage();
+      }
+      console.log('inside', data.id);
+      userpage.page = data.pageID;
+      userpage.user = data.userID;
+
+      userpage.save(function(err) {
+        console.log('save page err', err);
+        next();
+      });
+    });
+  } else {
+    console.log('QUEUES_ERR: ', err);
+    if(next) {
+      next();
+    }
+  }
+}
 
 var Q_activateUserFeed = function(err, data, next) {
   User.findOne({fbId: data.userID}, function(err, user) {
@@ -44,38 +238,49 @@ var Q_activateUserFeed = function(err, data, next) {
 var Q_addPage = function(err, data, next) {
   var likes = [];
   if(!err) {
-    Page.findOne({fbId: data.id}, function(err, page) {
+    Page.findOne({fbId: data.page.id}, function(err, page) {
       if(!page) {
         page = new Page();
       }
-      console.log('inside', data.id);
-      page.fbId = data.id;
-      page.name = data.name;
+      console.log('inside', data.page.id);
+      page.fbId = data.page.id;
+      page.name = data.page.name;
 
       // console.log('before save', item.id);
-      page.category = data.category;
-      page.created_time = data.created_time;
-      page.updated_time = data.updated_time;
-      page.picture = data.picture;
+      page.category = data.page.category;
+      page.created_time = data.page.created_time;
+      page.updated_time = data.page.updated_time;
+      page.picture = data.page.picture;
 
-      var category_list = _.pluck(_.flatten(data.category_list, true), 'name');
+      var category_list = _.pluck(_.flatten(data.page.category_list, true), 'name');
 
       page.category_list = category_list;
 
-      page.contact_address = data.contact_address;
-      page.cover = data.cover;
-      page.link = data.link;
-      page.current_location = data.current_location;
-      page.description = data.description;
-      page.general_info = data.general_info;
-      page.phone = data.phone;
-      page.username = data.username;
-      page.website = data.website;
-      page.likes = data.likes;
+      page.contact_address = data.page.contact_address;
+      page.cover = data.page.cover;
+      page.link = data.page.link;
+      page.current_location = data.page.current_location;
+      page.description = data.page.description;
+      page.general_info = data.page.general_info;
+      page.phone = data.page.phone;
+      page.username = data.page.username;
+      page.website = data.page.website;
+      page.likes = data.page.likes;
+
+      page.isVerified = (approved_categories.indexOf(page.category) > -1 ? true: false);
+      if(!page.isVerified) {
+        _.each(page.category_list, function(subcategory) {
+            if (approved_subcategories.indexOf(subcategory) > -1) {
+              page.isVerified = true;
+            }
+        });
+      }
 
       page.save(function(err) {
         console.log('save page err', err);
-        next();
+        Q_followPage(null, {pageID: page.fbId, userID: data.userID}, function() {
+          next();
+        });
       });
     });
   } else {
@@ -97,7 +302,7 @@ var Q_importAllLikesPerUser = function(err, data, next) {
       // console.log('output', output);
       likes = output.data;
       async.forEach(likes, function(item, cb) {
-        Q_addPage(null, item, function() {
+        Q_addPage(null, {page: item, userID: data.userID}, function() {
           cb();
         });
       }, function() {
@@ -123,23 +328,27 @@ var Q_importAllLikesPerUser = function(err, data, next) {
 
 exports.Q_importAllLikesPerUser = Q_importAllLikesPerUser;
 exports.Q_addPage = Q_addPage;
-// exports.Q_addPage = Q_addPage;
+exports.Q_followPage = Q_followPage;
+exports.Q_importAllFriendsPerUser = Q_importAllFriendsPerUser;
+exports.Q_addFriend = Q_addFriend;
+exports.Q_importAllPostsPerPage = Q_importAllPostsPerPage;
+exports.Q_addPost = Q_addPost;
 
-(function(){
-  var logger = new MC(mq_options);
-  logger.open(function(err, mc){
-    if(err){
-      console.log('ERROR: ', err);
-    }else{
-      mc.collection('log', function(err, loggingCollection){
-        loggingCollection.remove({},  function(){
-          mq.start(function(err){
-            if(err){
-              console.log(err);
-            }
-          });
-        });
-      });
-    }
-  });
-})();
+// (function(){
+//   var logger = new MC(mq_options);
+//   logger.open(function(err, mc){
+//     if(err){
+//       console.log('ERROR: ', err);
+//     }else{
+//       mc.collection('log', function(err, loggingCollection){
+//         loggingCollection.remove({},  function(){
+//           mq.start(function(err){
+//             if(err){
+//               console.log(err);
+//             }
+//           });
+//         });
+//       });
+//     }
+//   });
+// })();

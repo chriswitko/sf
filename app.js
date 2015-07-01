@@ -13,13 +13,14 @@ var MQ = require('mongomq').MongoMQ;
 var User = require('./server/models/user');
 
 var userController = require('./server/controllers/users');
+// var pageController = require('./server/controllers/pages');
 
 var Children = require('./server/common/child');
 // var talker = Children.startChild('./talker');
 var listener = Children.startChild('./listener');
 
-var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
-var mq = new MQ(mq_options);
+// var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
+// var mq = new MQ(mq_options);
 
 // Connect to mongodb
 var connect = function () {
@@ -71,6 +72,13 @@ app.set('view engine', 'ejs');
 app.get('/api/user/test', userController.getApi);
 app.post('/api/user/authenticate', userController.authenticate);
 app.get('/api/user/importLikes', userController.importLikes);
+app.get('/api/user/importFriends', userController.importFriends);
+app.get('/api/user/friends', userController.friends);
+app.get('/api/user/pages', userController.pages);
+
+app.get('/api/business/importPosts', userController.importPosts);
+
+// app.get('/api/page/follow', pageController.friends);
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
@@ -148,10 +156,10 @@ app.get('/api/user/:id/likes', function(req, res) {
 
 //https://github.com/ile/fb-real-time-example/blob/master/routes/index.js
 
-app.get('/api/queue', function(req,res) {
-  mq.emit('test', {name: req.query.task});
-  res.json({status: 'success', data: req.query.task});
-});
+// app.get('/api/queue', function(req,res) {
+//   mq.emit('test', {name: req.query.task});
+//   res.json({status: 'success', data: req.query.task});
+// });
 
 app.post('/deauthorize', function(req, res, next) {
   var request = fb.parseSignedRequest(req.body.signed_request, appSecret);
@@ -186,22 +194,22 @@ var server = app.listen(3000, function () {
 });
 
 // // QUEUES SERVER
-
-(function(){
-  var logger = new MC(mq_options);
-  logger.open(function(err, mc){
-    if(err){
-      console.log('ERROR: ', err);
-    }else{
-      mc.collection('log', function(err, loggingCollection){
-        loggingCollection.remove({},  function(){
-          mq.start(function(err){
-            if(err){
-              console.log(err);
-            }
-          });
-        });
-      });
-    }
-  });
-})();
+//
+// (function(){
+//   var logger = new MC(mq_options);
+//   logger.open(function(err, mc){
+//     if(err){
+//       console.log('ERROR: ', err);
+//     }else{
+//       mc.collection('log', function(err, loggingCollection){
+//         loggingCollection.remove({},  function(){
+//           mq.start(function(err){
+//             if(err){
+//               console.log(err);
+//             }
+//           });
+//         });
+//       });
+//     }
+//   });
+// })();
