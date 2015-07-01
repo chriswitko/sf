@@ -129,7 +129,7 @@ var Q_addPost = function(err, data, next) {
         console.log('link', data.post.link);
         request(data.post.link, function (error, response, body) {
           data.post.og = extractor(body);
-          console.log('opengraph', opengraph);
+          console.log('opengraph (' + data.post.id + ')', opengraph);
           done();
         })
       },
