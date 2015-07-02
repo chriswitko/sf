@@ -7,8 +7,8 @@ var _ = require('lodash');
 var graph = require('fbgraph');
 var fb = require('ilkkah-fb');
 
-var MC = require('mongomq').MongoConnection;
-var MQ = require('mongomq').MongoMQ;
+// var MC = require('mongomq').MongoConnection;
+// var MQ = require('mongomq').MongoMQ;
 
 var User = require('./server/models/user');
 
@@ -17,7 +17,7 @@ var userController = require('./server/controllers/users');
 
 var Children = require('./server/common/child');
 // var talker = Children.startChild('./talker');
-var listener = Children.startChild('./listener');
+// var listener = Children.startChild('./listener');
 
 // var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
 // var mq = new MQ(mq_options);

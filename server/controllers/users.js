@@ -16,16 +16,25 @@ var async = require('async');
 // var graph = require('fbgraph');
 var _ = require('lodash');
 
-var MC = require('mongomq').MongoConnection;
-var MQ = require('mongomq').MongoMQ;
-var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
-var mq = new MQ(mq_options);
+var monq = require('monq');
+var client = monq(process.env.MONGODB_URI || config.db, { safe: true });
+var queue = client.queue('sna_default');
+// var MC = require('mongomq').MongoConnection;
+// var MQ = require('mongomq').MongoMQ;
+// var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
+// var mq = new MQ(mq_options);
 
 graph.setVersion('2.3');
 
 exports.importPosts = function(req, res) {
-  mq.emit('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: req.query.accessToken, after: ''});
-  res.json({status: 'success'});
+  queue.enqueue('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: req.query.accessToken, after: ''}, function (err, job) {
+      if (err) throw err;
+      console.log('Enqueued:', job.data);
+      res.json({status: 'success'});
+      // process.exit();
+  });
+  // mq.emit('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: req.query.accessToken, after: ''});
+  // res.json({status: 'success'});
 }
 
 exports.pages = function(req, res) {
@@ -65,8 +74,13 @@ exports.friends = function(req, res) {
 }
 
 exports.importFriends = function(req, res) {
-  mq.emit('Q_importAllFriendsPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
-  res.json({status: 'success'});
+  queue.enqueue('Q_importAllFriendsPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''}, function (err, job) {
+      if (err) throw err;
+      console.log('Enqueued:', job.data);
+      res.json({status: 'success'});
+      // process.exit();
+  });
+  // mq.emit('Q_importAllFriendsPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
 }
 
 exports.importLikes = function(req, res) {
@@ -142,21 +156,21 @@ exports.getApi = function(req, res) {
   res.json({status: 'success'});
 };
 
-(function(){
-  var logger = new MC(mq_options);
-  logger.open(function(err, mc){
-    if(err){
-      console.log('ERROR: ', err);
-    }else{
-      mc.collection('log', function(err, loggingCollection){
-        loggingCollection.remove({},  function(){
-          mq.start(function(err){
-            if(err){
-              console.log(err);
-            }
-          });
-        });
-      });
-    }
-  });
-})();
+// (function(){
+//   var logger = new MC(mq_options);
+//   logger.open(function(err, mc){
+//     if(err){
+//       console.log('ERROR: ', err);
+//     }else{
+//       mc.collection('log', function(err, loggingCollection){
+//         loggingCollection.remove({},  function(){
+//           mq.start(function(err){
+//             if(err){
+//               console.log(err);
+//             }
+//           });
+//         });
+//       });
+//     }
+//   });
+// })();

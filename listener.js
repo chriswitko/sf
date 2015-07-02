@@ -1,9 +1,9 @@
 var config = require('./server/config/config.js');
-var MC = require('mongomq').MongoConnection;
-var MQ = require('mongomq').MongoMQ;
+// var MC = require('mongomq').MongoConnection;
+// var MQ = require('mongomq').MongoMQ;
 // var queues = require('./server/controllers/queues');
 
-var options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
+// var options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
 //var options = {servers: ['ndcsrvcdep601', 'ndcsrvcdep602'], databaseName: 'tests', queueCollection: 'capped_collection', autoStart: false};
 
 var env = process.env.NODE_ENV || 'development';
@@ -20,6 +20,11 @@ var Post = require('./server/models/post');
 
 var async = require('async');
 var _ = require('lodash');
+
+var cheerio = require('cheerio');
+var opengraphServer = require('./server/helpers/opengraph');
+
+process.setMaxListeners(0);
 
 //options.listenerType = 'streams';
 //options.listenerType = 'nextObject';
@@ -38,23 +43,23 @@ var connect = function () {
 };
 connect();
 
-var mq = module.exports = new MQ(options);
-
-var log;
-
-var handleRecord = function(err, data, next){
-  setTimeout(function() {
-    var w = Math.floor(Math.random()*100);
-    if(!err){
-      console.log('data: ', data, 'wait: ', w);
-      console.log('data', data);
-      log.insert({handled: data}, {w:0});
-    }else{
-      console.log('err: ', err, 'wait: ', w);
-    }
-    next();
-  }, 10000);
-};
+// var mq = module.exports = new MQ(options);
+//
+// var log;
+//
+// var handleRecord = function(err, data, next){
+//   setTimeout(function() {
+//     var w = Math.floor(Math.random()*100);
+//     if(!err){
+//       console.log('data: ', data, 'wait: ', w);
+//       console.log('data', data);
+//       log.insert({handled: data}, {w:0});
+//     }else{
+//       console.log('err: ', err, 'wait: ', w);
+//     }
+//     next();
+//   }, 10000);
+// };
 
 
 var approved_categories = ['Shopping & Retail', 'Clothing', 'Clothing Store', 'Bags/luggage', 'Home decor', 'Outdoor gear/sporting goods', 'Retail and consumer merchandise', 'Furniture', 'Shopping/retail', 'Bags/Luggage', 'Book Store', 'Health/Beauty', 'Home Decor', 'Home/Garden Website', 'Household Supplies', 'Jewelry/Watches', 'Local Business', 'Outdoor Gear/Sporting Goods', 'Retail and Consumer Merchandise', 'Shopping/Retail', 'Spas/Beauty/Personal Care'];
@@ -64,44 +69,90 @@ graph.setVersion('2.3');
 
 // 30*24*60*60 = 2592000
 
-var Q_importAllPostsPerPage = function(err, data, next) {
+// var getOpenGraph = function(url, cb) {
+//   var result = {}, attr = function( tag, prop ){ return tag.attribs && tag.attribs[prop] || ""; }
+//
+//   request( url, function( err, res, body ) {
+//
+//     var metas = cheerio.load(body.replace('og:', 'og_'))('meta')
+//     var keys = Object.keys(metas)
+//     // console.log('meta', metas);
+//
+//     keys.forEach(function(i){
+//       var meta = metas[i];
+//       var property = attr(meta,'property');
+//       var parts = property.split(":");
+//
+//       // console.log('property', property);
+//       if ( property ) {
+//         var og = property.split(':'),
+//           parent = result;
+//
+//           // console.log('og', og);
+//
+//         for ( var j = 0; j < og.length; j++ ){
+//           var token = og[j],
+//             current = parent[token],
+//             name;
+//
+//           if ( j+1 == og.length ) { // leaf node
+//
+//             // expected leaf is already a branch so append a name attr
+//             if ( current instanceof Object ) name = token;
+//             // leaf should take the value given
+//             else parent[token] = attr(meta,'content');
+//
+//           } else { // branch node
+//
+//             // if no such branch exists, make one
+//             if ( !(current instanceof Object) ) {
+//               // if the branch is already a leaf, move value to name attr
+//               if ( typeof current == "string" ) name = current;
+//               current = {};
+//               parent[token] = current;
+//             }
+//           }
+//           if ( name ) current["name"] = name;
+//           name = undefined
+//           parent = current;
+//         }
+//       }
+//     });
+//     cb(result.og);
+//   });
+// }
+
+var Q_importAllPostsPerPage = function(data, next) {
   var likes = [];
   var fields = 'id,from.fields(id,website),message,picture,full_picture,link,type,created_time,likes.fields(id,name,picture,link)';
   var since = Date.parse('-30 days');
 
-  if(!err) {
-    graph.setAccessToken(data.accessToken);
+  graph.setAccessToken(data.accessToken);
 
-    graph.get('/' + data.pageID + '/posts?limit=100' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
-      console.log('err', err);
-      console.log('-------------------');
-      // console.log('output', output);
-      likes = output.data;
-      async.forEach(likes, function(item, cb) {
-        if(item.type === 'link' || item.type === 'photo') {
-          Q_addPost(null, {post: item}, function() {
-            cb();
-          });
-        } else {
+  graph.get('/' + data.pageID + '/posts?limit=100' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
+    console.log('err', err);
+    console.log('-------------------');
+    // console.log('output', output);
+    likes = output.data;
+    async.forEach(likes, function(item, cb) {
+      if(item.type === 'link' || item.type === 'photo') {
+        Q_addPost({post: item}, function() {
           cb();
-        }
-      }, function() {
-        console.log('finito');
-        // if(output.paging && output.paging.cursors.after) {
-        //   console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
-        //   Q_importAllFriendsPerUser(null, {userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
-        // }
-        if(next) {
-          next();
-        }
-      })
-    });
-  } else {
-    console.log('QUEUES_ERR: ', err);
-    if(next) {
-      next();
-    }
-  }
+        });
+      } else {
+        cb();
+      }
+    }, function() {
+      console.log('finito');
+      // if(output.paging && output.paging.cursors.after) {
+      //   console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
+      //   Q_importAllFriendsPerUser(null, {userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
+      // }
+      if(next) {
+        next(null, 'success');
+      }
+    })
+  });
 }
 
 var findUrls = function ( text ) {
@@ -123,265 +174,238 @@ var findUrls = function ( text ) {
   return urlArray;
 }
 
-var Q_addPost = function(err, data, next) {
+var Q_addPost = function(data, next) {
   var opengraph = {};
-  if(!err) {
-    // async.series({
-      // verifyLink: function(done) {
-        var urls = findUrls(data.post.message);
-        if(!urls) {
-          return done();
-        }
-        console.log('>>> LINK', urls[0]);
-        if(!urls || (urls.length && (urls[0].indexOf('@') > -1 || urls[0].indexOf('http') < 0))) {
+
+  async.series({
+    verifyLink: function(done) {
+      var urls = findUrls(data.post.message);
+      if(!urls) {
+        return done();
+      }
+      console.log('>>> LINK', urls[0]);
+      if(!urls || (urls.length && (urls[0].indexOf('@') > -1 || urls[0].indexOf('http') < 0))) {
+        return next ? next() : true;
+      }
+      console.log('PARSING', urls[0]);
+      data.post.action = {link: urls[0]};
+      request( { method: "HEAD", url: urls[0], followAllRedirects: true, maxRedirects:5 }, function (error, response) {
+        if(!response || error) {
           return next ? next() : true;
         }
-        console.log('PARSING', urls[0]);
-        data.post.action = {link: urls[0]};
-        // done();
-        // request( { method: "HEAD", url: urls[0], followAllRedirects: true }, function (error, response) {
-          // if(!response || error) {
-          //   return next ? next() : true;
-          // }
-          // data.post.link = response.request.href;
-          // data.isProduct =
-          console.log('website', data.post.from.website);
-          console.log('data.post.link', data.post.link);
-          // data.post.isVerified = data.post.link.indexOf(data.post.from.website) > -1 ? true : false;
-          // done();
-      // },
-      // getOpenGraph: function(done) {
-      //   if(!data.isVerified) {
-      //     return done();
-      //   }
-      //   console.log('link', data.post.link);
-      //   request(data.post.link, function (error, response, body) {
-      //     data.post.og = extractor(body);
-      //     console.log('opengraph (' + data.post.id + ')', opengraph);
-      //     done();
-      //   })
-      // },
-      // updatePost: function(done) {
-        data.post.fbId = data.post.id;
-
-        delete data.post.id;
-        data.post.page = data.post.from.id;
-
-        Post.findOne({fbId: data.post.fbId}, function(err, post) {
-          if(!post) {
-            post = new Post(data.post);
+        data.post.link = response.request.href;
+        // data.isProduct =
+        console.log('website', data.post.from.website);
+        console.log('data.post.link', data.post.link);
+        data.post.isVerified = data.post.link.indexOf(data.post.from.website.replace('www.', '')) > -1 ? true : false;
+        done();
+      });
+    },
+    getOpenGraph: function(done) {
+      if(!data.post.isVerified) {
+        return done();
+      }
+      // console.log('link', data.post.link);
+      opengraphServer({url: data.post.link}, function(err, ogp) {
+        console.log ('ogp', ogp.data);
+        if(ogp && ogp.data) {
+          if(ogp.data.ogType === 'og:product' || ogp.data.ogType === 'product' || ogp.data.ogType === 'og_product') {
+            opengraph = ogp.data;
+            data.post.og = ogp.data;
+            data.post.isProduct = true;
+            data.post.action['cta'] = 'Buy';
           }
+        }
+        done();
+      });
+    },
+    updatePost: function(done) {
+      data.post.fbId = data.post.id;
+      if(data.post.likes && data.post.likes.data) data.post.likes = _.map(data.post.likes.data, function(item) {return item;});
 
-          _.assign(post, data.post);
+      delete data.post.id;
+      data.post.page = data.post.from.id;
 
-          post.save(function(err) {
-            console.log('save page err', err);
-            // done();
-            if(next) {
-              next();
-            }
-          });
+      Post.findOne({fbId: data.post.fbId}, function(err, post) {
+        if(!post) {
+          post = new Post();
+        }
+
+        _.assign(post, data.post);
+
+        post.save(function(err) {
+          console.log('save page err', err);
+          // done();
+          if(next) {
+            next();
+          }
         });
-      // }
-    // }, function() {
-      // if(next) {
-      //   next();
-      // }
-              // });
-
-    // })
-  } else {
-    console.log('QUEUES_ERR: ', err);
-    if(next) {
-      next();
+      });
     }
-  }
+  }, function() {
+    if(next) {
+      next(null, 'success');
+    }
+  });
 }
 
-var Q_importAllFriendsPerUser = function(err, data, next) {
+var Q_importAllFriendsPerUser = function(data, next) {
   var likes = [];
   var fields = 'id,name,picture,link';
+  console.log('DOING 1');
 
-  if(!err) {
-    graph.setAccessToken(data.accessToken);
+  graph.setAccessToken(data.accessToken);
 
-    graph.get('/' + data.userID + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
-      console.log('err', err);
-      console.log('-------------------');
-      // console.log('output', output);
-      likes = output.data;
-      async.forEach(likes, function(item, cb) {
-        Q_addFriend(null, {friendID: item.id, userID: data.userID}, function() {
-          cb();
-        });
-      }, function() {
-        console.log('finito');
-        // if(output.paging && output.paging.cursors.after) {
-        //   console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
-        //   Q_importAllFriendsPerUser(null, {userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
-        // }
-        if(next) {
-          next();
-        }
-      })
-    });
-  } else {
-    console.log('QUEUES_ERR: ', err);
-    if(next) {
-      next();
-    }
-  }
-}
-
-var Q_addFriend = function(err, data, next) {
-  var likes = [];
-  if(!err) {
-    UserFriend.findOne({friend: data.friendID, user: data.userID}, function(err, userfriend) {
-      if(!userfriend) {
-        userfriend = new UserFriend();
-      }
-      console.log('inside', data.id);
-      userfriend.friend = data.friendID;
-      userfriend.user = data.userID;
-
-      userfriend.save(function(err) {
-        console.log('save page err', err);
-        next();
+  graph.get('/' + data.userID + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
+    console.log('DOING 2');
+    console.log('err', err);
+    console.log('-------------------');
+    // console.log('output', output);
+    likes = output.data;
+    console.log('DOING 3');
+    async.forEach(likes, function(item, cb) {
+      Q_addFriend({friendID: item.id, userID: data.userID}, function() {
+        cb();
       });
-    });
-  } else {
-    console.log('QUEUES_ERR: ', err);
-    if(next) {
-      next();
-    }
-  }
+    }, function() {
+      console.log('DOING 4');
+      console.log('finito');
+      // if(output.paging && output.paging.cursors.after) {
+      //   console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
+      //   Q_importAllFriendsPerUser(null, {userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
+      // }
+      // if(next) {
+        next(null, 'success');
+      // }
+    })
+  });
 }
 
-var Q_followPage = function(err, data, next) {
+var Q_addFriend = function(data, next) {
+  console.log('Q1');
   var likes = [];
-  if(!err) {
-    UserPage.findOne({page: data.pageID, user: data.userID}, function(err, userpage) {
-      if(!userpage) {
-        userpage = new UserPage();
-      }
-      console.log('inside', data.id);
-      userpage.page = data.pageID;
-      userpage.user = data.userID;
 
-      userpage.save(function(err) {
-        console.log('save page err', err);
-        next();
-      });
-    });
-  } else {
-    console.log('QUEUES_ERR: ', err);
-    if(next) {
-      next();
+  console.log('Q2', {friend: data.friendID, user: data.userID});
+  UserFriend.findOne({friend: data.friendID, user: data.userID}, function(err, userfriend) {
+    console.log('Q4');
+    if(!userfriend) {
+      userfriend = new UserFriend();
     }
-  }
+    console.log('inside', data.id);
+    userfriend.friend = data.friendID;
+    userfriend.user = data.userID;
+
+    userfriend.save(function(err) {
+      console.log('save page err', err);
+      next(null, 'success');
+    });
+  });
 }
 
-var Q_activateUserFeed = function(err, data, next) {
+var Q_followPage = function(data, next) {
+  var likes = [];
+  UserPage.findOne({page: data.pageID, user: data.userID}, function(err, userpage) {
+    if(!userpage) {
+      userpage = new UserPage();
+    }
+    console.log('inside', data.id);
+    userpage.page = data.pageID;
+    userpage.user = data.userID;
+
+    userpage.save(function(err) {
+      console.log('save page err', err);
+      next(null, 'success');
+    });
+  });
+}
+
+var Q_activateUserFeed = function(data, next) {
   User.findOne({fbId: data.userID}, function(err, user) {
     if(!user) {
       return next ? next() : true;
     }
     user.isFeedReady = true;
     user.save(function(err) {
-      return next ? next() : true;
+      return next ? next(null, 'success') : true;
     });
   });
 }
 
-var Q_addPage = function(err, data, next) {
-  var likes = [];
-  if(!err) {
-    Page.findOne({fbId: data.page.id}, function(err, page) {
-      if(!page) {
-        page = new Page();
-      }
-      console.log('inside', data.page.id);
-      page.fbId = data.page.id;
-      page.name = data.page.name;
+var Q_addPage = function(data, next) {
+  Page.findOne({fbId: data.page.id}, function(err, page) {
+    if(!page) {
+      page = new Page();
+    }
+    console.log('inside', data.page.id);
+    page.fbId = data.page.id;
+    page.name = data.page.name;
 
-      // console.log('before save', item.id);
-      page.category = data.page.category;
-      page.created_time = data.page.created_time;
-      page.updated_time = data.page.updated_time;
-      page.picture = data.page.picture;
+    // console.log('before save', item.id);
+    page.category = data.page.category;
+    page.created_time = data.page.created_time;
+    page.updated_time = data.page.updated_time;
+    page.picture = data.page.picture;
 
-      var category_list = _.pluck(_.flatten(data.page.category_list, true), 'name');
+    var category_list = _.pluck(_.flatten(data.page.category_list, true), 'name');
 
-      page.category_list = category_list;
+    page.category_list = category_list;
 
-      page.contact_address = data.page.contact_address;
-      page.cover = data.page.cover;
-      page.link = data.page.link;
-      page.current_location = data.page.current_location;
-      page.description = data.page.description;
-      page.general_info = data.page.general_info;
-      page.phone = data.page.phone;
-      page.username = data.page.username;
-      page.website = data.page.website;
-      page.likes = data.page.likes;
+    page.contact_address = data.page.contact_address;
+    page.cover = data.page.cover;
+    page.link = data.page.link;
+    page.current_location = data.page.current_location;
+    page.description = data.page.description;
+    page.general_info = data.page.general_info;
+    page.phone = data.page.phone;
+    page.username = data.page.username;
+    page.website = data.page.website;
+    page.likes = data.page.likes;
 
-      page.isVerified = (approved_categories.indexOf(page.category) > -1 ? true: false);
-      if(!page.isVerified) {
-        _.each(page.category_list, function(subcategory) {
-            if (approved_subcategories.indexOf(subcategory) > -1) {
-              page.isVerified = true;
-            }
-        });
-      }
+    page.isVerified = (approved_categories.indexOf(page.category) > -1 ? true: false);
+    if(!page.isVerified) {
+      _.each(page.category_list, function(subcategory) {
+          if (approved_subcategories.indexOf(subcategory) > -1) {
+            page.isVerified = true;
+          }
+      });
+    }
 
-      page.save(function(err) {
-        console.log('save page err', err);
-        Q_followPage(null, {pageID: page.fbId, userID: data.userID}, function() {
-          next();
-        });
+    page.save(function(err) {
+      console.log('save page err', err);
+      Q_followPage({pageID: page.fbId, userID: data.userID}, function() {
+        next(null, 'success');
       });
     });
-  } else {
-    console.log('QUEUES_ERR: ', err);
-    if(next) {
-      next();
-    }
-  }
+  });
 }
 
-var Q_importAllLikesPerUser = function(err, data, next) {
+var Q_importAllLikesPerUser = function(data, next) {
   var likes = [];
-  if(!err) {
-    graph.setAccessToken(data.accessToken);
 
-    graph.get('/' + data.userID + '/likes?limit=100&fields=id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes' + (data.after ? '&after=' + data.after : ''), function(err, output) {
-      console.log('err', err);
-      console.log('-------------------');
-      // console.log('output', output);
-      likes = output.data;
-      async.forEach(likes, function(item, cb) {
-        Q_addPage(null, {page: item, userID: data.userID}, function() {
-          cb();
-        });
-      }, function() {
-        console.log('finito');
-        if(output.paging && output.paging.cursors.after) {
-          console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
-          Q_importAllLikesPerUser(null, {userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
-        } else {
-          Q_activateUserFeed(null, {userID: data.userID}, null);
-        }
-        if(next) {
-          next();
-        }
-      })
-    });
-  } else {
-    console.log('QUEUES_ERR: ', err);
-    if(next) {
-      next();
-    }
-  }
+  graph.setAccessToken(data.accessToken);
+
+  graph.get('/' + data.userID + '/likes?limit=100&fields=id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes' + (data.after ? '&after=' + data.after : ''), function(err, output) {
+    console.log('err', err);
+    console.log('-------------------');
+    // console.log('output', output);
+    likes = output.data;
+    async.forEach(likes, function(item, cb) {
+      Q_addPage({page: item, userID: data.userID}, function() {
+        cb();
+      });
+    }, function() {
+      console.log('finito');
+      if(output.paging && output.paging.cursors.after) {
+        console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
+        Q_importAllLikesPerUser({userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
+      } else {
+        Q_activateUserFeed({userID: data.userID}, null);
+      }
+      if(next) {
+        next(null, 'success');
+      }
+    })
+  });
 }
 
 exports.Q_importAllLikesPerUser = Q_importAllLikesPerUser;
@@ -391,32 +415,3 @@ exports.Q_importAllFriendsPerUser = Q_importAllFriendsPerUser;
 exports.Q_addFriend = Q_addFriend;
 exports.Q_importAllPostsPerPage = Q_importAllPostsPerPage;
 exports.Q_addPost = Q_addPost;
-
-
-
-
-mq.on('test', handleRecord);
-mq.on('Q_importAllLikesPerUser', Q_importAllLikesPerUser);
-mq.on('Q_importAllFriendsPerUser', Q_importAllFriendsPerUser);
-mq.on('Q_addPage', Q_addPage);
-mq.on('Q_activateUserFeed', Q_activateUserFeed);
-mq.on('Q_importAllPostsPerPage', Q_importAllPostsPerPage);
-mq.on('Q_addPost', Q_addPost);
-
-(function(){
-  var logger = new MC(options);
-  logger.open(function(err, mc){
-    if(err){
-      console.log('ERROR: ', err);
-    }else{
-      mc.collection('log', function(err, loggingCollection){
-        log = loggingCollection;
-        mq.start(function(err){
-          if(err){
-            console.log(err);
-          }
-        });
-      });
-    }
-  });
-})();
