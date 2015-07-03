@@ -15,6 +15,7 @@ var userSchema = mongoose.Schema({
     picture: String,
     location: String,
     platform: String, // iOS, Android
+    messagesCounter: {type: Number, default: 0},
     isEnabled: {type: Boolean, default: true},
     isFeedReady: {type: Boolean, default: false}
 });
