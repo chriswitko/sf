@@ -23,6 +23,7 @@ var pageSchema = mongoose.Schema({
     likes: Number,
     admins: [],
     plan: {type: String, default: 'FREE'},
+    isBrand: {type: Boolean, default: false},
     isVerified: {type: Boolean, default: false}, // means, that this is store by category or by business
     isEnabled: {type: Boolean, default: true},
     isRTU: {type: Boolean, default: false}

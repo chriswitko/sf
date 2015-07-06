@@ -16,6 +16,7 @@ var postSchema = mongoose.Schema({
       link: String,
       cta: String
     },
+    validTo: Date,
     isVerified: {type: Boolean, default: false},
     isEnabled: {type: Boolean, default: true},
     isProduct: {type: Boolean, default: false},
