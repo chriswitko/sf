@@ -12,7 +12,8 @@ angular.module( 'ui.nav', ['nl2br', 'filters', 'ngCookies'] )
 
       scope.init = function() {
         console.log('facebook', Facebook);
-        Facebook.api('/me?fields=link,name,first_name,picture', function(response) {
+        Facebook.api('/me?fields=link,name,first_name,picture&access_token=' + $cookieStore.get('accessToken'), function(response) {
+          console.log('response', response);
           scope.user = response;
         });
       };

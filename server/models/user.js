@@ -16,6 +16,7 @@ var userSchema = mongoose.Schema({
     location: String,
     platform: String, // iOS, Android
     messagesCounter: {type: Number, default: 0},
+    isBusinessPartner: {type: Boolean, default: false},
     isEnabled: {type: Boolean, default: true},
     isFeedReady: {type: Boolean, default: false}
 });

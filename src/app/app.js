@@ -5,6 +5,7 @@ angular.module( 'ngBoilerplate', [
   'ngBoilerplate.feed',
   'ngBoilerplate.explore',
   'ngBoilerplate.about',
+  'ngBoilerplate.download',
   'ui.router',
   'facebook',
   'ngSanitize',

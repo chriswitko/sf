@@ -29,13 +29,13 @@
           </li>
         </ul>
         <ul class="nav navbar-nav pull-right">
-          <li ui-sref-active="active">
+          <!-- <li ui-sref-active="active">
             <a href ui-sref="home">
               Features
             </a>
-          </li>
+          </li> -->
           <li ui-sref-active="active">
-            <a href ui-sref="about">
+            <a href ui-sref="business">
               Business
             </a>
           </li>
@@ -58,18 +58,17 @@
       </div>
       <div class="collapse navbar-collapse" collapse="menuCollapsed">
         <ul class="nav navbar-nav">
+          <!-- <li style="padding:0;margin:0;">
+            <a href  style="padding:0;margin:0;"><img src="/assets/img/logo_200x200_blank.png" width="50"/></a>
+          </li> -->
           <li ui-sref-active="active" class="dropdown">
-            <a href ui-sref="home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href ui-sref="home" class="dropdown-toggle zero" data-toggle="dropdown" role="button" aria-expanded="false">
               <!-- <i class="fa fa-refresh fa-spin"></i> -->
-              <i class="fa fa-bars"></i>
+              <!-- <i class="fa fa-bars"></i> -->
+              <img src="/assets/img/logo_200x200_blank.png" width="50"/>
             </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Settings...</a></li>
-              <li class="divider"></li>
-              <li><a href ng-click="logout()">Log out</a></li>
-            </ul>
           </li>
-          <li ui-sref-active="active">
+          <!-- <li ui-sref-active="active">
             <a href ui-sref="feed">
               All
             </a>
@@ -93,9 +92,20 @@
             <a href ui-sref="friends">
               Friends
             </a>
-          </li>
+          </li> -->
         </ul>
         <ul class="nav navbar-nav pull-right">
+          <li ui-sref-active="active" class="dropdown">
+            <a href ui-sref="home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <i class="fa fa-bars"></i>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">My Pages</a></li>
+              <li><a href="#">Settings...</a></li>
+              <li class="divider"></li>
+              <li><a href ng-click="logout()">Log out</a></li>
+            </ul>
+          </li>
           <li>
             <a href="https://www.facebook.com" target="_blank">Hi, <span ng-bind-html="user.first_name"></span></a>
           </li>
