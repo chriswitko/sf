@@ -12,17 +12,24 @@ angular.module( 'ui.nav', ['nl2br', 'filters', 'ngCookies'] )
 
       scope.init = function() {
         console.log('facebook', Facebook);
-        Facebook.api('/me?fields=link,name,first_name,picture&access_token=' + $cookieStore.get('accessToken'), function(response) {
-          console.log('response', response);
-          scope.user = response;
-        });
+        if($cookieStore.get('accessToken')) {
+          Facebook.api('/me?fields=link,name,first_name,picture&access_token=' + $cookieStore.get('accessToken'), function(response) {
+            if(response.error) {
+              scope.logout();
+              return;
+            }
+            console.log('response', response);
+            scope.user = response;
+          });
+        }
       };
 
       scope.logout = function() {
         Facebook.logout();
         $cookieStore.remove('userID');
         $cookieStore.remove('accessToken');
-        $state.go('home');
+        // $state.go('home');
+        window.location = '/';
       };
 
       scope.init();

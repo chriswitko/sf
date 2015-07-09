@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-if="theme === 'light'">
+<div class="container-fluid" ng-if="theme === 'light' || !user.id">
   <div class="row">
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-header">
@@ -45,7 +45,7 @@
   </div>
 </div>
 
-<div class="container-fluid" ng-if="!theme">
+<div class="container-fluid" ng-if="!theme && user.id">
   <div class="row">
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="navbar-header">
@@ -95,13 +95,13 @@
           </li> -->
         </ul>
         <ul class="nav navbar-nav pull-right">
-          <li ui-sref-active="active" class="dropdown">
+          <li class="dropdown">
             <a href ui-sref="home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">My Pages</a></li>
-              <li><a href="#">Settings...</a></li>
+              <li><a hrer ui-sref="manage">My Pages</a></li>
+              <li><a href ui-sref="settings">Settings...</a></li>
               <li class="divider"></li>
               <li><a href ng-click="logout()">Log out</a></li>
             </ul>

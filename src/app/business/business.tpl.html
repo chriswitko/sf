@@ -1,0 +1,25 @@
+
+<nav></nav>
+
+<div class="container-fluid container-fixed-top container-fixed-top-home">
+  <div class="container container-fixed-width">
+    <div class="row">
+      <div class="col-xs-5 ac mt150">
+        <h1 class="color-accent-200 m0 fw300">ShopNow for Business</h1>
+        <h4 style="line-height: 21px;">
+          Click below to install ShopNow on your device and start discovering new way to do shopping using Facebook.
+        </h4>
+        <div class="clearfix mt30">
+          <a href ng-click="login()" class="btn btn-lg btn-primary" ng-if="!userID">Continue with Facebook</a>
+          <a href ui-sref="manage" class="btn btn-lg btn-primary" ng-if="userID">Manage my Pages</a>
+        </div>
+        <div class="clearfix mt30">
+          <small>App available on <a href="">iOS</a> and <a href="">Android</a> devices</small>
+        </div>
+      </div>
+      <div class="col-xs-7 bg-mbair">
+        <div class="row">
+        </div>
+      </div>
+  </div>
+</div>
