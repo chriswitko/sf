@@ -26,6 +26,30 @@ var queue = client.queue('sna_default');
 
 graph.setVersion('2.3');
 
+exports.validateToken = function(req, res) {
+  // /debug_token?input_token=CAAUbE6b5y7QBADyjcoxqctVnry9rJBXq2TZATRw0SEAGP3mtNATmZCjUQbFKhnMFq20uzZCgLXLMK15NqLlTBM7YDGqs3ZBFGi6Xrh4VDmcItSk2h2DCIl1cht0iWG4iqgqjM9ri8jkH9a9rx2f6DIyVa3IFWxONF3T40PIuKVmsNik18pomzZA3U3iVqStsZD&access_token=503652836467629|d273b14b2880c092212dfddaa878f375
+  // {
+  //    "data": {
+  //       "app_id": "503652836467629",
+  //       "application": "ShopNow - Local Test",
+  //       "expires_at": 1440936348,
+  //       "is_valid": true,
+  //       "issued_at": 1435752348,
+  //       "scopes": [
+  //          "user_location",
+  //          "user_likes",
+  //          "user_friends",
+  //          "email",
+  //          "public_profile"
+  //       ],
+  //       "user_id": "1119171044763213"
+  //    }
+  // }
+  // Sun, 30 Aug 2015 12:05:48 GMT
+  // https://graph.facebook.com/oauth/access_token_info?client_id=APPID&access_token=xxxxxxxxx
+  res.json({status: 'success'});
+}
+
 exports.importPosts = function(req, res) {
   queue.enqueue('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: req.query.accessToken, after: ''}, function (err, job) {
       if (err) throw err;
