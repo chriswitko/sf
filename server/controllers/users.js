@@ -83,6 +83,20 @@ exports.pages = function(req, res) {
   })
 }
 
+exports.pages = function(req, res) {
+  var pages = [];
+  var fields = 'id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes';
+
+  graph.setAccessToken(req.query.accessToken);
+
+  graph.get('/' + req.query.userID + '/accounts?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
+    console.log('err', err);
+    console.log('output', output);
+    if(output.data) pages = output.data;
+    res.json({status: 'success', data: pages, total: pages.length});
+  });
+}
+
 exports.friends = function(req, res) {
   var friends = [];
   var fields = 'id,name,picture,link';
@@ -92,7 +106,7 @@ exports.friends = function(req, res) {
   graph.get('/' + req.query.userID + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
     console.log('err', err);
     console.log('output', output);
-    friends = output.data;
+    if(output.data) friends = output.data;
     res.json({status: 'success', data: friends, total: friends.length});
   });
 }
