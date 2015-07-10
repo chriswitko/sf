@@ -15,7 +15,8 @@
 angular.module( 'ngBoilerplate.manage', [
   'ui.router',
   'plusOne',
-  'ngCookies'
+  'ngCookies',
+  'ngLodash'
 ])
 
 /**
@@ -24,7 +25,7 @@ angular.module( 'ngBoilerplate.manage', [
  * this way makes each module more "self-contained".
  */
 .config(function config( $stateProvider, $cookiesProvider ) {
-  var authenticated = ['$q', 'Facebook', function ($q, Facebook, $cookieStore) {
+  var authenticated = ['$q', 'Facebook', '$cookieStore', 'lodash', function ($q, Facebook, $cookieStore, lodash) {
     var deferred = $q.defer();
 
     // if($cookieStore.get('userID')) {
@@ -37,9 +38,21 @@ angular.module( 'ngBoilerplate.manage', [
     // }
     Facebook.getLoginStatus(function(response) {
       if(response.status === 'connected') {
-        console.log('connected2', response);
-        // $scope.loggedIn = true;
-        deferred.resolve();
+        Facebook.api('/me/permissions?access_token=' + $cookieStore.get('accessToken'), function(response) {
+          console.log('response', response);
+          var permissions = lodash.map(response.data, function(item) {
+            if(item.status === 'granted') {
+              return item.permission;
+            }
+          });
+          if(permissions.indexOf('manage_pages') > -1) {
+            console.log('connected2', response);
+            // $scope.loggedIn = true;
+            deferred.resolve();
+          } else {
+            window.location = '/#/business';
+          }
+        });
       } else {
         console.log('not connected');
         window.location = '/#/business';

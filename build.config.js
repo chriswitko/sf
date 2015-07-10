@@ -70,7 +70,8 @@ module.exports = {
       'vendor/angular-facebook/lib/angular-facebook.js',
       'vendor/angular-sanitize/angular-sanitize.min.js',
       'vendor/angular-cookies/angular-cookies.min.js',
-      'vendor/angular-nl2br/angular-nl2br.min.js'
+      'vendor/angular-nl2br/angular-nl2br.min.js',
+      'vendor/ng-lodash/build/ng-lodash.min.js'
     ],
     css: [
     ],
