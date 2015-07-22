@@ -92,6 +92,7 @@ angular.module( 'ngBoilerplate.business', [
         success(function(data, status, headers, config) {
           console.log('user', data);
           // $state.go('feed');
+          alert('go manage');
           window.location = '/#/manage';
           // window.location.assign('/#/feed');
           // window.location.reload(true);

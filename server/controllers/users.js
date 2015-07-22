@@ -84,17 +84,47 @@ exports.pages = function(req, res) {
 }
 
 exports.pages = function(req, res) {
+  var accounts = [];
   var pages = [];
+  var output = [];
+  var ids = [];
   var fields = 'id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes';
 
-  graph.setAccessToken(req.query.accessToken);
+  async.series({
+    getPagesByAdmin: function(done) {
+      Page.find({isActivated: true}, function(err, pages) { // , admins: {$in: [req.query.userID]}
+        if(!pages) {
+          return done();
+        }
+        ids = _.map(pages, function(item) {
+          return item.fbId;
+        });
+        console.log('ids', ids);
+      });
+      done();
+    },
+    getPagesFromGraph: function(done) {
+      graph.setAccessToken(req.query.accessToken);
 
-  graph.get('/' + req.query.userID + '/accounts?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
-    console.log('err', err);
-    console.log('output', output);
-    if(output.data) pages = output.data;
-    res.json({status: 'success', data: pages, total: pages.length});
-  });
+      graph.get('/' + req.query.userID + '/accounts?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, data) {
+        console.log('err', err);
+        console.log('output', data);
+        if(data.data) accounts = data.data;
+        output = _.map(accounts, function(item) {
+          if(ids.indexOf(item.id) > -1) {
+            item.isActivated = true;
+          } else {
+            item.isActivated = false;
+          }
+          return item;
+        });
+        done();
+      });
+    }
+  }, function() {
+    res.json({status: 'success', data: output, total: output.length});
+  })
+
 }
 
 exports.friends = function(req, res) {
@@ -122,8 +152,14 @@ exports.importFriends = function(req, res) {
 }
 
 exports.importLikes = function(req, res) {
-  mq.emit('Q_importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
-  res.json({status: 'success'});
+  queue.enqueue('Q_importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''}, function (err, job) {
+      if (err) throw err;
+      console.log('Enqueued:', job.data);
+      res.json({status: 'success'});
+      // process.exit();
+  });
+  // mq.emit('Q_importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
+  // res.json({status: 'success'});
 }
 
 // TODO: After authorize (isNew = true) send notifications to all my existing friends

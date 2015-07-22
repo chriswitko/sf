@@ -354,12 +354,14 @@ var Q_addPage = function(data, next) {
     page.cover = data.page.cover;
     page.link = data.page.link;
     page.current_location = data.page.current_location;
+    page.location = data.page.location;
     page.description = data.page.description;
     page.general_info = data.page.general_info;
     page.phone = data.page.phone;
     page.username = data.page.username;
     page.website = data.page.website;
     page.likes = data.page.likes;
+    page.emails = data.page.emails;
 
     page.isVerified = (approved_categories.indexOf(page.category) > -1 ? true: false);
     if(!page.isVerified) {
@@ -384,7 +386,7 @@ var Q_importAllLikesPerUser = function(data, next) {
 
   graph.setAccessToken(data.accessToken);
 
-  graph.get('/' + data.userID + '/likes?limit=100&fields=id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes' + (data.after ? '&after=' + data.after : ''), function(err, output) {
+  graph.get('/' + data.userID + '/likes?limit=100&fields=id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,location,description,emails,general_info,link,phone,username,website,likes' + (data.after ? '&after=' + data.after : ''), function(err, output) {
     console.log('err', err);
     console.log('-------------------');
     // console.log('output', output);

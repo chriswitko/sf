@@ -8,6 +8,7 @@ angular.module( 'ngBoilerplate', [
   'ngBoilerplate.download',
   'ngBoilerplate.business',
   'ngBoilerplate.manage',
+  'ngBoilerplate.manage.dashboard',
   'ui.router',
   'facebook',
   'ngSanitize',

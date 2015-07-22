@@ -6,7 +6,8 @@ var worker = client.worker(['sna_default']);
 
 worker.register({
   Q_importAllFriendsPerUser: require('./listener').Q_importAllFriendsPerUser,
-  Q_importAllPostsPerPage: require('./listener').Q_importAllPostsPerPage
+  Q_importAllPostsPerPage: require('./listener').Q_importAllPostsPerPage,
+  Q_importAllLikesPerUser: require('./listener').Q_importAllLikesPerUser
 });
 
 worker.on('dequeued', function (data) {

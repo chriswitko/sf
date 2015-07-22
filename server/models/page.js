@@ -8,11 +8,13 @@ var pageSchema = mongoose.Schema({
     updated_time: Date,
     name: String,
     picture: [],
+    emails: [],
     category_list: [],
     contact_address: String,
     cover: [],
     link: String,
     current_location: String,
+    location: {},
     accessToken: String,
     signedRequest: String,
     description: String,
@@ -26,6 +28,7 @@ var pageSchema = mongoose.Schema({
     isBrand: {type: Boolean, default: false},
     isVerified: {type: Boolean, default: false}, // means, that this is store by category or by business
     isEnabled: {type: Boolean, default: true},
+    isActivated: {type: Boolean, default: false},
     isRTU: {type: Boolean, default: false}
 });
 

@@ -1,0 +1,7 @@
+<ul class="list-unstyled list-side-nav p10 m0">
+  <li ng-class="{ active: $state.current.url.includes('manage') }"><h4><a href ui-sref="manageDashboard({ pageID: 1 })">Dashboard</a></h4></li>
+  <li ui-sref-active="active"><h4><a href ui-sref="">Requests</a></h4></li>
+  <li ui-sref-active="active"><h4><a href ui-sref="manageDashboard.messages({ pageID: 1 })">Messages</a></h4></li>
+  <li ui-sref-active="active"><h4><a href ui-sref="">Promote</a></h4></li>
+  <li ui-sref-active="active"><h4><a href ui-sref="manageDashboard.settings({ pageID: 1 })">Settings</a></h4></li>
+</ul>

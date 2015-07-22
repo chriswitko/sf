@@ -2,6 +2,9 @@ angular.module( 'security', [] )
 
 .service( 'myAuth', function() {//$http, Facebook
   var vm = {};
+  vm.hello = function() {
+    alert('ok');
+  };
   // vm.authenticated = ['$q', 'Facebook', function ($q, Facebook) {
   //   var deferred = $q.defer();
 

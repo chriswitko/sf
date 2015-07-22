@@ -1,6 +1,6 @@
-<div class="container-fluid" ng-if="theme === 'light' || !user.id">
+<div class="container" ng-if="theme === 'light' || !user.id">
   <div class="row">
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true" ng-click="menuCollapsed = ! menuCollapsed">
           <span class="sr-only">Toggle navigation</span>
@@ -8,24 +8,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+      </div>
+      <div class="collapse navbar-collapse" collapse="menuCollapsed">
         <ul class="nav navbar-nav">
-          <!-- <li style="padding:0;margin:0;">
-            <a href  style="padding:0;margin:0;"><img src="/assets/img/logo_200x200_blank.png" width="50"/></a>
-          </li> -->
           <li>
             <a href ui-sref="home" class="zero">
               <img src="/assets/img/logo_200x200_blank.png" width="50"/>
             </a>
           </li>
         </ul>
-        <!-- <div class="navbar-brand">
-          ShopNow
-          <small>
-            All deals in one place
-          </small>
-        </div> -->
-      </div>
-      <div class="collapse navbar-collapse" collapse="menuCollapsed">
         <ul class="nav navbar-nav hide">
           <li ui-sref-active="active">
             <a href ui-sref="home">
@@ -39,11 +30,6 @@
           </li>
         </ul>
         <ul class="nav navbar-nav pull-right">
-          <!-- <li ui-sref-active="active">
-            <a href ui-sref="home">
-              Features
-            </a>
-          </li> -->
           <li ui-sref-active="active">
             <a href ui-sref="business">
               Business
@@ -55,9 +41,9 @@
   </div>
 </div>
 
-<div class="container-fluid" ng-if="!theme && user.id">
+<div class="container" ng-if="!theme && user.id">
   <div class="row">
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true" ng-click="menuCollapsed = ! menuCollapsed">
           <span class="sr-only">Toggle navigation</span>
@@ -68,46 +54,16 @@
       </div>
       <div class="collapse navbar-collapse" collapse="menuCollapsed">
         <ul class="nav navbar-nav">
-          <!-- <li style="padding:0;margin:0;">
-            <a href  style="padding:0;margin:0;"><img src="/assets/img/logo_200x200_blank.png" width="50"/></a>
-          </li> -->
           <li>
             <a href ui-sref="home" class="zero">
-              <!-- <i class="fa fa-refresh fa-spin"></i> -->
-              <!-- <i class="fa fa-bars"></i> -->
               <img src="/assets/img/logo_200x200_blank.png" width="50"/>
             </a>
           </li>
-          <!-- <li ui-sref-active="active">
-            <a href ui-sref="feed">
-              All
-            </a>
-          </li>
-          <li ui-sref-active="active">
-            <a href ui-sref="saved">
-              Saved
-            </a>
-          </li>
-          <li ui-sref-active="active">
-            <a href ui-sref="explore">
-              Near-by
-            </a>
-          </li>
-          <li>
-            <a href ui-sref="brands">
-              Brands
-            </a>
-          </li>
-          <li ui-sref-active="active">
-            <a href ui-sref="friends">
-              Friends
-            </a>
-          </li> -->
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li class="dropdown">
             <a href ui-sref="home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              <i class="fa fa-bars"></i>
+              <i class="fa fa-cog"></i>
             </a>
             <ul class="dropdown-menu" role="menu">
               <li><a href ui-sref="manage">My Pages</a></li>

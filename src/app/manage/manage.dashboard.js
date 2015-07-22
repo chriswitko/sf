@@ -12,7 +12,7 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.manage', [
+angular.module( 'ngBoilerplate.manage.dashboard', [
   'ui.router',
   'plusOne',
   'ngCookies',
@@ -66,29 +66,72 @@ angular.module( 'ngBoilerplate.manage', [
   }];
 
   $stateProvider
-  .state( 'manage', {
-    url: '/manage',
+  .state( 'manageDashboard', {
+    url: '/manage/:pageID',
     views: {
       "main": {
-        controller: 'ManageCtrl',
-        templateUrl: 'manage/manage.tpl.html'
+        controller: 'ManageDashboardCtrl',
+        templateUrl: 'manage/manage.dashboard.tpl.html'
+      },
+      "submain@manageDashboard": {
+        controller: 'ManageDashboardCtrl',
+        templateUrl: 'manage/manage.dashboard.index.tpl.html'
       }
     },
     // resolve: {
     //   authenticated: authenticated
     // },
     data:{
-      pageTitle: 'ShopNow Manager 3',
+      root: true,
+      pageTitle: 'ShopNow Manager',
+      userID: $cookiesProvider['userID']
+    }
+  })
+  .state( 'manageDashboard.messages', {
+    url: '/messages',
+    views: {
+      "main": {
+        controller: 'ManageDashboardCtrl',
+        templateUrl: 'manage/manage.dashboard.tpl.html'
+      },
+      "submain@manageDashboard": {
+        controller: 'ManageDashboardCtrl',
+        templateUrl: 'manage/manage.dashboard.messages.tpl.html'
+      }
+    },
+    // resolve: {
+    //   authenticated: authenticated
+    // },
+    data:{
+      pageTitle: 'ShopNow Manager 1',
+      userID: $cookiesProvider['userID']
+    }
+  })
+  .state( 'manageDashboard.settings', {
+    url: '/settings',
+    views: {
+      "main": {
+        controller: 'ManageDashboardCtrl',
+        templateUrl: 'manage/manage.dashboard.tpl.html'
+      },
+      "submain@manageDashboard": {
+        controller: 'ManageDashboardCtrl',
+        templateUrl: 'manage/manage.dashboard.settings.tpl.html'
+      }
+    },
+    // resolve: {
+    //   authenticated: authenticated
+    // },
+    data:{
+      pageTitle: 'ShopNow Manager Hello',
       userID: $cookiesProvider['userID']
     }
   });
 })
 
-/**
- * And of course we define a controller for our route.
- */
-.controller( 'ManageCtrl', function ManageCtrl( $scope, Facebook, $state, $http, $cookieStore, myAuth ) {
+.controller( 'ManageDashboardCtrl', function ManageDashboardCtrl( $scope, Facebook, $state, $http, $cookieStore, myAuth ) {
   $scope.init = function() {
+    $scope.$state = $state;
     $scope.userID = $cookieStore.get('userID');
     console.log('hello chris');
     // myAuth.hello();
@@ -96,5 +139,4 @@ angular.module( 'ngBoilerplate.manage', [
 
   $scope.init();
 });
-
 

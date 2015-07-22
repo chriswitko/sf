@@ -1,0 +1,27 @@
+<nav></nav>
+
+<div class="container-fluid">
+  <div class="container mb20">
+    <div class="row">
+      <div class="col-xs-8">
+        <div class="clearfix">
+          <h4><a href ui-sref="manage">Manage</a> &mdash; <a href>Pretty Green</a></h4>
+        </div>
+      </div>
+      <div class="col-xs-4 ar">
+          <a href class="btn btn-primary">Send message</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-3">
+        <div class="clearfix bg-white bg-rounded p0" ng-include="'manage/manage.nav.tpl.html'"></div>
+      </div>
+      <div class="col-xs-9">
+        <div class="clearfix p0" ui-view="submain"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
