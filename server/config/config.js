@@ -5,7 +5,7 @@
 var path = require('path');
 var extend = require('util')._extend;
 
-var development = require('./env/development');
+var development = require('./env/' + process.env.NODE_ENV);
 // var test = require('./env/test');
 // var production = require('./env/production');
 
