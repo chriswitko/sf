@@ -51,12 +51,12 @@ angular.module( 'ngBoilerplate.manage', [
             // $scope.loggedIn = true;
             deferred.resolve();
           } else {
-            window.location = '/#/business';
+            window.location = '/business';
           }
         });
       } else {
         console.log('not connected');
-        window.location = '/#/business';
+        window.location = '/business';
         // $scope.loggedIn = false;
         deferred.reject('Not logged in2');
       }

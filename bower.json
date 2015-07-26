@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "angular-facebook": "~0.2.3",
-    "angular-sanitize": "~1.4.0",
+    "angular-sanitize": "~1.2",
     "angular-nl2br": "~1.0.3",
-    "angular-cookies": "~1.4.1",
+    "angular-cookies": "~1.2",
     "ng-cookies": "~1.1.1",
     "angular-lodash-module": "~1.2.0",
     "ng-lodash": "~0.2.3"

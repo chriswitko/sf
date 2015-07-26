@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var postSchema = mongoose.Schema({
     fbId: String,
@@ -19,11 +20,12 @@ var postSchema = mongoose.Schema({
     validTo: Date,
     isVerified: {type: Boolean, default: false},
     isEnabled: {type: Boolean, default: true},
-    isProduct: {type: Boolean, default: false},
+    format: {type: String, default: 'post'}, // post, product, notification, sale
     isPremium: {type: Boolean, default: false},
     isRTU: {type: Boolean, default: false}
 });
 
+postSchema.plugin(mongoosePaginate);
 var Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;

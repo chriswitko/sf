@@ -24,6 +24,7 @@
     "lodash": "^3.9.1",
     "mongomq": "^0.3.7",
     "mongoose": "^4.0.3",
+    "mongoose-paginate": "^4.0.0",
     "monq": "^0.3.1",
     "request": "^2.55.0",
     "unfluff": "^0.11.0"

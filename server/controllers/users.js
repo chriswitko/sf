@@ -8,6 +8,7 @@ var graph = require('fbgraph');
 var User = require('../models/user');
 var UserPage = require('../models/userpage');
 var Page = require('../models/page');
+var Post = require('../models/post');
 // var querystring = require('querystring');
 // var validator = require('validator');
 var async = require('async');
@@ -25,6 +26,16 @@ var queue = client.queue('sna_default');
 // var mq = new MQ(mq_options);
 
 graph.setVersion('2.3');
+
+var getUser = function(userID, id, cb) {
+  User.findOne({fbId: userID, _id: id}, function(err, me) {
+    if(!me) {
+      cb(false);
+    } else {
+      cb(me);
+    }
+  });
+}
 
 exports.validateToken = function(req, res) {
   // /debug_token?input_token=CAAUbE6b5y7QBADyjcoxqctVnry9rJBXq2TZATRw0SEAGP3mtNATmZCjUQbFKhnMFq20uzZCgLXLMK15NqLlTBM7YDGqs3ZBFGi6Xrh4VDmcItSk2h2DCIl1cht0iWG4iqgqjM9ri8jkH9a9rx2f6DIyVa3IFWxONF3T40PIuKVmsNik18pomzZA3U3iVqStsZD&access_token=503652836467629|d273b14b2880c092212dfddaa878f375
@@ -51,7 +62,8 @@ exports.validateToken = function(req, res) {
 }
 
 exports.importPosts = function(req, res) {
-  queue.enqueue('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: req.query.accessToken, after: ''}, function (err, job) {
+  var appToken = config.facebook.clientID + '|' + config.facebook.clientSecret;
+  queue.enqueue('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: appToken, after: ''}, function (err, job) {
       if (err) throw err;
       console.log('Enqueued:', job.data);
       res.json({status: 'success'});
@@ -59,6 +71,30 @@ exports.importPosts = function(req, res) {
   });
   // mq.emit('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: req.query.accessToken, after: ''});
   // res.json({status: 'success'});
+}
+
+exports.posts = function(req, res) {
+  var pageIds = [];
+  var output = [];
+  var page = req.query.page || 1;
+  var limit = req.query.limit || 30;
+
+  async.series({
+    getAllPageIds: function(done) {
+      UserPage.find({user: req.query.userID}, function(err, pages) {
+        pageIds = _.map(pages, function(page) {return page.page});
+        done();
+      });
+    },
+    getPagesDetails: function(done) {
+      Post.paginate({page: {$in: pageIds}, isVerified: true, isEnabled: true}, {page: page, limit: limit, sortBy: {created_time: -1}}, function(err, posts) {
+        output = posts;
+        done();
+      });
+    }
+  }, function() {
+    res.json({status: 'success', data: output});
+  })
 }
 
 exports.pages = function(req, res) {
@@ -89,8 +125,16 @@ exports.pages = function(req, res) {
   var output = [];
   var ids = [];
   var fields = 'id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,description,emails,general_info,link,phone,username,website,likes';
+  var user = {};
 
   async.series({
+    getUser: function(done) {
+      getUser(req.query.userID, req.query.token, function(me) {
+        user = me;
+        console.log('user', user);
+        done();
+      });
+    },
     getPagesByAdmin: function(done) {
       Page.find({isActivated: true}, function(err, pages) { // , admins: {$in: [req.query.userID]}
         if(!pages) {
@@ -104,9 +148,9 @@ exports.pages = function(req, res) {
       done();
     },
     getPagesFromGraph: function(done) {
-      graph.setAccessToken(req.query.accessToken);
+      graph.setAccessToken(user.accessToken);
 
-      graph.get('/' + req.query.userID + '/accounts?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, data) {
+      graph.get('/' + user.fbId + '/accounts?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, data) {
         console.log('err', err);
         console.log('output', data);
         if(data.data) accounts = data.data;
@@ -131,33 +175,91 @@ exports.friends = function(req, res) {
   var friends = [];
   var fields = 'id,name,picture,link';
 
-  graph.setAccessToken(req.query.accessToken);
+  var user = {};
+  var output = {};
 
-  graph.get('/' + req.query.userID + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
-    console.log('err', err);
-    console.log('output', output);
-    if(output.data) friends = output.data;
+  async.series({
+    getUser: function(done) {
+      getUser(req.query.userID, req.query.token, function(me) {
+        user = me;
+        console.log('user', user);
+        done();
+      });
+    },
+    getData: function(done) {
+      if(!user) {
+        return done();
+      }
+      graph.setAccessToken(user.accessToken);
+
+      graph.get('/' + user.fbId + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
+        console.log('err', err);
+        console.log('output', output);
+        if(output.data) friends = output.data;
+      });
+    }
+  }, function() {
     res.json({status: 'success', data: friends, total: friends.length});
-  });
+  })
 }
 
 exports.importFriends = function(req, res) {
-  queue.enqueue('Q_importAllFriendsPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''}, function (err, job) {
-      if (err) throw err;
-      console.log('Enqueued:', job.data);
-      res.json({status: 'success'});
-      // process.exit();
-  });
+  var user = {};
+  var output = {};
+
+  async.series({
+    getUser: function(done) {
+      getUser(req.query.userID, req.query.token, function(me) {
+        user = me;
+        console.log('user', user);
+        done();
+      });
+    },
+    Q_importAllFriendsPerUser: function(done) {
+      if(!user) {
+        return done();
+      }
+      queue.enqueue('Q_importAllFriendsPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
+          if (err) throw err;
+          output = job;
+          console.log('Enqueued:', job.data);
+          done();
+          // process.exit();
+      });
+    }
+  }, function() {
+    res.json({status: 'success'});
+  })
   // mq.emit('Q_importAllFriendsPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
 }
 
 exports.importLikes = function(req, res) {
-  queue.enqueue('Q_importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''}, function (err, job) {
-      if (err) throw err;
-      console.log('Enqueued:', job.data);
-      res.json({status: 'success'});
-      // process.exit();
-  });
+  var user = {};
+  var output = {};
+
+  async.series({
+    getUser: function(done) {
+      getUser(req.query.userID, req.query.token, function(me) {
+        user = me;
+        console.log('user', user);
+        done();
+      });
+    },
+    Q_importAllLikesPerUser: function(done) {
+      if(!user) {
+        return done();
+      }
+      queue.enqueue('Q_importAllLikesPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
+        if (err) throw err;
+        output = job;
+        console.log('Enqueued:', job.data);
+        done();
+        // process.exit();
+      });
+    }
+  }, function() {
+    res.json({status: 'success'});
+  })
   // mq.emit('Q_importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
   // res.json({status: 'success'});
 }
@@ -166,18 +268,14 @@ exports.importLikes = function(req, res) {
 exports.authenticate = function(req, res) {
   var user = null;
 
-  // console.log('post', req.body);
-
   graph.setAccessToken(req.body.accessToken);
-
-  // ?fields=id,gender,fullname,first_name,last_name,email
 
   async.series({
     getUser: function(done) {
       graph.get('/me?fields=email,first_name,gender,id,last_name,link,locale,name,updated_time,picture,location', function(err, output) {
         console.log('output', req.body);
 
-        User.findOne({fbId: output.id}, function(err, me) {
+        User.findOne({fbId: req.body.usedID}, function(err, me) {
           if(!me) {
             user = new User();
           } else {

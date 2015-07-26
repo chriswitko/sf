@@ -92,8 +92,8 @@ angular.module( 'ngBoilerplate.business', [
         success(function(data, status, headers, config) {
           console.log('user', data);
           // $state.go('feed');
-          alert('go manage');
-          window.location = '/#/manage';
+          // alert('go manage');
+          window.location = '/manage';
           // window.location.assign('/#/feed');
           // window.location.reload(true);
         }).
@@ -108,10 +108,10 @@ angular.module( 'ngBoilerplate.business', [
   $scope.getLoginStatus = function() {
     Facebook.getLoginStatus(function(response) {
       if(response.status === 'connected') {
-        alert('connected');
+        // alert('connected');
         $scope.loggedIn = true;
       } else {
-        alert('not connected');
+        // alert('not connected');
         $scope.loggedIn = false;
       }
     });

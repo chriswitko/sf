@@ -85,8 +85,8 @@ angular.module( 'ngBoilerplate.home', [
       $http(req).
         success(function(data, status, headers, config) {
           console.log('user', data);
-          // $state.go('feed');
-          window.location = '/#/download';
+          // $state.go('download');
+          window.location = '/download';
           // window.location.assign('/#/feed');
           // window.location.reload(true);
         }).
@@ -101,10 +101,10 @@ angular.module( 'ngBoilerplate.home', [
   $scope.getLoginStatus = function() {
     Facebook.getLoginStatus(function(response) {
       if(response.status === 'connected') {
-        alert('connected');
+        // alert('connected');
         $scope.loggedIn = true;
       } else {
-        alert('not connected');
+        // alert('not connected');
         $scope.loggedIn = false;
       }
     });

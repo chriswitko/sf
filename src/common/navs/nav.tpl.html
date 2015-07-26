@@ -30,9 +30,14 @@
           </li>
         </ul>
         <ul class="nav navbar-nav pull-right">
-          <li ui-sref-active="active">
+          <li ui-sref-active="active" class="hide">
             <a href ui-sref="business">
               Business
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href>
+              Facebook
             </a>
           </li>
         </ul>
@@ -61,21 +66,23 @@
           </li>
         </ul>
         <ul class="nav navbar-nav pull-right">
-          <li class="dropdown">
+          <li class="dropdown" style="margin-right: 15px;">
             <a href ui-sref="home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <i class="fa fa-cog"></i>
+              &nbsp;
+              Hi, <span ng-bind-html="user.first_name"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href ui-sref="manage">My Pages</a></li>
-              <li><a href ui-sref="settings">Settings...</a></li>
-              <li class="divider"></li>
+              <!-- <li><a href ui-sref="manage">My Pages</a></li> -->
+              <!-- <li><a href ui-sref="settings">Settings...</a></li> -->
+              <!-- <li class="divider"></li> -->
               <li><a href ng-click="logout()">Log out</a></li>
             </ul>
           </li>
-          <li>
+<!--           <li>
             <a href="https://www.facebook.com" target="_blank">Hi, <span ng-bind-html="user.first_name"></span></a>
           </li>
-          <li>
+ -->          <li>
             <div class="icon-nav-avatar">
               <a href="{{user.link}}" target="_blank">
                 <img class="img-circle" ng-src="{{user.picture.data.url}}" height="30"/>

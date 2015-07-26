@@ -408,6 +408,40 @@ module.exports = function ( grunt ) {
       }
     },
 
+    production: {
+
+      /**
+       * During development, we don't want to have wait for compilation,
+       * concatenation, minification, etc. So to avoid these steps, we simply
+       * add all script files directly to the `<head>` of `index.html`. The
+       * `src` property contains the list of included files.
+       */
+      build: {
+        dir: '<%= build_dir %>',
+        src: [
+          '<%= vendor_files.js %>',
+          '<%= build_dir %>/src/**/*.js',
+          '<%= html2js.common.dest %>',
+          '<%= html2js.app.dest %>',
+          '<%= vendor_files.css %>',
+          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+        ]
+      },
+
+      /**
+       * When it is time to have a completely compiled application, we can
+       * alter the above to include only a single JavaScript and a single CSS
+       * file. Now we're back!
+       */
+      compile: {
+        dir: '<%= compile_dir %>',
+        src: [
+          '<%= concat.compile_js.dest %>',
+          '<%= vendor_files.css %>',
+          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+        ]
+      }
+    },
     /**
      * This task compiles the karma template so that changes to its file array
      * don't have to be managed manually.
@@ -578,6 +612,12 @@ module.exports = function ( grunt ) {
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build'
   ]);
+
+  grunt.registerTask( 'deploy', [
+    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build',
+    'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
+    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'production:build'
+  ]);
   /**
    * The `compile` task gets your app ready for deployment by concatenating and
    * minifying your code.
@@ -625,6 +665,30 @@ module.exports = function ( grunt ) {
           data: {
             scripts: jsFiles,
             styles: cssFiles,
+            config: grunt.file.readJSON('server/config/env/development.json'),
+            version: grunt.config( 'pkg.version' )
+          }
+        });
+      }
+    });
+  });
+
+  grunt.registerMultiTask( 'production', 'Process production index.html template', function () {
+    var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
+    var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
+      return file.replace( dirRE, '' );
+    });
+    var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
+      return file.replace( dirRE, '' );
+    });
+
+    grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
+      process: function ( contents, path ) {
+        return grunt.template.process( contents, {
+          data: {
+            scripts: jsFiles,
+            styles: cssFiles,
+            config: grunt.file.readJSON('server/config/env/production.json'),
             version: grunt.config( 'pkg.version' )
           }
         });

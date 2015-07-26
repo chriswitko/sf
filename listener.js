@@ -129,7 +129,7 @@ var Q_importAllPostsPerPage = function(data, next) {
 
   graph.setAccessToken(data.accessToken);
 
-  graph.get('/' + data.pageID + '/posts?limit=100' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
+  graph.get('/' + data.pageID + '/posts?limit=1' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
     console.log('err', err);
     console.log('-------------------');
     // console.log('output', output);
@@ -194,32 +194,32 @@ var Q_addPost = function(data, next) {
           return next ? next() : true;
         }
         data.post.link = response.request.href;
-        // data.isProduct =
         console.log('website', data.post.from.website);
         console.log('data.post.link', data.post.link);
-        data.post.isVerified = data.post.link.indexOf(data.post.from.website.replace('www.', '')) > -1 ? true : false;
+        data.post.isVerified = data.post && data.post.from && data.post.from.website ? (data.post.link.indexOf(data.post.from.website.replace('www.', '')) > -1 ? true : false) : false;
         done();
       });
     },
-    getOpenGraph: function(done) {
-      if(!data.post.isVerified) {
-        return done();
-      }
-      // console.log('link', data.post.link);
-      opengraphServer({url: data.post.link}, function(err, ogp) {
-        console.log ('ogp', ogp.data);
-        if(ogp && ogp.data) {
-          if(ogp.data.ogType === 'og:product' || ogp.data.ogType === 'product' || ogp.data.ogType === 'og_product') {
-            opengraph = ogp.data;
-            data.post.og = ogp.data;
-            data.post.isProduct = true;
-            data.post.action['cta'] = 'Buy';
-          }
-        }
-        done();
-      });
-    },
+    // getOpenGraph: function(done) {
+    //   if(!data.post.isVerified) {
+    //     return done();
+    //   }
+    //   // console.log('link', data.post.link);
+    //   opengraphServer({url: data.post.link}, function(err, ogp) {
+    //     console.log ('ogp', ogp.data);
+    //     if(ogp && ogp.data) {
+    //       if(ogp.data.ogType === 'og:product' || ogp.data.ogType === 'product' || ogp.data.ogType === 'og_product') {
+    //         opengraph = ogp.data;
+    //         data.post.og = ogp.data;
+    //         data.post.format = 'product';
+    //         data.post.action['cta'] = 'Buy';
+    //       }
+    //     }
+    //     done();
+    //   });
+    // },
     updatePost: function(done) {
+      data.post.format = 'post';
       data.post.fbId = data.post.id;
       if(data.post.likes && data.post.likes.data) data.post.likes = _.map(data.post.likes.data, function(item) {return item;});
 
@@ -236,10 +236,19 @@ var Q_addPost = function(data, next) {
         post.save(function(err) {
           console.log('save page err', err);
           // done();
-          if(next) {
-            next();
-          }
+          // if(next) {
+          //   next();
+          // }
+          done();
         });
+      });
+    },
+    updatePage: function(done) {
+      Page.findOne({fbId: data.post.page}, function(err, page) {
+        page.lastFlashMessageAt = new Date();
+        page.save(function() {
+          done();
+        })
       });
     }
   }, function() {
@@ -332,6 +341,8 @@ var Q_activateUserFeed = function(data, next) {
 }
 
 var Q_addPage = function(data, next) {
+  var appToken = config.facebook.clientID + '|' + config.facebook.clientSecret;
+
   Page.findOne({fbId: data.page.id}, function(err, page) {
     if(!page) {
       page = new Page();
@@ -363,19 +374,29 @@ var Q_addPage = function(data, next) {
     page.likes = data.page.likes;
     page.emails = data.page.emails;
 
-    page.isVerified = (approved_categories.indexOf(page.category) > -1 ? true: false);
-    if(!page.isVerified) {
+    page.isStore = (approved_categories.indexOf(page.category) > -1 ? true: false);
+    if(!page.isStore) {
       _.each(page.category_list, function(subcategory) {
           if (approved_subcategories.indexOf(subcategory) > -1) {
-            page.isVerified = true;
+            page.isStore = true;
           }
       });
+    }
+
+    if(page.isStore || page.isBrand) {
+      page.isVerified = true;
     }
 
     page.save(function(err) {
       console.log('save page err', err);
       Q_followPage({pageID: page.fbId, userID: data.userID}, function() {
-        next(null, 'success');
+        if(page.isVerified) {
+          Q_importAllPostsPerPage({pageID: page.fbId, accessToken: appToken}, function() {
+            next(null, 'success');
+          })
+        } else {
+          next(null, 'success');
+        }
       });
     });
   });
@@ -388,6 +409,9 @@ var Q_importAllLikesPerUser = function(data, next) {
 
   graph.get('/' + data.userID + '/likes?limit=100&fields=id,category,name,updated_time,created_time,picture,bio,category_list,contact_address,cover,current_location,location,description,emails,general_info,link,phone,username,website,likes' + (data.after ? '&after=' + data.after : ''), function(err, output) {
     console.log('err', err);
+    if(err) {
+      return next(null, 'success');
+    }
     console.log('-------------------');
     // console.log('output', output);
     likes = output.data;

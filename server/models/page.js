@@ -24,7 +24,9 @@ var pageSchema = mongoose.Schema({
     website: String,
     likes: Number,
     admins: [],
+    lastFlashMessageAt: Date,
     plan: {type: String, default: 'FREE'},
+    isStore: {type: Boolean, default: false},
     isBrand: {type: Boolean, default: false},
     isVerified: {type: Boolean, default: false}, // means, that this is store by category or by business
     isEnabled: {type: Boolean, default: true},

@@ -67,7 +67,8 @@ app.use(express.static('build'));
 // // });
 
 app.set('views', './build');
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 
 app.get('/api/user/test', userController.getApi);
 app.post('/api/user/authenticate', userController.authenticate);
@@ -75,13 +76,16 @@ app.get('/api/user/importLikes', userController.importLikes);
 app.get('/api/user/importFriends', userController.importFriends);
 app.get('/api/user/friends', userController.friends);
 app.get('/api/user/pages', userController.pages);
+app.get('/api/user/posts', userController.posts);
 
 app.get('/api/business/importPosts', userController.importPosts);
 
 // app.get('/api/page/follow', pageController.friends);
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.render('index.html');
+  // console.log('config', config);
+  // res.send('Hello World!');
 });
 
 app.post('/', function (req, res) {
@@ -179,6 +183,23 @@ app.post('/rtu', function(req, res, next) {
   res.send('');
 });
 
+// app.locals({
+//   config: config
+// });
+
+app.get('*', function (req, res) {
+  res.render('index.html');
+  // console.log('config', config);
+  // res.send('Hello World!');
+});
+
+app.use(function (req, res, next) {
+  console.log('config2', config);
+   res.locals = {
+     config: config
+   };
+   next();
+});
 
 // app.get('*', function(req, res) {
 

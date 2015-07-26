@@ -19,14 +19,14 @@ angular.module( 'ngBoilerplate', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, FacebookProvider ) {
-  // $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 
   $urlRouterProvider.otherwise( '/home' );
 
   // $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
   FacebookProvider.setSdkVersion('v2.3');
-  FacebookProvider.init('503652836467629');
+  FacebookProvider.init(window.FACEBOOK_CLIENTID);
 
 
 })
