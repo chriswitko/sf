@@ -69,21 +69,34 @@ exports.importPostsBulk = function(req, res, next) {
   });
 }
 
-exports.posts = function(req, res) {
+exports.posts = function(req, res, next) {
   var pageIds = [];
   var output = [];
   var page = req.query.page || 1;
   var limit = req.query.limit || 30;
+  var user = {};
+  var query;
 
   async.series({
+    getUser: function(done) {
+      getUser(req.query.userID, req.query.token, function(me) {
+        if(!me) { next(new Error('User not found')); }
+        user = me;
+        console.log('user', user);
+        done();
+      });
+    },
     getAllPageIds: function(done) {
-      UserPage.find({user: req.query.userID}, function(err, pages) {
+      UserPage.find({user: user.fbId}, function(err, pages) {
         pageIds = _.map(pages, function(page) {return page.page});
         done();
       });
     },
     getPagesDetails: function(done) {
-      Post.paginate({page: {$in: pageIds}, isVerified: true, isEnabled: true}, {page: page, limit: limit, sortBy: {created_time: -1}}, function(err, posts) {
+      query = {page: {$in: pageIds}, isVerified: true, isEnabled: true};
+      if(req.query.after) query.created_time = {$gte: req.query.after};
+
+      Post.paginate(query, {page: page, limit: limit, sortBy: {created_time: -1}}, function(err, posts) {
         output = posts;
         done();
       });
@@ -256,13 +269,17 @@ exports.authenticate = function(req, res) {
 
   graph.setAccessToken(req.body.accessToken);
 
+  console.log('auth', req.body);
+
   async.series({
     getUser: function(done) {
       graph.get('/me?fields=email,first_name,gender,id,last_name,link,locale,name,updated_time,picture,location', function(err, output) {
-        User.findOne({fbId: req.body.usedID}, function(err, me) {
+        User.findOne({fbId: req.body.userID}, function(err, me) {
           if(!me) {
+            console.log('AS NEW');
             user = new User();
           } else {
+            console.log('AS OLD');
             user = me;
           }
 
@@ -292,7 +309,7 @@ exports.authenticate = function(req, res) {
       done();
     },
     getLongLifeAccessToken: function(done) {
-      graph.get('/oauth/access_token?redirect_uri=http://localhost:3000&grant_type=fb_exchange_token&client_id=' + config.facebook.clientID + '&client_secret=' + config.facebook.clientSecret + '&fb_exchange_token=' + req.body.accessToken, function(err, token) {
+      graph.get('/oauth/access_token?redirect_uri=' + config.host + '&grant_type=fb_exchange_token&client_id=' + config.facebook.clientID + '&client_secret=' + config.facebook.clientSecret + '&fb_exchange_token=' + req.body.accessToken, function(err, token) {
         if(token.access_token) user.accessToken = token.access_token;
         done();
       });

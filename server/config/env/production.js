@@ -11,8 +11,6 @@ var envFile = __dirname + '/' + (process.env.NODE_ENV || 'production') + '.json'
 // Note that this is only in the development env
 // it is not safe to store id's in files
 
-console.log('envFile', envFile);
-
 if (fs.existsSync(envFile)) {
   env = fs.readFileSync(envFile, 'utf-8');
   env = JSON.parse(env);
@@ -26,6 +24,7 @@ if (fs.existsSync(envFile)) {
  */
 
 module.exports = {
+  host: 'http://shownowapp.com',
   db_name: 'shopnowapp-prod',
   db: 'mongodb://localhost/shopnowapp-prod',
   facebook: {

@@ -23,6 +23,7 @@ var pageSchema = mongoose.Schema({
     username: String,
     website: String,
     likes: Number,
+    popularity: {type: Number, default: 0},
     admins: [],
     lastFlashMessageAt: Date,
     plan: {type: String, default: 'FREE'},

@@ -1,0 +1,32 @@
+[{
+  "name"      : "SNA_PROD",
+  "script"    : "./app.js",
+  "args"      : "['--dev']",
+  "ignoreWatch" : ["[\\/\\\\]\\./", "node_modules"],
+  "instances" : 1,
+  "exec_mode"  : "cluster_mode",
+  "max_memory_restart": "256M",
+  "error_file": "logs/dev_error.log",
+  "out_file": "logs/dev_output.log",
+  "merge_logs": true,
+  "env" : {
+    "NODE_ENV": "production",
+    "PORT": "80"
+  }
+},
+{
+  "name"      : "SNA_WORKER_PROD",
+  "script"    : "./queue_worker.js",
+  "args"      : "['--dev']",
+  "ignoreWatch" : ["[\\/\\\\]\\./", "node_modules"],
+  "instances" : 1,
+  "exec_mode"  : "cluster_mode",
+  "max_memory_restart": "256M",
+  "error_file": "logs/dev_error.log",
+  "out_file": "logs/dev_output.log",
+  "merge_logs": true,
+  "env" : {
+    "NODE_ENV": "production",
+    "PORT": "3001"
+  }
+}]
