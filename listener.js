@@ -288,7 +288,7 @@ var Q_addPost = function(data, next) {
       Page.findOne({fbId: data.post.page}, function(err, page) {
         console.log('err', err);
         console.log('page', page);
-        page.lastFlashMessageAt = new Date();
+        page.lastPostAt = new Date();
         page.save(function() {
           done();
         })
