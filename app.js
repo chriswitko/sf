@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 var graph = require('fbgraph');
 var fb = require('ilkkah-fb');
+var methodOverride = require('method-override');
 
 // var MC = require('mongomq').MongoConnection;
 // var MQ = require('mongomq').MongoMQ;
@@ -43,6 +44,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
+
 app.use(express.static('build'));
 
 // app.use(fbsdk.facebook({
@@ -70,6 +72,7 @@ app.set('views', './build');
 // app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
+
 app.get('/api/user/test', userController.getApi);
 app.post('/api/user/authenticate', userController.authenticate);
 app.get('/api/user/importLikes', userController.importLikes);
@@ -79,6 +82,7 @@ app.get('/api/user/pages', userController.pages);
 app.get('/api/user/posts', userController.posts);
 
 app.get('/api/business/importPosts', userController.importPosts);
+app.get('/api/business/importPostsBulk', userController.importPostsBulk);
 
 // app.get('/api/page/follow', pageController.friends);
 
@@ -199,6 +203,12 @@ app.use(function (req, res, next) {
      config: config
    };
    next();
+});
+
+app.use(methodOverride());
+app.use(function(err, req, res, next) {
+  console.error('stack', err.stack);
+  res.status(500).json({status: 'error', 'message': err.toString()});
 });
 
 // app.get('*', function(req, res) {

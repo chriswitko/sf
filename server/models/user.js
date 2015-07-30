@@ -15,6 +15,8 @@ var userSchema = mongoose.Schema({
     picture: String,
     location: String,
     platform: String, // iOS, Android
+    lastExploreSeenAt: Date,
+    lastDiscountsSeenAt: Date,
     messagesCounter: {type: Number, default: 0},
     isBusinessPartner: {type: Boolean, default: false},
     isEnabled: {type: Boolean, default: true},

@@ -4,9 +4,12 @@ var config = require('./server/config/config.js');
 var client = monq(process.env.MONGODB_URI || config.db, { safe: true });
 var worker = client.worker(['sna_default']);
 
+console.log('ENV', process.env.NODE_ENV || 'development');
+
 worker.register({
   Q_importAllFriendsPerUser: require('./listener').Q_importAllFriendsPerUser,
   Q_importAllPostsPerPage: require('./listener').Q_importAllPostsPerPage,
+  Q_importAllPostsPerPageBulk: require('./listener').Q_importAllPostsPerPageBulk,
   Q_importAllLikesPerUser: require('./listener').Q_importAllLikesPerUser
 });
 

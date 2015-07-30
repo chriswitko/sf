@@ -22,6 +22,7 @@
     "fbgraph": "^1.0.0",
     "ilkkah-fb": "^0.7.3",
     "lodash": "^3.9.1",
+    "method-override": "^2.3.4",
     "mongomq": "^0.3.7",
     "mongoose": "^4.0.3",
     "mongoose-paginate": "^4.0.0",

@@ -4,26 +4,16 @@ var config = require('../config/config.js');
 var env = process.env.NODE_ENV || 'development';
 var graph = require('fbgraph');
 
-// var secrets = require('../config/secrets')[env];
 var User = require('../models/user');
 var UserPage = require('../models/userpage');
 var Page = require('../models/page');
 var Post = require('../models/post');
-// var querystring = require('querystring');
-// var validator = require('validator');
 var async = require('async');
-// var cheerio = require('cheerio');
-// var request = require('request');
-// var graph = require('fbgraph');
 var _ = require('lodash');
 
 var monq = require('monq');
 var client = monq(process.env.MONGODB_URI || config.db, { safe: true });
 var queue = client.queue('sna_default');
-// var MC = require('mongomq').MongoConnection;
-// var MQ = require('mongomq').MongoMQ;
-// var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
-// var mq = new MQ(mq_options);
 
 graph.setVersion('2.3');
 
@@ -61,16 +51,22 @@ exports.validateToken = function(req, res) {
   res.json({status: 'success'});
 }
 
-exports.importPosts = function(req, res) {
+exports.importPosts = function(req, res, next) {
   var appToken = config.facebook.clientID + '|' + config.facebook.clientSecret;
   queue.enqueue('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: appToken, after: ''}, function (err, job) {
-      if (err) throw err;
+    if(err) { next(err); }
+    console.log('Enqueued:', job.data);
+    res.json({status: 'success'});
+  });
+}
+
+exports.importPostsBulk = function(req, res, next) {
+  var appToken = config.facebook.clientID + '|' + config.facebook.clientSecret;
+  queue.enqueue('Q_importAllPostsPerPageBulk', {pageID: req.query.pageID, accessToken: appToken, after: ''}, function (err, job) {
+      if(err) { next(err); }
       console.log('Enqueued:', job.data);
       res.json({status: 'success'});
-      // process.exit();
   });
-  // mq.emit('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: req.query.accessToken, after: ''});
-  // res.json({status: 'success'});
 }
 
 exports.posts = function(req, res) {
@@ -97,29 +93,29 @@ exports.posts = function(req, res) {
   })
 }
 
-exports.pages = function(req, res) {
-  var pageIds = [];
-  var output = [];
+// exports.pages = function(req, res) {
+//   var pageIds = [];
+//   var output = [];
 
-  async.series({
-    getAllPageIds: function(done) {
-      UserPage.find({user: req.query.userID}, function(err, pages) {
-        pageIds = _.map(pages, function(page) {return page.page});
-        done();
-      });
-    },
-    getPagesDetails: function(done) {
-      Page.find({fbId: {$in: pageIds}, isVerified: true, isEnabled: true}, {id: 1, fbId: 1, name: 1, picture: 1, plan: 1, internal_category: true}, function(err, pages) {
-        output = pages;
-        done();
-      });
-    }
-  }, function() {
-    res.json({status: 'success', data: output});
-  })
-}
+//   async.series({
+//     getAllPageIds: function(done) {
+//       UserPage.find({user: req.query.userID}, function(err, pages) {
+//         pageIds = _.map(pages, function(page) {return page.page});
+//         done();
+//       });
+//     },
+//     getPagesDetails: function(done) {
+//       Page.find({fbId: {$in: pageIds}, isVerified: true, isEnabled: true}, {id: 1, fbId: 1, name: 1, picture: 1, plan: 1, internal_category: true}, function(err, pages) {
+//         output = pages;
+//         done();
+//       });
+//     }
+//   }, function() {
+//     res.json({status: 'success', data: output});
+//   })
+// }
 
-exports.pages = function(req, res) {
+exports.pages = function(req, res, next) {
   var accounts = [];
   var pages = [];
   var output = [];
@@ -130,6 +126,7 @@ exports.pages = function(req, res) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
+        if(!me) { next(new Error('User not found')); }
         user = me;
         console.log('user', user);
         done();
@@ -168,10 +165,9 @@ exports.pages = function(req, res) {
   }, function() {
     res.json({status: 'success', data: output, total: output.length});
   })
-
 }
 
-exports.friends = function(req, res) {
+exports.friends = function(req, res, next) {
   var friends = [];
   var fields = 'id,name,picture,link';
 
@@ -181,15 +177,14 @@ exports.friends = function(req, res) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
+        console.log('me', me);
+        if(!me) { next(new Error('User not found')); }
         user = me;
         console.log('user', user);
         done();
       });
     },
     getData: function(done) {
-      if(!user) {
-        return done();
-      }
       graph.setAccessToken(user.accessToken);
 
       graph.get('/' + user.fbId + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
@@ -203,65 +198,56 @@ exports.friends = function(req, res) {
   })
 }
 
-exports.importFriends = function(req, res) {
+exports.importFriends = function(req, res, next) {
   var user = {};
   var output = {};
 
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
+        if(!me) { next(new Error('User not found')); }
         user = me;
         console.log('user', user);
         done();
       });
     },
     Q_importAllFriendsPerUser: function(done) {
-      if(!user) {
-        return done();
-      }
       queue.enqueue('Q_importAllFriendsPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
-          if (err) throw err;
-          output = job;
-          console.log('Enqueued:', job.data);
-          done();
-          // process.exit();
+        if(err) { next(err); }
+        output = job;
+        console.log('Enqueued:', job.data);
+        done();
       });
     }
   }, function() {
     res.json({status: 'success'});
   })
-  // mq.emit('Q_importAllFriendsPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
 }
 
-exports.importLikes = function(req, res) {
+exports.importLikes = function(req, res, next) {
   var user = {};
   var output = {};
 
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
+        if(!me) { next(new Error('User not found')); }
         user = me;
         console.log('user', user);
         done();
       });
     },
     Q_importAllLikesPerUser: function(done) {
-      if(!user) {
-        return done();
-      }
       queue.enqueue('Q_importAllLikesPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
-        if (err) throw err;
+        if(err) { next(err); }
         output = job;
         console.log('Enqueued:', job.data);
         done();
-        // process.exit();
       });
     }
   }, function() {
     res.json({status: 'success'});
   })
-  // mq.emit('Q_importAllLikesPerUser', {userID: req.query.userID, accessToken: req.query.accessToken, after: ''});
-  // res.json({status: 'success'});
 }
 
 // TODO: After authorize (isNew = true) send notifications to all my existing friends
@@ -273,8 +259,6 @@ exports.authenticate = function(req, res) {
   async.series({
     getUser: function(done) {
       graph.get('/me?fields=email,first_name,gender,id,last_name,link,locale,name,updated_time,picture,location', function(err, output) {
-        console.log('output', req.body);
-
         User.findOne({fbId: req.body.usedID}, function(err, me) {
           if(!me) {
             user = new User();
@@ -327,22 +311,3 @@ exports.authenticate = function(req, res) {
 exports.getApi = function(req, res) {
   res.json({status: 'success'});
 };
-
-// (function(){
-//   var logger = new MC(mq_options);
-//   logger.open(function(err, mc){
-//     if(err){
-//       console.log('ERROR: ', err);
-//     }else{
-//       mc.collection('log', function(err, loggingCollection){
-//         loggingCollection.remove({},  function(){
-//           mq.start(function(err){
-//             if(err){
-//               console.log(err);
-//             }
-//           });
-//         });
-//       });
-//     }
-//   });
-// })();

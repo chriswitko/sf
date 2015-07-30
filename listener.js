@@ -26,6 +26,8 @@ var opengraphServer = require('./server/helpers/opengraph');
 
 process.setMaxListeners(0);
 
+console.log('env', env);
+
 //options.listenerType = 'streams';
 //options.listenerType = 'nextObject';
 
@@ -125,7 +127,7 @@ graph.setVersion('2.3');
 var Q_importAllPostsPerPage = function(data, next) {
   var likes = [];
   var fields = 'id,from.fields(id,website),message,picture,full_picture,link,type,created_time,likes.fields(id,name,picture,link)';
-  var since = Date.parse('-30 days');
+  var since = Date.parse('-1 days');
 
   graph.setAccessToken(data.accessToken);
 
@@ -134,6 +136,44 @@ var Q_importAllPostsPerPage = function(data, next) {
     console.log('-------------------');
     // console.log('output', output);
     likes = output.data;
+    async.forEach(likes, function(item, cb) {
+      if(item.type === 'link' || item.type === 'photo') {
+        Q_addPost({post: item}, function() {
+          cb();
+        });
+      } else {
+        cb();
+      }
+    }, function() {
+      console.log('finito');
+      // if(output.paging && output.paging.cursors.after) {
+      //   console.log('after', output.paging ? output.paging.cursors.after : 'FIRST PAGE');
+      //   Q_importAllFriendsPerUser(null, {userID: data.userID, accessToken: data.accessToken, after: output.paging.cursors.after}, null);
+      // }
+      if(next) {
+        next(null, 'success');
+      }
+    })
+  });
+}
+
+var Q_importAllPostsPerPageBulk = function(data, next) {
+  var likes = [];
+  var fields = 'posts.fields(id,from.fields(id,website),message,picture,full_picture,link,type,created_time,likes.fields(id,name,picture,link)).limit(1)';
+  var since = Date.parse('-1 days');
+  var query = '/?ids=' + data.pageID + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : '');
+  console.log('query', query);
+
+  graph.setAccessToken(data.accessToken);
+
+  graph.get(query, function(err, output) {
+    console.log('output', output);
+    console.log('err', err);
+    console.log('-------------------');
+    // console.log('output', output);
+    likes = _.map(output, function(item) {return item.posts.data});
+    console.log(likes);
+    // likes = output.data;
     async.forEach(likes, function(item, cb) {
       if(item.type === 'link' || item.type === 'photo') {
         Q_addPost({post: item}, function() {
@@ -244,7 +284,10 @@ var Q_addPost = function(data, next) {
       });
     },
     updatePage: function(done) {
+      console.log('data.post.page', data.post.page);
       Page.findOne({fbId: data.post.page}, function(err, page) {
+        console.log('err', err);
+        console.log('page', page);
         page.lastFlashMessageAt = new Date();
         page.save(function() {
           done();
@@ -440,4 +483,5 @@ exports.Q_followPage = Q_followPage;
 exports.Q_importAllFriendsPerUser = Q_importAllFriendsPerUser;
 exports.Q_addFriend = Q_addFriend;
 exports.Q_importAllPostsPerPage = Q_importAllPostsPerPage;
+exports.Q_importAllPostsPerPageBulk = Q_importAllPostsPerPageBulk;
 exports.Q_addPost = Q_addPost;
