@@ -25,7 +25,7 @@ var pageSchema = mongoose.Schema({
     likes: Number,
     popularity: {type: Number, default: 0},
     admins: [],
-    lastPostAt: Date,
+    lastImportAt: Date,
     lastMessageSentAt: Date, 
     plan: {type: String, default: 'FREE'},
     isStore: {type: Boolean, default: false},

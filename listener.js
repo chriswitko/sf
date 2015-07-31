@@ -8,6 +8,7 @@ var config = require('./server/config/config.js');
 
 var env = process.env.NODE_ENV || 'development';
 var graph = require('fbgraph');
+var moment = require('moment');
 
 var extractor = require('unfluff');
 var request = require('request');
@@ -44,32 +45,45 @@ graph.setVersion('2.3');
 var Q_importAllPostsPerPage = function(data, next) {
   var likes = [];
   var fields = 'id,from.fields(id,website),message,picture,full_picture,link,type,created_time,likes.fields(id,name,picture,link)';
-  var since = Date.parse('-1 days');
+  var since = Date.parse('-30 days');
 
   graph.setAccessToken(data.accessToken);
 
-  graph.get('/' + data.pageID + '/posts?limit=1' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
-    likes = output.data;
-    async.forEach(likes, function(item, cb) {
-      if(item.type === 'link' || item.type === 'photo') {
-        Q_addPost({post: item}, function() {
-          cb();
-        });
-      } else {
-        cb();
-      }
-    }, function() {
-      if(next) {
-        next(null, 'success');
-      }
-    })
-  });
+  async.series({
+    calc1hFromLastUpdate: function(done) {
+      var startDate = moment(data.page.lastImportAt, 'YYYY-M-DD HH:mm:ss')
+      var endDate = moment(Date.now(), 'YYYY-M-DD HH:mm:ss')
+      var secondsDiff = endDate.diff(startDate, 'hours')
+      console.log('secondsDiff', secondsDiff);
+      done();
+    },
+    getData: function(done) {
+      graph.get('/' + data.pageID + '/posts?limit=1' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
+        likes = output.data;
+        async.forEach(likes, function(item, cb) {
+          if(item.type === 'link' || item.type === 'photo') {
+            Q_addPost({post: item}, function() {
+              cb();
+            });
+          } else {
+            cb();
+          }
+        }, function() {
+          done();
+        })
+      });
+    }
+  }, function() {
+    if(next) {
+      next(null, 'success');
+    }
+  })
 }
 
 var Q_importAllPostsPerPageBulk = function(data, next) {
   var likes = [];
   var fields = 'posts.fields(id,from.fields(id,website),message,picture,full_picture,link,type,created_time,likes.fields(id,name,picture,link)).limit(1)';
-  var since = Date.parse('-1 days');
+  var since = Date.parse('-30 days');
   var query = '/?ids=' + data.pageID + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : '');
 
   graph.setAccessToken(data.accessToken);
@@ -155,7 +169,7 @@ var Q_addPost = function(data, next) {
     },
     updatePage: function(done) {
       Page.findOne({fbId: data.post.page}, function(err, page) {
-        page.lastPostAt = new Date();
+        page.lastImportAt = new Date();
         page.save(function() {
           done();
         })
@@ -277,7 +291,7 @@ var Q_addPage = function(data, next) {
     page.save(function(err) {
       Q_followPage({pageID: page.fbId, userID: data.userID}, function() {
         if(page.isVerified) {
-          Q_importAllPostsPerPage({pageID: page.fbId, accessToken: appToken}, function() {
+          Q_importAllPostsPerPage({pageID: page.fbId, page: page, accessToken: appToken}, function() {
             next(null, 'success');
           })
         } else {

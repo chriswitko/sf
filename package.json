@@ -23,6 +23,7 @@
     "ilkkah-fb": "^0.7.3",
     "lodash": "^3.9.1",
     "method-override": "^2.3.4",
+    "moment": "^2.10.6",
     "mongomq": "^0.3.7",
     "mongoose": "^4.0.3",
     "mongoose-paginate": "^4.0.0",

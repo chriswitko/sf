@@ -57,14 +57,14 @@ exports.deauthorize = function(req, res, next) {
   rtu.save(function() {
     res.json({status: 'success'});
   });
-});
+};
 
 exports.getRtu = function(req, res, next) {
   console.log('get /rtu', req.query);
   if (req.query['hub.verify_token'] === 'moi') {
     res.send(req.query['hub.challenge']);
   }
-});
+};
 
 exports.postRtu = function(req, res, next) {
   console.log('post /rtu', req.body);
@@ -73,7 +73,7 @@ exports.postRtu = function(req, res, next) {
   rtu.save(function() {
     res.json({status: 'success'});
   })
-});
+};
 
 exports.validateToken = function(req, res) {
   // /debug_token?input_token=CAAUbE6b5y7QBADyjcoxqctVnry9rJBXq2TZATRw0SEAGP3mtNATmZCjUQbFKhnMFq20uzZCgLXLMK15NqLlTBM7YDGqs3ZBFGi6Xrh4VDmcItSk2h2DCIl1cht0iWG4iqgqjM9ri8jkH9a9rx2f6DIyVa3IFWxONF3T40PIuKVmsNik18pomzZA3U3iVqStsZD&access_token=503652836467629|d273b14b2880c092212dfddaa878f375
