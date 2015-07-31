@@ -82,6 +82,10 @@ app.get('/api/user/friends', userController.friends);
 app.get('/api/user/pages', userController.pages);
 app.get('/api/user/posts', userController.posts);
 
+app.get('/deauthorize', userController.deauthorize);
+app.get('/rtu', userController.getRtu);
+app.post('/rtu', userController.postRtu);
+
 app.get('/api/business/importPosts', userController.importPosts);
 app.get('/api/business/importPostsBulk', userController.importPostsBulk);
 
@@ -169,24 +173,6 @@ app.get('/api/user/:id/likes', function(req, res) {
 //   mq.emit('test', {name: req.query.task});
 //   res.json({status: 'success', data: req.query.task});
 // });
-
-app.post('/deauthorize', function(req, res, next) {
-  var request = fb.parseSignedRequest(req.body.signed_request, appSecret);
-  console.log('post /deauthorize', request);
-  res.send('');
-});
-
-app.get('/rtu', function(req, res, next) {
-  console.log('get /rtu', req.query);
-  if (req.query['hub.verify_token'] === 'moi') {
-    res.send(req.query['hub.challenge']);
-  }
-});
-
-app.post('/rtu', function(req, res, next) {
-  console.log('post /rtu', req.body);
-  res.send('');
-});
 
 // app.locals({
 //   config: config

@@ -3,17 +3,19 @@
 var config = require('../config/config.js');
 var env = process.env.NODE_ENV || 'development';
 var graph = require('fbgraph');
+var async = require('async');
+var _ = require('lodash');
+var fb = require('ilkkah-fb');
+
+var monq = require('monq');
+var client = monq(process.env.MONGODB_URI || config.db, { safe: true });
+var queue = client.queue('sna_default');
 
 var User = require('../models/user');
 var UserPage = require('../models/userpage');
 var Page = require('../models/page');
 var Post = require('../models/post');
-var async = require('async');
-var _ = require('lodash');
-
-var monq = require('monq');
-var client = monq(process.env.MONGODB_URI || config.db, { safe: true });
-var queue = client.queue('sna_default');
+var Rtu = require('../models/rtu');
 
 graph.setVersion('2.3');
 
@@ -47,6 +49,31 @@ var getUser = function(userID, id, cb) {
     cb(user);
   })
 }
+
+exports.deauthorize = function(req, res, next) {
+  var request = fb.parseSignedRequest(req.body.signed_request, config.facebook.clientSecret);
+  var rtu = new Rtu();
+  rtu.body = request;
+  rtu.save(function() {
+    res.json({status: 'success'});
+  });
+});
+
+exports.getRtu = function(req, res, next) {
+  console.log('get /rtu', req.query);
+  if (req.query['hub.verify_token'] === 'moi') {
+    res.send(req.query['hub.challenge']);
+  }
+});
+
+exports.postRtu = function(req, res, next) {
+  console.log('post /rtu', req.body);
+  var rtu = new Rtu();
+  rtu.body = req.body;
+  rtu.save(function() {
+    res.json({status: 'success'});
+  })
+});
 
 exports.validateToken = function(req, res) {
   // /debug_token?input_token=CAAUbE6b5y7QBADyjcoxqctVnry9rJBXq2TZATRw0SEAGP3mtNATmZCjUQbFKhnMFq20uzZCgLXLMK15NqLlTBM7YDGqs3ZBFGi6Xrh4VDmcItSk2h2DCIl1cht0iWG4iqgqjM9ri8jkH9a9rx2f6DIyVa3IFWxONF3T40PIuKVmsNik18pomzZA3U3iVqStsZD&access_token=503652836467629|d273b14b2880c092212dfddaa878f375
