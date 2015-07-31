@@ -27,11 +27,13 @@ var getUser = function(userID, id, cb) {
     getUserById: function(done) {
       query = {fbId: userID}
       if(id) query._id = id;
-      User.findOne(query, function(err, me) {
-        if(!me) {
-          return done();
-        }
+      var promise = User.findOne(query).exec();
+      promise.then(function(me) {
         user = me;
+        done();
+      })
+      .catch(function(err){
+        console.log('error:', err);
         done();
       });
     },

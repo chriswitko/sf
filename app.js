@@ -23,6 +23,8 @@ var Children = require('./server/common/child');
 // var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
 // var mq = new MQ(mq_options);
 
+mongoose.Promise = global.Promise;
+
 // Connect to mongodb
 var connect = function () {
   var options = { server: { socketOptions: { keepAlive: 1 } } };
