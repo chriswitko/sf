@@ -23,6 +23,14 @@ var userSchema = mongoose.Schema({
     isFeedReady: {type: Boolean, default: false}
 });
 
+userSchema.method('toJSON', function() {
+    var user = this.toObject();
+    delete user.accessToken;
+    delete user.signedRequest;
+    delete user.__v;
+    return user;
+});
+
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;

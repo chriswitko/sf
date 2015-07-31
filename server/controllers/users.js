@@ -18,13 +18,34 @@ var queue = client.queue('sna_default');
 graph.setVersion('2.3');
 
 var getUser = function(userID, id, cb) {
-  User.findOne({fbId: userID, _id: id}, function(err, me) {
-    if(!me) {
-      cb(false);
-    } else {
-      cb(me);
+  var user;
+  var query = {}
+
+  async.series({
+    getUserById: function(done) {
+      query = {fbId: userID}
+      if(id) query._id = id;
+      User.findOne(query, function(err, me) {
+        if(!me) {
+          return done();
+        }
+        user = me;
+        done();
+      });
+    },
+    getUserByEmail: function(done) {
+      query = {email: userID}
+      User.findOne(query, function(err, me) {
+        if(!me) {
+          return done();
+        }
+        user = me;
+        done();
+      });
     }
-  });
+  }, function() {
+    cb(user);
+  })
 }
 
 exports.validateToken = function(req, res) {
@@ -51,11 +72,33 @@ exports.validateToken = function(req, res) {
   res.json({status: 'success'});
 }
 
+exports.user = function(req, res, next) {
+  var user = {};
+  var query;
+
+  async.series({
+    getUser: function(done) {
+      getUser(req.query.userID, req.query.token || null, function(me) {
+        if(!me) { 
+          next(new Error('User not found')); 
+          return;
+        }
+        user = me;
+        done();
+      });
+    },
+  }, function() {
+    res.json({status: 'success', data: user.toJSON()});
+  })
+}
+
 exports.importPosts = function(req, res, next) {
   var appToken = config.facebook.clientID + '|' + config.facebook.clientSecret;
   queue.enqueue('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: appToken, after: ''}, function (err, job) {
-    if(err) { next(err); }
-    console.log('Enqueued:', job.data);
+    if(err) { 
+      next(err); 
+      return;
+    }
     res.json({status: 'success'});
   });
 }
@@ -63,9 +106,11 @@ exports.importPosts = function(req, res, next) {
 exports.importPostsBulk = function(req, res, next) {
   var appToken = config.facebook.clientID + '|' + config.facebook.clientSecret;
   queue.enqueue('Q_importAllPostsPerPageBulk', {pageID: req.query.pageID, accessToken: appToken, after: ''}, function (err, job) {
-      if(err) { next(err); }
-      console.log('Enqueued:', job.data);
-      res.json({status: 'success'});
+    if(err) { 
+      next(err); 
+      return;
+    }
+    res.json({status: 'success'});
   });
 }
 
@@ -80,9 +125,11 @@ exports.posts = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { next(new Error('User not found')); }
+        if(!me) { 
+          next(new Error('User not found')); 
+          return;
+        }
         user = me;
-        console.log('user', user);
         done();
       });
     },
@@ -139,9 +186,11 @@ exports.pages = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { next(new Error('User not found')); }
+        if(!me) { 
+          next(new Error('User not found')); 
+          return;
+        }
         user = me;
-        console.log('user', user);
         done();
       });
     },
@@ -153,7 +202,6 @@ exports.pages = function(req, res, next) {
         ids = _.map(pages, function(item) {
           return item.fbId;
         });
-        console.log('ids', ids);
       });
       done();
     },
@@ -161,8 +209,6 @@ exports.pages = function(req, res, next) {
       graph.setAccessToken(user.accessToken);
 
       graph.get('/' + user.fbId + '/accounts?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, data) {
-        console.log('err', err);
-        console.log('output', data);
         if(data.data) accounts = data.data;
         output = _.map(accounts, function(item) {
           if(ids.indexOf(item.id) > -1) {
@@ -190,10 +236,11 @@ exports.friends = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        console.log('me', me);
-        if(!me) { next(new Error('User not found')); }
+        if(!me) { 
+          next(new Error('User not found')); 
+          return;
+        }
         user = me;
-        console.log('user', user);
         done();
       });
     },
@@ -201,8 +248,6 @@ exports.friends = function(req, res, next) {
       graph.setAccessToken(user.accessToken);
 
       graph.get('/' + user.fbId + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
-        console.log('err', err);
-        console.log('output', output);
         if(output.data) friends = output.data;
       });
     }
@@ -218,17 +263,21 @@ exports.importFriends = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { next(new Error('User not found')); }
+        if(!me) { 
+          next(new Error('User not found')); 
+          return;
+        }
         user = me;
-        console.log('user', user);
         done();
       });
     },
     Q_importAllFriendsPerUser: function(done) {
       queue.enqueue('Q_importAllFriendsPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
-        if(err) { next(err); }
+        if(err) { 
+          next(err); 
+          return;
+        }
         output = job;
-        console.log('Enqueued:', job.data);
         done();
       });
     }
@@ -244,17 +293,21 @@ exports.importLikes = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { next(new Error('User not found')); }
+        if(!me) { 
+          next(new Error('User not found')); 
+          return;
+        }
         user = me;
-        console.log('user', user);
         done();
       });
     },
     Q_importAllLikesPerUser: function(done) {
       queue.enqueue('Q_importAllLikesPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
-        if(err) { next(err); }
+        if(err) { 
+          next(err); 
+          return;
+        }
         output = job;
-        console.log('Enqueued:', job.data);
         done();
       });
     }
@@ -269,17 +322,13 @@ exports.authenticate = function(req, res) {
 
   graph.setAccessToken(req.body.accessToken);
 
-  console.log('auth', req.body);
-
   async.series({
     getUser: function(done) {
       graph.get('/me?fields=email,first_name,gender,id,last_name,link,locale,name,updated_time,picture,location', function(err, output) {
         User.findOne({fbId: req.body.userID}, function(err, me) {
           if(!me) {
-            console.log('AS NEW');
             user = new User();
           } else {
-            console.log('AS OLD');
             user = me;
           }
 
@@ -302,10 +351,11 @@ exports.authenticate = function(req, res) {
       });
     },
     queueImportLikes: function(done) {
-      console.log('isNew');
       if(user.isNew) {
-        console.log('CREATE QUEUE TO IMPORT LIKES');
-      }
+        queue.enqueue('Q_importAllLikesPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
+          return done();
+        });
+      } 
       done();
     },
     getLongLifeAccessToken: function(done) {

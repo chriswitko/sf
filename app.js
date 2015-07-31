@@ -73,6 +73,7 @@ app.set('views', './build');
 app.engine('html', require('ejs').renderFile);
 
 
+app.get('/api/user', userController.user);
 app.get('/api/user/test', userController.getApi);
 app.post('/api/user/authenticate', userController.authenticate);
 app.get('/api/user/importLikes', userController.importLikes);

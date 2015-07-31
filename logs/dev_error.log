@@ -1,0 +1,72 @@
+stack Error: User not found
+    at /Users/chris/sf/server/controllers/users.js:83:24
+    at /Users/chris/sf/server/controllers/users.js:48:5
+    at /Users/chris/sf/node_modules/async/lib/async.js:708:13
+    at /Users/chris/sf/node_modules/async/lib/async.js:49:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:263:32
+    at /Users/chris/sf/node_modules/async/lib/async.js:40:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chris/sf/server/controllers/users.js:42:11
+    at /Users/chris/sf/node_modules/mongoose/lib/query.js:1174:16
+    at /Users/chris/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
+    at process._tickDomainCallback (node.js:381:11)
+stack Error: User not found
+    at /Users/chris/sf/server/controllers/users.js:83:24
+    at /Users/chris/sf/server/controllers/users.js:48:5
+    at /Users/chris/sf/node_modules/async/lib/async.js:708:13
+    at /Users/chris/sf/node_modules/async/lib/async.js:49:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:258:21
+    at /Users/chris/sf/node_modules/async/lib/async.js:40:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chris/sf/server/controllers/users.js:44:11
+    at /Users/chris/sf/node_modules/mongoose/lib/query.js:1174:16
+    at /Users/chris/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
+    at process._tickDomainCallback (node.js:381:11)
+stack Error: User not found
+    at /Users/chris/sf/server/controllers/users.js:86:24
+    at /Users/chris/sf/server/controllers/users.js:51:5
+    at /Users/chris/sf/node_modules/async/lib/async.js:708:13
+    at /Users/chris/sf/node_modules/async/lib/async.js:49:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:258:21
+    at /Users/chris/sf/node_modules/async/lib/async.js:40:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chris/sf/server/controllers/users.js:46:11
+    at /Users/chris/sf/node_modules/mongoose/lib/query.js:1174:16
+    at /Users/chris/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
+    at process._tickDomainCallback (node.js:381:11)
+stack Error: User not found
+    at /Users/chris/sf/server/controllers/users.js:87:16
+    at /Users/chris/sf/server/controllers/users.js:51:5
+    at /Users/chris/sf/node_modules/async/lib/async.js:708:13
+    at /Users/chris/sf/node_modules/async/lib/async.js:49:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:258:21
+    at /Users/chris/sf/node_modules/async/lib/async.js:40:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chris/sf/server/controllers/users.js:46:11
+    at /Users/chris/sf/node_modules/mongoose/lib/query.js:1174:16
+    at /Users/chris/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
+    at process._tickDomainCallback (node.js:381:11)
+stack Error: User not found
+    at /Users/chris/sf/server/controllers/users.js:88:16
+    at /Users/chris/sf/server/controllers/users.js:52:5
+    at /Users/chris/sf/node_modules/async/lib/async.js:708:13
+    at /Users/chris/sf/node_modules/async/lib/async.js:49:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:258:21
+    at /Users/chris/sf/node_modules/async/lib/async.js:40:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chris/sf/server/controllers/users.js:47:11
+    at /Users/chris/sf/node_modules/mongoose/lib/query.js:1174:16
+    at /Users/chris/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
+    at process._tickDomainCallback (node.js:381:11)
+stack Error: User not found
+    at /Users/chris/sf/server/controllers/users.js:88:16
+    at /Users/chris/sf/server/controllers/users.js:52:5
+    at /Users/chris/sf/node_modules/async/lib/async.js:708:13
+    at /Users/chris/sf/node_modules/async/lib/async.js:49:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:263:32
+    at /Users/chris/sf/node_modules/async/lib/async.js:40:16
+    at /Users/chris/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chris/sf/server/controllers/users.js:47:11
+    at /Users/chris/sf/node_modules/mongoose/lib/query.js:1174:16
+    at /Users/chris/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
+    at process._tickDomainCallback (node.js:381:11)

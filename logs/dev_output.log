@@ -1,3 +1,60 @@
 ENV development
 Example app listening at http://localhost:3000
 env development
+ENV development
+Example app listening at http://localhost:3000
+env development
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+auth { accessToken: 'CAAHKEdBoY60BAN5btI7Dc0DbXGinSmRmc7VG0zaLZCZAd39NKLyc3sabm3MFNhoUJgB3iKCiUbe8eAVMFsyVVPkXZAqaZANFmXwV9SeTCqqMbp09hJTDEOZA4ZCuie2KWBTSvsR0fxY7o84OKF23pZCE1cyZAqf0o2lQq1RssPjIuuZAXfVxeuyZATsPvZAVEZAJFmAcgKoIjqlWTaeTeKIu9LcQUqFqL1mq5pgZD',
+  userID: '10153389234909293',
+  expiresIn: '5635',
+  signedRequest: 'bLfcc02MJKi9swrhMkbTg-b7lg34omMosi8rusL8ifg.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUNwR2xBa183RkdqNUhKNWx3bVJzUUdSY05STlAwelh6R2JxQ3FDOVoySU9GcVI3ZTRHdXloaG5PVS1ROWdxZkZtRzF3RldDSDNTMkdtbjlwd1kybGl3T1djX0V0S1VVVjJld0pCbVdJRmpKbXlJb243aHlFSV9lVjNkMV9VdHdfM19DT3JBZXBzRkk0ZkVKRndJdzlYa0RhMG5aNkVtbXMwVlFnRTYxOUpsUHptU2RQb2dhTVRhV0l6MG00R0ZEZzJ3MWJycHFKSVp1dzVnaGdLaFBQdFF2WjZGTk51NGFFOFAybTUxcHFmYmpzUVBLN01PMmRKQVN0VDgxQzhGWmhjalNtR3BKNklYOGxQZXh0YU41aF85MzlvMVlNNWh0MDRnb2FvRWxhWUtEcUc4Q1lnNG0xbGRhcTNla3ZLVGlGbzZxekU1YVRPRFhfMTNhNDJSMWx3diIsImlzc3VlZF9hdCI6MTQzODMzMTE2NCwidXNlcl9pZCI6IjEwMTUzMzg5MjM0OTA5MjkzIn0' }
+AS NEW
+isNew
+CREATE QUEUE TO IMPORT LIKES
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+query1 { fbId: 'chris.witko@me.com' }
+query2 { email: 'chris.witko@me.com' }
+query1 { fbId: 'chris.witko@me.com' }
+query2 { email: 'chris.witko@me.com' }
+Example app listening at http://localhost:3000
+query1 { fbId: 'chris.witko@me.com' }
+query2 { email: 'chris.witko@me.com' }
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+query1 { fbId: 'chris.witko@me.com' }
+query2 { email: 'chris.witko@me.com' }
+Example app listening at http://localhost:3000
+query1 { fbId: 'chris.witko@me.com' }
+query2 { email: 'chris.witko@me.com' }
+err null
+Example app listening at http://localhost:3000
+query1 { fbId: 'chris.witko@me.com' }
+query2 { email: 'chris.witko@me.com' }
+err { _id: 55bb311de10b247a0ce3f573,
+  location: 'London, United Kingdom',
+  picture: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.1.50.50/p50x50/11245492_10153275900904293_1724707332891240666_n.jpg?oh=dae2ef0cb8b4b2c973ae5c95216559c7&oe=5643FDE1&__gda__=1447571223_b0026843ae58ad188dc035a87f9b8836',
+  gender: 'male',
+  signedRequest: 'bLfcc02MJKi9swrhMkbTg-b7lg34omMosi8rusL8ifg.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUNwR2xBa183RkdqNUhKNWx3bVJzUUdSY05STlAwelh6R2JxQ3FDOVoySU9GcVI3ZTRHdXloaG5PVS1ROWdxZkZtRzF3RldDSDNTMkdtbjlwd1kybGl3T1djX0V0S1VVVjJld0pCbVdJRmpKbXlJb243aHlFSV9lVjNkMV9VdHdfM19DT3JBZXBzRkk0ZkVKRndJdzlYa0RhMG5aNkVtbXMwVlFnRTYxOUpsUHptU2RQb2dhTVRhV0l6MG00R0ZEZzJ3MWJycHFKSVp1dzVnaGdLaFBQdFF2WjZGTk51NGFFOFAybTUxcHFmYmpzUVBLN01PMmRKQVN0VDgxQzhGWmhjalNtR3BKNklYOGxQZXh0YU41aF85MzlvMVlNNWh0MDRnb2FvRWxhWUtEcUc4Q1lnNG0xbGRhcTNla3ZLVGlGbzZxekU1YVRPRFhfMTNhNDJSMWx3diIsImlzc3VlZF9hdCI6MTQzODMzMTE2NCwidXNlcl9pZCI6IjEwMTUzMzg5MjM0OTA5MjkzIn0',
+  accessToken: 'CAAHKEdBoY60BAHQ5DeHDiy4zBJkXXRuHLkPIgjpCrsSuk6yenpEEAtTZCsuioyiBZAE4BNR7yKzknTubYh2qREx3vrVvWoOshVRojSO5JgFKMeZCY7gv7E12xQ7JPSoaN3Yw4A71ZB8Imdwk8hwocQ0uv7vJBG8yLoCsBUVd1Voprr0KWJjs8L3TanXu4DMZD',
+  updated_time: Sun Jun 28 2015 22:11:46 GMT+0100 (BST),
+  name: 'Chris Witko',
+  locale: 'en_US',
+  link: 'https://www.facebook.com/app_scoped_user_id/10153389234909293/',
+  last_name: 'Witko',
+  fbId: '10153389234909293',
+  first_name: 'Chris',
+  email: 'chris.witko@me.com',
+  __v: 0,
+  isFeedReady: false,
+  isEnabled: true,
+  isBusinessPartner: false,
+  messagesCounter: 0 }
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
