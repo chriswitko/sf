@@ -58,3 +58,1948 @@ Example app listening at http://localhost:3000
 Example app listening at http://localhost:3000
 Example app listening at http://localhost:3000
 Example app listening at http://localhost:3000
+ENV development
+Example app listening at http://localhost:3000
+APP:ENV development
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+query1 { fbId: '10153389234909293', _id: '55b69ade49e1baa221674e33' }
+Example app listening at http://localhost:3000
+query1 { fbId: '10153389234909293', _id: '55b69ade49e1baa221674e33' }
+user { _id: 55b69ade49e1baa221674e33,
+  location: 'London, United Kingdom',
+  picture: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.1.50.50/p50x50/11245492_10153275900904293_1724707332891240666_n.jpg?oh=dae2ef0cb8b4b2c973ae5c95216559c7&oe=5643FDE1&__gda__=1447571223_b0026843ae58ad188dc035a87f9b8836',
+  gender: 'male',
+  signedRequest: 'pg9a_7mgM9tcaYq0jM12JZV6RpynEo4yxRif8gRmMQA.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUFfREhBcElXcmF2V1JHYWtIS3RHZEdvRlNBTENMTlJFd3dOcUNuNGpxU2JoZkloMUJUMGM1bFF4VXRPVGhFczFOZXZ3bUVWN0ZDcGhDaDVYUXJSeTVlcWtpYWVJU1I2cVRkRnFLZlgwMm91MWN0d2lzcnA3SHVhdjlxZzdvREc5WXpudVdxblZST1R2eGtOM1I0Yks1MHNiLVBnQ3FmNmxKWEttaW1STnlyVG5lTEpJN1lkTndlUmFNQ3ZqVUk1aXNUYjU0UnNZVnhkaEVBeHhDLUVaLUxTV2IzODJaM2ZIX2RNMk1aclpZY3BIQk5FU0NoTVhUUFZzNGtrYWkyVGpiWTBlZ3I3SV9YYlBNTUkybkE4anY4dHRyN2RaQzRpeWY0N1YwdmRYcmppTk00bFBvRkplcF9uXzFmUUpKM3ZCbV9OdUNkOUphemUtZmRod3BWR2ozayIsImlzc3VlZF9hdCI6MTQzODAzMDU1NywidXNlcl9pZCI6IjEwMTUzMzg5MjM0OTA5MjkzIn0',
+  accessToken: 'CAAHKEdBoY60BAIGwHz0Tjd8VhvZCfbAJWFgzhrY8WwQE0tw7cBNMhJKGadZBZBw6rXDjn6Iux5ikYEQ7A1mFLHqjHA7CEZBmvCY3AtabsZBN7ZAX1MJFYpFUd3WcKqThlsd8dmjdKr7MtVZAHRaBbJxPTNgdYuh6KNxJP8pJDdABE4B2RJBMUjCWlzLFGFXitYZD',
+  updated_time: Sun Jun 28 2015 22:11:46 GMT+0100 (BST),
+  name: 'Chris Witko',
+  locale: 'en_US',
+  link: 'https://www.facebook.com/app_scoped_user_id/10153389234909293/',
+  last_name: 'Witko',
+  fbId: '10153389234909293',
+  first_name: 'Chris',
+  email: 'chris.witko@me.com',
+  __v: 0,
+  isFeedReady: true,
+  isEnabled: true,
+  isBusinessPartner: false,
+  messagesCounter: 0 }
+Example app listening at http://localhost:3000
+query1 { fbId: '10153389234909293', _id: '55b69ade49e1baa221674e33' }
+user { _id: 55b69ade49e1baa221674e33,
+  location: 'London, United Kingdom',
+  picture: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.1.50.50/p50x50/11245492_10153275900904293_1724707332891240666_n.jpg?oh=dae2ef0cb8b4b2c973ae5c95216559c7&oe=5643FDE1&__gda__=1447571223_b0026843ae58ad188dc035a87f9b8836',
+  gender: 'male',
+  signedRequest: 'pg9a_7mgM9tcaYq0jM12JZV6RpynEo4yxRif8gRmMQA.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUFfREhBcElXcmF2V1JHYWtIS3RHZEdvRlNBTENMTlJFd3dOcUNuNGpxU2JoZkloMUJUMGM1bFF4VXRPVGhFczFOZXZ3bUVWN0ZDcGhDaDVYUXJSeTVlcWtpYWVJU1I2cVRkRnFLZlgwMm91MWN0d2lzcnA3SHVhdjlxZzdvREc5WXpudVdxblZST1R2eGtOM1I0Yks1MHNiLVBnQ3FmNmxKWEttaW1STnlyVG5lTEpJN1lkTndlUmFNQ3ZqVUk1aXNUYjU0UnNZVnhkaEVBeHhDLUVaLUxTV2IzODJaM2ZIX2RNMk1aclpZY3BIQk5FU0NoTVhUUFZzNGtrYWkyVGpiWTBlZ3I3SV9YYlBNTUkybkE4anY4dHRyN2RaQzRpeWY0N1YwdmRYcmppTk00bFBvRkplcF9uXzFmUUpKM3ZCbV9OdUNkOUphemUtZmRod3BWR2ozayIsImlzc3VlZF9hdCI6MTQzODAzMDU1NywidXNlcl9pZCI6IjEwMTUzMzg5MjM0OTA5MjkzIn0',
+  accessToken: 'CAAHKEdBoY60BAIGwHz0Tjd8VhvZCfbAJWFgzhrY8WwQE0tw7cBNMhJKGadZBZBw6rXDjn6Iux5ikYEQ7A1mFLHqjHA7CEZBmvCY3AtabsZBN7ZAX1MJFYpFUd3WcKqThlsd8dmjdKr7MtVZAHRaBbJxPTNgdYuh6KNxJP8pJDdABE4B2RJBMUjCWlzLFGFXitYZD',
+  updated_time: Sun Jun 28 2015 22:11:46 GMT+0100 (BST),
+  name: 'Chris Witko',
+  locale: 'en_US',
+  link: 'https://www.facebook.com/app_scoped_user_id/10153389234909293/',
+  last_name: 'Witko',
+  fbId: '10153389234909293',
+  first_name: 'Chris',
+  email: 'chris.witko@me.com',
+  __v: 0,
+  isFeedReady: true,
+  isEnabled: true,
+  isBusinessPartner: false,
+  messagesCounter: 0 }
+err null
+Example app listening at http://localhost:3000
+Dequeued:
+{ _id: 55bce055a2bd5564432e9c21,
+  name: 'Q_importAllLikesPerUser',
+  params: 
+   { userID: '10153389234909293',
+     accessToken: 'CAAHKEdBoY60BAC4Ge8xpiuhC4dU5McWwaN6YdQspbiT3r7AyiE1RYK2z9phWySDfFwDYdeKQCpkHKeCo5RZCZCdTq8mgZBPmwY0FfzcyDopnyyOogKrV8o3u1yffckQSHE9KteZAF8YMRzaihCvxxZCPJDuZBC2YfVLictSTXzv2p4Nwu2biycQeAWa8AqjTogZBe3UQKY1bmFadaGunuJ0Rf7SJMQAsmcZD',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:05:57 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:05:57 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:05:58 GMT+0100 (BST) }
+Example app listening at http://localhost:3000
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+secondsDiff -5057484
+Complete:
+{ _id: 55bce055a2bd5564432e9c21,
+  name: 'Q_importAllLikesPerUser',
+  params: 
+   { userID: '10153389234909293',
+     accessToken: 'CAAHKEdBoY60BAC4Ge8xpiuhC4dU5McWwaN6YdQspbiT3r7AyiE1RYK2z9phWySDfFwDYdeKQCpkHKeCo5RZCZCdTq8mgZBPmwY0FfzcyDopnyyOogKrV8o3u1yffckQSHE9KteZAF8YMRzaihCvxxZCPJDuZBC2YfVLictSTXzv2p4Nwu2biycQeAWa8AqjTogZBe3UQKY1bmFadaGunuJ0Rf7SJMQAsmcZD',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:05:57 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:05:57 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:05:58 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:06:04 GMT+0100 (BST),
+  result: 'success' }
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057477
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057472
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057464
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057461
+secondsDiff -5057459
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057458
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057451
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057448
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057446
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057445
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057515
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057512
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057510
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057507
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057503
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057494
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057483
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057478
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057475
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057471
+secondsDiff -5057469
+secondsDiff -5057469
+secondsDiff -5057469
+secondsDiff -5057469
+secondsDiff -5057469
+secondsDiff -5057469
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057468
+secondsDiff -5057466
+secondsDiff -5057466
+secondsDiff -5057466
+secondsDiff -5057466
+secondsDiff -5057466
+secondsDiff -5057466
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057465
+secondsDiff -5057463
+secondsDiff -5057463
+secondsDiff -5057463
+secondsDiff -5057463
+secondsDiff -5057463
+secondsDiff -5057463
+secondsDiff -5057463
+secondsDiff -5057463
+secondsDiff -5057463
+Example app listening at http://localhost:3000
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bce63a33e5ce175e0f4f11,
+  name: 'Q_importAllLikesPerUser',
+  params: 
+   { userID: '10153389234909293',
+     accessToken: 'CAAHKEdBoY60BAJkoymjmd8DemHz5ZBnU32MO8ioRmnLGzUKcNNTAgrJoQCy7lNKPZCMSkZAi1Sd6CPNzLjyGaP54sO0XKZCkgQt2q0gf2q9XkMrFeVCYBZA5W9TTrKJ7Dcb8saNfBCFlrIZAZAcAl4bwAuOxuqELfk4DasvmTXPMmiJUJBzIfiUZAf0HPGZAQtwiNuGsephBq20Vkj00ZA79uYiGJ7dGkZAbDMZD',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:31:06 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:31:06 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:31:08 GMT+0100 (BST) }
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057114
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+secondsDiff -5057113
+Complete:
+{ _id: 55bce63a33e5ce175e0f4f11,
+  name: 'Q_importAllLikesPerUser',
+  params: 
+   { userID: '10153389234909293',
+     accessToken: 'CAAHKEdBoY60BAJkoymjmd8DemHz5ZBnU32MO8ioRmnLGzUKcNNTAgrJoQCy7lNKPZCMSkZAi1Sd6CPNzLjyGaP54sO0XKZCkgQt2q0gf2q9XkMrFeVCYBZA5W9TTrKJ7Dcb8saNfBCFlrIZAZAcAl4bwAuOxuqELfk4DasvmTXPMmiJUJBzIfiUZAf0HPGZAQtwiNuGsephBq20Vkj00ZA79uYiGJ7dGkZAbDMZD',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:31:06 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:31:06 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:31:08 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:31:13 GMT+0100 (BST),
+  result: 'success' }
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057108
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057106
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057102
+secondsDiff -5057100
+secondsDiff -5057100
+secondsDiff -5057100
+secondsDiff -5057100
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057099
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057097
+secondsDiff -5057096
+secondsDiff -5057096
+secondsDiff -5057096
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057095
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057092
+secondsDiff -5057091
+secondsDiff -5057091
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057090
+secondsDiff -5057089
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057088
+secondsDiff -5057084
+secondsDiff -5057084
+secondsDiff -5057084
+secondsDiff -5057084
+secondsDiff -5057084
+secondsDiff -5057084
+secondsDiff -5057084
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057083
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057157
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057155
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057153
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057150
+secondsDiff -5057144
+secondsDiff -5057144
+secondsDiff -5057144
+secondsDiff -5057144
+secondsDiff -5057144
+secondsDiff -5057144
+secondsDiff -5057144
+secondsDiff -5057144
+secondsDiff -5057144
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057143
+secondsDiff -5057139
+secondsDiff -5057139
+secondsDiff -5057139
+secondsDiff -5057139
+secondsDiff -5057139
+secondsDiff -5057139
+secondsDiff -5057139
+secondsDiff -5057139
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057138
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057134
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057130
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057127
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057125
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057117
+secondsDiff -5057115
+secondsDiff -5057115
+secondsDiff -5057115
+secondsDiff -5057115
+secondsDiff -5057115
+secondsDiff -5057115
+secondsDiff -5057115
+secondsDiff -5057115
+secondsDiff -5057115
+Dequeued:
+ENV development
+APP:ENV development
+ENV development
+APP:ENV development
+ENV development
+APP:ENV development
+Dequeued:
+ENV development
+APP:ENV development
+ENV development
+APP:ENV development
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Dequeued:
+ENV development
+APP:ENV development
+Example app listening at http://localhost:3000
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bce99f73732ccd68c97c97,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: null,
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:45:35 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:45:35 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:45:35 GMT+0100 (BST) }
+page null
+secondsDiff NaN
+Complete:
+{ _id: 55bce99f73732ccd68c97c97,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: null,
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:45:35 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:45:35 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:45:35 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:45:37 GMT+0100 (BST),
+  result: 'success' }
+Dequeued:
+{ _id: 55bce9aa73732ccd68c97c98,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: null,
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:45:46 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:45:46 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:45:47 GMT+0100 (BST) }
+page null
+secondsDiff NaN
+Complete:
+{ _id: 55bce9aa73732ccd68c97c98,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: null,
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:45:46 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:45:46 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:45:47 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:45:47 GMT+0100 (BST),
+  result: 'success' }
+Example app listening at http://localhost:3000
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bcea23acdcc4c569c33b29,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: null,
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:47:47 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:47:47 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:47:51 GMT+0100 (BST) }
+page null
+secondsDiff NaN
+Complete:
+{ _id: 55bcea23acdcc4c569c33b29,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: null,
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:47:47 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:47:47 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:47:51 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:47:54 GMT+0100 (BST),
+  result: 'success' }
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bcea76acdcc4c569c33b2a,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: null,
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:49:10 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:49:10 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:49:12 GMT+0100 (BST) }
+page null
+secondsDiff NaN
+Complete:
+{ _id: 55bcea76acdcc4c569c33b2a,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: null,
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:49:10 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:49:10 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:49:12 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:49:12 GMT+0100 (BST),
+  result: 'success' }
+Dequeued:
+{ _id: 55bcea84acdcc4c569c33b2b,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:49:12 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:49:24 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:49:24 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:49:27 GMT+0100 (BST) }
+page Sat Aug 01 2015 16:49:12 GMT+0100 (BST)
+secondsDiff -4943252
+Complete:
+{ _id: 55bcea84acdcc4c569c33b2b,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:49:12 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:49:24 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:49:24 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:49:27 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:49:28 GMT+0100 (BST),
+  result: 'success' }
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bceaceacdcc4c569c33b2c,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:49:28 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:50:38 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:50:38 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:50:42 GMT+0100 (BST) }
+page Sat Aug 01 2015 16:49:28 GMT+0100 (BST)
+now 1438444242016
+secondsDiff -4943254
+Complete:
+{ _id: 55bceaceacdcc4c569c33b2c,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:49:28 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:50:38 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:50:38 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:50:42 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:50:42 GMT+0100 (BST),
+  result: 'success' }
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bceaf4acdcc4c569c33b2d,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:50:42 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:51:16 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:51:16 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:51:17 GMT+0100 (BST) }
+start { [Number: 1029426642000]
+  _isAMomentObject: true,
+  _i: Sat Aug 01 2015 16:50:42 GMT+0100 (BST),
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [ 'Sat Aug ', ' ', ' GMT+0100 (BST)' ],
+     overflow: 1,
+     charsLeftOver: 24,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Thu Aug 15 2002 16:50:42 GMT+0100 (BST) }
+now { [Number: -16766160240000]
+  _isAMomentObject: true,
+  _i: 1438444277760,
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [],
+     overflow: 1,
+     charsLeftOver: 0,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Fri Sep 14 1438 06:16:00 GMT+0100 (BST) }
+secondsDiff -4943218
+Complete:
+{ _id: 55bceaf4acdcc4c569c33b2d,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:50:42 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:51:16 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:51:16 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:51:17 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:51:18 GMT+0100 (BST),
+  result: 'success' }
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bceb0cacdcc4c569c33b2e,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:51:18 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:51:40 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:51:40 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:51:40 GMT+0100 (BST) }
+start { [Number: 1029426678000]
+  _isAMomentObject: true,
+  _i: Sat Aug 01 2015 16:51:18 GMT+0100 (BST),
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [ 'Sat Aug ', ' ', ' GMT+0100 (BST)' ],
+     overflow: 1,
+     charsLeftOver: 24,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Thu Aug 15 2002 16:51:18 GMT+0100 (BST) }
+now { [Number: -16766350314000]
+  _isAMomentObject: true,
+  _i: 1438444300886,
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [],
+     overflow: 1,
+     charsLeftOver: 0,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Wed Sep 12 1438 01:28:06 GMT+0100 (BST) }
+secondsDiff -4943271
+Complete:
+{ _id: 55bceb0cacdcc4c569c33b2e,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:51:18 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:51:40 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:51:40 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:51:40 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:51:41 GMT+0100 (BST),
+  result: 'success' }
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bceb64acdcc4c569c33b2f,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:51:41 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:53:08 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:53:08 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:53:11 GMT+0100 (BST) }
+start { [Number: 1029426701000]
+  _isAMomentObject: true,
+  _i: Sat Aug 01 2015 16:51:41 GMT+0100 (BST),
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [ 'Sat Aug ', ' ', ' GMT+0100 (BST)' ],
+     overflow: 1,
+     charsLeftOver: 24,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Thu Aug 15 2002 16:51:41 GMT+0100 (BST) }
+now { [Number: -16766025717000]
+  _isAMomentObject: true,
+  _i: 1438444391383,
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [],
+     overflow: 1,
+     charsLeftOver: 0,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Sat Sep 15 1438 19:38:03 GMT+0100 (BST) }
+secondsDiff 113616
+Complete:
+{ _id: 55bceb64acdcc4c569c33b2f,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:51:41 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:53:08 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:53:08 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:53:11 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:53:12 GMT+0100 (BST),
+  result: 'success' }
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bceb7cacdcc4c569c33b30,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:53:12 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:53:32 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:53:32 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:53:35 GMT+0100 (BST) }
+start { [Number: 1029426792000]
+  _isAMomentObject: true,
+  _i: Sat Aug 01 2015 16:53:12 GMT+0100 (BST),
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [ 'Sat Aug ', ' ', ' GMT+0100 (BST)' ],
+     overflow: 1,
+     charsLeftOver: 24,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Thu Aug 15 2002 16:53:12 GMT+0100 (BST) }
+now { [Number: -16766211771000]
+  _isAMomentObject: true,
+  _i: 1438444415579,
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [],
+     overflow: 1,
+     charsLeftOver: 0,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Thu Sep 13 1438 15:57:09 GMT+0100 (BST) }
+secondsDiff 0
+Complete:
+{ _id: 55bceb7cacdcc4c569c33b30,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:53:12 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:53:32 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:53:32 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:53:35 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:53:36 GMT+0100 (BST),
+  result: 'success' }
+Dequeued:
+{ _id: 55bceba8acdcc4c569c33b31,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 14:53:36 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:54:16 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:54:16 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:54:16 GMT+0100 (BST) }
+start { [Number: 1029419616000]
+  _isAMomentObject: true,
+  _i: Sat Aug 01 2015 14:53:36 GMT+0100 (BST),
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [ 'Sat Aug ', ' ', ' GMT+0100 (BST)' ],
+     overflow: 1,
+     charsLeftOver: 24,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Thu Aug 15 2002 14:53:36 GMT+0100 (BST) }
+now { [Number: -16766065436000]
+  _isAMomentObject: true,
+  _i: 1438444456364,
+  _f: 'YYYY-M-DD HH:mm:ss',
+  _isUTC: false,
+  _pf: 
+   { empty: false,
+     unusedTokens: [],
+     unusedInput: [],
+     overflow: 1,
+     charsLeftOver: 0,
+     nullInput: false,
+     invalidMonth: null,
+     invalidFormat: false,
+     userInvalidated: false,
+     iso: false },
+  _locale: 
+   { _ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+     ordinal: [Function],
+     _abbr: 'en',
+     _ordinalParseLenient: /\d{1,2}(th|st|nd|rd)|\d{1,2}/ },
+  _d: Sat Sep 15 1438 08:36:04 GMT+0100 (BST) }
+secondsDiff 2
+Complete:
+{ _id: 55bceba8acdcc4c569c33b31,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 14:53:36 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:54:16 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:54:16 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:54:16 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:54:17 GMT+0100 (BST),
+  result: 'success' }
+ENV development
+APP:ENV development
+Dequeued:
+ENV development
+APP:ENV development
+ENV development
+APP:ENV development
+Dequeued:
+{ _id: 55bcec46acdcc4c569c33b33,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:54:17 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:56:54 GMT+0100 (BST),
+  priority: 0,
+  status: 'dequeued',
+  enqueued: Sat Aug 01 2015 16:56:54 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:56:58 GMT+0100 (BST) }
+Complete:
+{ _id: 55bcec46acdcc4c569c33b33,
+  name: 'Q_importAllPostsPerPage',
+  params: 
+   { pageID: '52730062643',
+     lastImportAt: Sat Aug 01 2015 16:54:17 GMT+0100 (BST),
+     accessToken: '503652836467629|d273b14b2880c092212dfddaa878f375',
+     after: '' },
+  queue: 'sna_default',
+  attempts: null,
+  timeout: null,
+  delay: Sat Aug 01 2015 16:56:54 GMT+0100 (BST),
+  priority: 0,
+  status: 'complete',
+  enqueued: Sat Aug 01 2015 16:56:54 GMT+0100 (BST),
+  dequeued: Sat Aug 01 2015 16:56:58 GMT+0100 (BST),
+  ended: Sat Aug 01 2015 16:56:58 GMT+0100 (BST),
+  result: 'success' }
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+Example app listening at http://localhost:3000
+ENV development
+APP:ENV development

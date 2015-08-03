@@ -23,7 +23,7 @@ var Children = require('./server/common/child');
 // var mq_options = {databaseName: config.db_name, queueCollection: 'capped_collection', autoStart: false};
 // var mq = new MQ(mq_options);
 
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 
 // Connect to mongodb
 var connect = function () {
@@ -83,6 +83,7 @@ app.get('/api/user/importFriends', userController.importFriends);
 app.get('/api/user/friends', userController.friends);
 app.get('/api/user/pages', userController.pages);
 app.get('/api/user/posts', userController.posts);
+app.get('/api/user/verifyEmail', userController.verifyEmail);
 
 app.get('/deauthorize', userController.deauthorize);
 app.get('/rtu', userController.getRtu);

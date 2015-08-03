@@ -70,3 +70,402 @@ stack Error: User not found
     at /Users/chris/sf/node_modules/mongoose/lib/query.js:1174:16
     at /Users/chris/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
     at process._tickDomainCallback (node.js:381:11)
+stack TypeError: undefined is not a function
+    at async.series.getUserById (/Users/chriswitko/sf/server/controllers/users.js:35:13)
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:699:13
+    at iterate (/Users/chriswitko/sf/node_modules/async/lib/async.js:256:13)
+    at Object.async.forEachOfSeries.async.eachOfSeries (/Users/chriswitko/sf/node_modules/async/lib/async.js:275:9)
+    at Object.async.series (/Users/chriswitko/sf/node_modules/async/lib/async.js:698:15)
+    at getUser (/Users/chriswitko/sf/server/controllers/users.js:26:9)
+    at async.series.getUser (/Users/chriswitko/sf/server/controllers/users.js:267:7)
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:699:13
+    at iterate (/Users/chriswitko/sf/node_modules/async/lib/async.js:256:13)
+    at Object.async.forEachOfSeries.async.eachOfSeries (/Users/chriswitko/sf/node_modules/async/lib/async.js:275:9)
+    at Object.async.series (/Users/chriswitko/sf/node_modules/async/lib/async.js:698:15)
+    at exports.friends (/Users/chriswitko/sf/server/controllers/users.js:265:9)
+    at Layer.handle [as handle_request] (/Users/chriswitko/sf/node_modules/express/lib/router/layer.js:82:5)
+    at next (/Users/chriswitko/sf/node_modules/express/lib/router/route.js:110:13)
+    at Route.dispatch (/Users/chriswitko/sf/node_modules/express/lib/router/route.js:91:3)
+    at Layer.handle [as handle_request] (/Users/chriswitko/sf/node_modules/express/lib/router/layer.js:82:5)
+Error: User not found
+    at /Users/chriswitko/sf/server/controllers/users.js:269:16
+    at /Users/chriswitko/sf/server/controllers/users.js:51:5
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:708:13
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:49:16
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:263:32
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:40:16
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chriswitko/sf/server/controllers/users.js:44:18
+    at /Users/chriswitko/sf/node_modules/mongoose/lib/query.js:1173:16
+    at /Users/chriswitko/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
+    at process._tickDomainCallback (node.js:381:11)
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+/Users/chriswitko/sf/server/controllers/users.js:30
+      User.findOne(query, function(err me) {
+                                       ^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at Module.require (module.js:365:17)
+    at require (module.js:384:17)
+    at Object.<anonymous> (/Users/chriswitko/sf/app.js:16:22)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.<anonymous> (/usr/local/lib/node_modules/pm2/node_modules/pmx/lib/transaction.js:62:21)
+    at /usr/local/lib/node_modules/pm2/lib/ProcessContainer.js:207:23
+    at /usr/local/lib/node_modules/pm2/node_modules/async/lib/async.js:49:16
+stack Error: User not found
+    at /Users/chriswitko/sf/server/controllers/users.js:267:16
+    at /Users/chriswitko/sf/server/controllers/users.js:49:5
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:708:13
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:49:16
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:263:32
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:40:16
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chriswitko/sf/server/controllers/users.js:42:18
+    at /Users/chriswitko/sf/node_modules/mongoose/lib/query.js:1173:16
+    at /Users/chriswitko/sf/node_modules/mongoose/node_modules/kareem/index.js:109:16
+    at process._tickDomainCallback (node.js:381:11)
+Error: Callback was already called.
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:38:31
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:705:17
+    at /Users/chriswitko/sf/server/controllers/users.js:384:18
+    at /Users/chriswitko/sf/node_modules/monq/lib/job.js:37:9
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/collection/core.js:451:9
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/collection/core.js:119:9
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/db.js:1132:7
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/db.js:1846:9
+    at Server.Base._callHandler (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/base.js:445:41)
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/server.js:468:18
+    at MongoReply.parseBody (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/responses/mongo_reply.js:68:5)
+    at null.<anonymous> (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/server.js:426:20)
+    at emit (events.js:107:17)
+    at null.<anonymous> (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/connection_pool.js:201:13)
+    at emit (events.js:110:17)
+    at Socket.<anonymous> (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/connection.js:422:22)
+TypeError: Cannot read property 'lastImportAt' of undefined
+    at async.series.calc1hFromLastUpdate (/Users/chriswitko/sf/listener.js:54:39)
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:699:13
+    at iterate (/Users/chriswitko/sf/node_modules/async/lib/async.js:256:13)
+    at Object.async.forEachOfSeries.async.eachOfSeries (/Users/chriswitko/sf/node_modules/async/lib/async.js:275:9)
+    at Object.async.series (/Users/chriswitko/sf/node_modules/async/lib/async.js:698:15)
+    at Q_importAllPostsPerPage (/Users/chriswitko/sf/listener.js:52:9)
+    at Worker.process (/Users/chriswitko/sf/node_modules/monq/lib/worker.js:156:9)
+    at Worker.work (/Users/chriswitko/sf/node_modules/monq/lib/worker.js:147:10)
+    at /Users/chriswitko/sf/node_modules/monq/lib/worker.js:81:18
+    at /Users/chriswitko/sf/node_modules/monq/lib/queue.js:91:9
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/collection/core.js:743:14
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/db.js:1132:7
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/db.js:1846:9
+    at Server.Base._callHandler (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/base.js:445:41)
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/server.js:468:18
+    at MongoReply.parseBody (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/responses/mongo_reply.js:68:5)
+TypeError: Cannot read property 'lastImportAt' of undefined
+    at async.series.calc1hFromLastUpdate (/Users/chriswitko/sf/listener.js:55:39)
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:699:13
+    at iterate (/Users/chriswitko/sf/node_modules/async/lib/async.js:256:13)
+    at Object.async.forEachOfSeries.async.eachOfSeries (/Users/chriswitko/sf/node_modules/async/lib/async.js:275:9)
+    at Object.async.series (/Users/chriswitko/sf/node_modules/async/lib/async.js:698:15)
+    at Q_importAllPostsPerPage (/Users/chriswitko/sf/listener.js:52:9)
+    at Worker.process (/Users/chriswitko/sf/node_modules/monq/lib/worker.js:156:9)
+    at Worker.work (/Users/chriswitko/sf/node_modules/monq/lib/worker.js:147:10)
+    at /Users/chriswitko/sf/node_modules/monq/lib/worker.js:81:18
+    at /Users/chriswitko/sf/node_modules/monq/lib/queue.js:91:9
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/collection/core.js:743:14
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/db.js:1132:7
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/db.js:1846:9
+    at Server.Base._callHandler (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/base.js:445:41)
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/server.js:468:18
+    at MongoReply.parseBody (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/responses/mongo_reply.js:68:5)
+stack RangeError: Maximum call stack size exceeded
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:215:20)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+stack RangeError: Maximum call stack size exceeded
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:215:20)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+stack RangeError: Maximum call stack size exceeded
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:215:20)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+stack RangeError: Maximum call stack size exceeded
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:215:20)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+stack RangeError: Maximum call stack size exceeded
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:215:20)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:216:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+    at Function.calculateObjectSize (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:206:22)
+    at calculateElement (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/node_modules/bson/lib/bson/bson.js:292:118)
+TypeError: Cannot read property 'lastImportAt' of undefined
+    at async.series.calc1hFromLastUpdate (/Users/chriswitko/sf/listener.js:55:39)
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:699:13
+    at iterate (/Users/chriswitko/sf/node_modules/async/lib/async.js:256:13)
+    at Object.async.forEachOfSeries.async.eachOfSeries (/Users/chriswitko/sf/node_modules/async/lib/async.js:275:9)
+    at Object.async.series (/Users/chriswitko/sf/node_modules/async/lib/async.js:698:15)
+    at Q_importAllPostsPerPage (/Users/chriswitko/sf/listener.js:52:9)
+    at Worker.process (/Users/chriswitko/sf/node_modules/monq/lib/worker.js:156:9)
+    at Worker.work (/Users/chriswitko/sf/node_modules/monq/lib/worker.js:147:10)
+    at /Users/chriswitko/sf/node_modules/monq/lib/worker.js:81:18
+    at /Users/chriswitko/sf/node_modules/monq/lib/queue.js:91:9
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/collection/core.js:743:14
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/db.js:1132:7
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/db.js:1846:9
+    at Server.Base._callHandler (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/base.js:445:41)
+    at /Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/connection/server.js:468:18
+    at MongoReply.parseBody (/Users/chriswitko/sf/node_modules/monq/node_modules/mongoskin/node_modules/mongodb/lib/mongodb/responses/mongo_reply.js:68:5)
+ReferenceError: hoursDiff is not defined
+    at async.series.getData (/Users/chriswitko/sf/listener.js:60:10)
+    at /Users/chriswitko/sf/node_modules/async/lib/async.js:699:13
+    at iterate (/Users/chriswitko/sf/node_modules/async/lib/async.js:256:13)
+    at process._tickDomainCallback (node.js:381:11)

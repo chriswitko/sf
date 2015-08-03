@@ -28,13 +28,9 @@ module.exports = {
   db_name: 'shopnowapp-dev',
   db: 'mongodb://localhost/shopnowapp-dev',
   facebook: {
+    secretRTUKey: 'shopnowapp-lovesyou',
     clientID: process.env.FACEBOOK_CLIENTID,
     clientSecret: process.env.FACEBOOK_SECRET,
     callbackURL: "http://localhost:3000/auth/facebook/callback"
-  },
-  twitter: {
-    clientID: process.env.TWITTER_CLIENTID,
-    clientSecret: process.env.TWITTER_SECRET,
-    callbackURL: "http://localhost:3000/auth/twitter/callback"
   }
 };

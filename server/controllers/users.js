@@ -11,6 +11,13 @@ var monq = require('monq');
 var client = monq(process.env.MONGODB_URI || config.db, { safe: true });
 var queue = client.queue('sna_default');
 
+// var ses = require('node-ses');
+// var mailClient = ses.createClient({ key: 'AKIAI2OILVYQHMBBZEZQ', secret: 'AnDX6b7H9rKifsrDK5Q+TGp2qKrdz9E1dNnQs3Pll6xS', algorithm: 'HmacSHA256', amazon: 'https://email-smtp.us-west-2.amazonaws.com' });
+var AmazonSES = require('amazon-ses');
+// var mailClient = new AmazonSES('', '');
+var mailClient = false;
+
+
 var User = require('../models/user');
 var UserPage = require('../models/userpage');
 var Page = require('../models/page');
@@ -27,13 +34,11 @@ var getUser = function(userID, id, cb) {
     getUserById: function(done) {
       query = {fbId: userID}
       if(id) query._id = id;
-      var promise = User.findOne(query).exec();
-      promise.then(function(me) {
+      User.findOne(query, function(err, me) {
+        if(!me) {
+          return done();
+        }
         user = me;
-        done();
-      })
-      .catch(function(err){
-        console.log('error:', err);
         done();
       });
     },
@@ -63,7 +68,7 @@ exports.deauthorize = function(req, res, next) {
 
 exports.getRtu = function(req, res, next) {
   console.log('get /rtu', req.query);
-  if (req.query['hub.verify_token'] === 'moi') {
+  if (req.query['hub.verify_token'] === config.facebook.secretKey) {
     res.send(req.query['hub.challenge']);
   }
 };
@@ -108,8 +113,8 @@ exports.user = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token || null, function(me) {
-        if(!me) { 
-          next(new Error('User not found')); 
+        if(!me) {
+          next(new Error('User not found'));
           return;
         }
         user = me;
@@ -123,20 +128,37 @@ exports.user = function(req, res, next) {
 
 exports.importPosts = function(req, res, next) {
   var appToken = config.facebook.clientID + '|' + config.facebook.clientSecret;
-  queue.enqueue('Q_importAllPostsPerPage', {pageID: req.query.pageID, accessToken: appToken, after: ''}, function (err, job) {
-    if(err) { 
-      next(err); 
-      return;
+  var page;
+  async.series({
+    getPage: function(done) {
+      Page.findOne({fbId: req.query.pageID}, function(err, me) {
+        if(!me) {
+          next(new Error('Page not found'));
+          return;
+        }
+        page = me
+        done();
+      });
+    },
+    getData: function(done) {
+      queue.enqueue('Q_importAllPostsPerPage', {pageID: req.query.pageID, lastImportAt: page.lastImportAt, accessToken: appToken, after: ''}, function (err, job) {
+        if(err) {
+          next(err);
+          return;
+        }
+        done();
+      });
     }
+  }, function() {
     res.json({status: 'success'});
-  });
+  })
 }
 
 exports.importPostsBulk = function(req, res, next) {
   var appToken = config.facebook.clientID + '|' + config.facebook.clientSecret;
   queue.enqueue('Q_importAllPostsPerPageBulk', {pageID: req.query.pageID, accessToken: appToken, after: ''}, function (err, job) {
-    if(err) { 
-      next(err); 
+    if(err) {
+      next(err);
       return;
     }
     res.json({status: 'success'});
@@ -154,8 +176,8 @@ exports.posts = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { 
-          next(new Error('User not found')); 
+        if(!me) {
+          next(new Error('User not found'));
           return;
         }
         user = me;
@@ -215,8 +237,8 @@ exports.pages = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { 
-          next(new Error('User not found')); 
+        if(!me) {
+          next(new Error('User not found'));
           return;
         }
         user = me;
@@ -265,8 +287,8 @@ exports.friends = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { 
-          next(new Error('User not found')); 
+        if(!me) {
+          next(new Error('User not found'));
           return;
         }
         user = me;
@@ -278,6 +300,7 @@ exports.friends = function(req, res, next) {
 
       graph.get('/' + user.fbId + '/friends?limit=100' + (fields ? '&fields=' + fields : '') + (req.query.after ? '&after=' + req.query.after : ''), function(err, output) {
         if(output.data) friends = output.data;
+        done();
       });
     }
   }, function() {
@@ -292,8 +315,8 @@ exports.importFriends = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { 
-          next(new Error('User not found')); 
+        if(!me) {
+          next(new Error('User not found'));
           return;
         }
         user = me;
@@ -302,8 +325,8 @@ exports.importFriends = function(req, res, next) {
     },
     Q_importAllFriendsPerUser: function(done) {
       queue.enqueue('Q_importAllFriendsPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
-        if(err) { 
-          next(err); 
+        if(err) {
+          next(err);
           return;
         }
         output = job;
@@ -322,8 +345,8 @@ exports.importLikes = function(req, res, next) {
   async.series({
     getUser: function(done) {
       getUser(req.query.userID, req.query.token, function(me) {
-        if(!me) { 
-          next(new Error('User not found')); 
+        if(!me) {
+          next(new Error('User not found'));
           return;
         }
         user = me;
@@ -332,8 +355,8 @@ exports.importLikes = function(req, res, next) {
     },
     Q_importAllLikesPerUser: function(done) {
       queue.enqueue('Q_importAllLikesPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
-        if(err) { 
-          next(err); 
+        if(err) {
+          next(err);
           return;
         }
         output = job;
@@ -343,6 +366,16 @@ exports.importLikes = function(req, res, next) {
   }, function() {
     res.json({status: 'success'});
   })
+}
+
+exports.verifyEmail = function(req, res) {
+  if(mailClient && req.query.email) {
+    mailClient.verifyEmailAddress(req.query.email, function() {
+      res.json({status: 'success'});
+    });
+  } else {
+    res.json({status: 'error'});
+  }
 }
 
 // TODO: After authorize (isNew = true) send notifications to all my existing friends
@@ -384,7 +417,30 @@ exports.authenticate = function(req, res) {
         queue.enqueue('Q_importAllLikesPerUser', {userID: user.fbId, accessToken: user.accessToken, after: ''}, function (err, job) {
           return done();
         });
-      } 
+      } else {
+        done();
+      }
+    },
+    sendWelcomeEmail: function(done) {
+      if(user.isNew && user.email && mailClient) {
+        console.log('Sending to', user.email);
+        mailClient.send({
+            from: 'chris.witko@me.com'
+          , to: [user.email]
+          // , replyTo: ['chris.witko@gmail.com']
+          , subject: 'Test subject'
+          , body: {
+              text: 'This is the text of the message.'
+            , html: 'This is the html body of the message.'
+          }
+        }, function(err, data) {
+          done();
+        });
+      } else {
+        done();
+      }
+    },
+    addUserToMailChimp: function(done) {
       done();
     },
     getLongLifeAccessToken: function(done) {

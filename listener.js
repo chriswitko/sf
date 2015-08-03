@@ -46,32 +46,39 @@ var Q_importAllPostsPerPage = function(data, next) {
   var likes = [];
   var fields = 'id,from.fields(id,website),message,picture,full_picture,link,type,created_time,likes.fields(id,name,picture,link)';
   var since = Date.parse('-30 days');
+  var hoursDiff = 0;
 
   graph.setAccessToken(data.accessToken);
 
   async.series({
-    calc1hFromLastUpdate: function(done) {
-      var startDate = moment(data.page.lastImportAt, 'YYYY-M-DD HH:mm:ss')
-      var endDate = moment(Date.now(), 'YYYY-M-DD HH:mm:ss')
-      var secondsDiff = endDate.diff(startDate, 'hours')
-      console.log('secondsDiff', secondsDiff);
-      done();
-    },
     getData: function(done) {
-      graph.get('/' + data.pageID + '/posts?limit=1' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
-        likes = output.data;
-        async.forEach(likes, function(item, cb) {
-          if(item.type === 'link' || item.type === 'photo') {
-            Q_addPost({post: item}, function() {
+      hoursDiff = data.lastImportAt ? moment().diff(data.lastImportAt, 'hours') : 1;
+
+      if(hoursDiff >= 1) {
+        graph.get('/' + data.pageID + '/posts?limit=1' + (since ? '&since=' + since : '') + (fields ? '&fields=' + fields : '') + (data.after ? '&after=' + data.after : ''), function(err, output) {
+          likes = output.data;
+          async.forEach(likes, function(item, cb) {
+            if(item.type === 'link' || item.type === 'photo') {
+              Q_addPost({post: item}, function() {
+                cb();
+              });
+            } else {
               cb();
-            });
-          } else {
-            cb();
-          }
-        }, function() {
-          done();
-        })
-      });
+            }
+          }, function() {
+            done();
+          })
+        });
+      } else {
+        done();
+      }
+    },
+    updateLastImportAt: function(done) {
+      if(hoursDiff >= 1) {
+        Page.update({fbId: data.pageID}, {$set: {lastImportAt: new Date()}}).exec(done());
+      } else {
+        done();
+      }
     }
   }, function() {
     if(next) {

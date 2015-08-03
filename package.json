@@ -13,6 +13,7 @@
     "url": "git@github.com:ngbp/ngbp.git"
   },
   "dependencies": {
+    "amazon-ses": "0.0.3",
     "async": "^1.2.1",
     "body-parser": "^1.12.4",
     "cheerio": "^0.19.0",
@@ -28,6 +29,8 @@
     "mongoose": "^4.0.3",
     "mongoose-paginate": "^4.0.0",
     "monq": "^0.3.1",
+    "node-ses": "^1.0.2",
+    "pm2": "^0.14.5",
     "request": "^2.55.0",
     "unfluff": "^0.11.0"
   },
